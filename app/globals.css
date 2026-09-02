@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	--gris: #202020;
+	--blanco: white;
+	--dorado: #b2943a;
+	--header-height: 70px;
+	--body-padding: 10px;
+	@apply font-light;
+}
+
+@utility gris {
+	--base: var(--gris);
+	--foreground: var(--blanco);
+	--accent: var(--dorado);
+	--accent-foreground: var(--blanco);
+}
+
+@utility blanco {
+	--base: var(--blanco);
+	--foreground: var(--gris);
+	--accent: var(--dorado);
+	--accent-foreground: var(--gris);
+}
+
+@utility dorado {
+	--base: var(--dorado);
+	--foreground: var(--blanco);
+	--accent: var(--gris);
+	--accent-foreground: var(--blanco);
+}
+
+@utility solid {
+	background-color: var(--base);
+	color: var(--foreground);
+}
+
+@theme inline {
+	--color-blanco: var(--blanco);
+	--color-gris: var(--gris);
+	--color-dorado: var(--dorado);
+	--color-base: var(--base);
+	--color-foreground: var(--foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--font-sans: "Oswald", sans-serif;
+}
