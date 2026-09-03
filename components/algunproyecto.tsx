@@ -4,7 +4,7 @@ import Heading from "./ui/heading";
 
 export default function AlgunProyecto() {
 	return (
-		<div className="text-center w-full flex flex-col justify-center items-center gap-4 py-50 px-15 gris bg-base text-foreground bg-[url('/printer.webp')] bg-cover bg-center bg-fixed">
+		<div className="text-center w-full flex flex-col justify-center items-center gap-4 py-50 px-15 midnight bg-base text-foreground bg-[url('/printer.webp')] bg-cover bg-center bg-fixed">
 			<Heading level={2} className="max-w-2xl">
 				¿Listo para imprimir tu próximo proyecto?
 			</Heading>

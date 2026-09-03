@@ -21,7 +21,7 @@ export function ServiceThumb({
 }: ServiceProps & React.HTMLAttributes<HTMLAnchorElement>) {
 	return (
 		<Link
-			className="w-full h-100 relative flex overflow-hidden gris text-foreground"
+			className="w-full h-100 relative flex overflow-hidden midnight text-foreground"
 			href={href}
 			{...props}
 		>
@@ -53,7 +53,7 @@ export function ServiceSection({
 	const { className, ...rest } = props;
 	return (
 		<div
-			className={`group dorado odd:text-right  odd:items-end even:items-start w-full h-180 relative flex flex-col overflow-hidden ${className}`}
+			className={`group mint odd:text-right  odd:items-end even:items-start w-full h-180 relative flex flex-col overflow-hidden ${className}`}
 			{...rest}
 		>
 			<div className="absolute z-0 w-full h-full pointer-events-none">
@@ -66,14 +66,14 @@ export function ServiceSection({
 			<div className="w-150 h-full flex flex-col z-10 relative">
 				<div className="group-odd:items-end group-even:items-start w-full text-lg flex justify-between flex-col flex-grow text-foreground bg-base/80 backdrop-blur-md  px-15 py-20 gap-4 relative">
 					<span
-						className="text-9xl text-bold [-webkit-text-stroke:1px_white]
+						className="text-9xl text-bold [-webkit-text-stroke:1px_#D9D9D6]
            [-webkit-text-fill-color:transparent]"
 					>
 						{number}
 					</span>
 					<Heading level={3}>{title}</Heading>
 				</div>
-				<div className="desc blanco text-foreground bg-base w-full px-10 py-15 flex flex-col justify-center text-lg group-odd:items-end group-even:items-start">
+				<div className="desc lightgrey text-foreground bg-base w-full px-10 py-15 flex flex-col justify-center text-lg group-odd:items-end group-even:items-start">
 					{description}
 				</div>
 			</div>

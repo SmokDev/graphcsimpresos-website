@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="es">
-			<body className={`antialiased ${oswald.className}`}>
+			<body className={`antialiased ${oswald.className} bg-lightgrey text-midnight`}>
 				<Header>
 					<NavLink href="/">Inicio</NavLink>
 					<NavLink href="/nosotros">Nosotros</NavLink>

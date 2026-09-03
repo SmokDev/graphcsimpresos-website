@@ -5,33 +5,36 @@
 }
 
 :root {
-	--gris: #202020;
-	--blanco: white;
-	--dorado: #b2943a;
+	--midnight: #002855;
+	--mint: #00bfb2;
+	--lightgrey: #d9d9d6;
 	--header-height: 70px;
 	--body-padding: 10px;
 	@apply font-light;
 }
 
-@utility gris {
-	--base: var(--gris);
-	--foreground: var(--blanco);
-	--accent: var(--dorado);
-	--accent-foreground: var(--blanco);
+/* Midnight = principal (fondo oscuro), contraste = mint */
+/* Lightgrey reemplaza blanco, nunca usar blanco puro */
+
+@utility midnight {
+	--base: var(--midnight);
+	--foreground: var(--mint);
+	--accent: var(--mint);
+	--accent-foreground: var(--midnight);
 }
 
-@utility blanco {
-	--base: var(--blanco);
-	--foreground: var(--gris);
-	--accent: var(--dorado);
-	--accent-foreground: var(--gris);
+@utility mint {
+	--base: var(--mint);
+	--foreground: var(--midnight);
+	--accent: var(--midnight);
+	--accent-foreground: var(--lightgrey);
 }
 
-@utility dorado {
-	--base: var(--dorado);
-	--foreground: var(--blanco);
-	--accent: var(--gris);
-	--accent-foreground: var(--blanco);
+@utility lightgrey {
+	--base: var(--lightgrey);
+	--foreground: var(--midnight);
+	--accent: var(--mint);
+	--accent-foreground: var(--midnight);
 }
 
 @utility solid {
@@ -40,9 +43,9 @@
 }
 
 @theme inline {
-	--color-blanco: var(--blanco);
-	--color-gris: var(--gris);
-	--color-dorado: var(--dorado);
+	--color-midnight: var(--midnight);
+	--color-mint: var(--mint);
+	--color-lightgrey: var(--lightgrey);
 	--color-base: var(--base);
 	--color-foreground: var(--foreground);
 	--color-accent: var(--accent);
