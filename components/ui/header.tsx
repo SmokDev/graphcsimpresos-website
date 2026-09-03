@@ -1,78 +1,172 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import Logomark from "../logomark";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-export function NavLink({ ...props }: React.ComponentProps<typeof Link>) {
+export function NavLink({ href, children, ...props }: React.ComponentProps<typeof Link>) {
+	const pathname = usePathname();
+	const isActive = pathname === href;
 	return (
 		<Link
-			className="nav-link uppercase h-full flex items-center px-4 text-lightgrey text-center hover:text-mint transition-colors duration-200"
+			href={href}
+			className={`relative uppercase tracking-[0.14em] text-[11px] font-medium px-4 py-2 rounded-full transition-colors duration-300 ${
+				isActive ? "text-midnight bg-mint" : "text-lightgrey/80 hover:text-lightgrey hover:bg-lightgrey/10"
+			}`}
 			{...props}
-		/>
+		>
+			{children}
+		</Link>
 	);
 }
+
 export default function Header({ children }: { children?: React.ReactNode }) {
 	const [open, setOpen] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
+
+	useEffect(() => {
+		const onScroll = () => setScrolled(window.scrollY > 20);
+		onScroll();
+		window.addEventListener("scroll", onScroll, { passive: true });
+		return () => window.removeEventListener("scroll", onScroll);
+	}, []);
+
+	// lock body scroll when drawer open
+	useEffect(() => {
+		if (open) document.documentElement.classList.add("lenis-stopped");
+		else document.documentElement.classList.remove("lenis-stopped");
+		return () => document.documentElement.classList.remove("lenis-stopped");
+	}, [open]);
 
 	return (
-		<header className="w-full h-16 bg-midnight flex items-center px-2 py-2 fixed z-50">
-			{/* Logo - horizontal SVG */}
-			<Link href="/" className="flex items-center h-full w-auto absolute left-2 p-1">
-				<Image
-					src="/Logo%20Lightgray.svg"
-					alt="Graphics Impresos"
-					width={180}
-					height={44}
-					className="h-full w-auto object-contain"
-					priority
-				/>
-			</Link>
-			{/* Desktop Navigation */}
-			<nav className="flex-1 flex justify-center h-full">
-				<div className="hidden md:flex gap-2 h-full">{children}</div>
-			</nav>
-			{/* Mobile Menu Button */}
-			<button
-				className="md:hidden ml-auto p-2"
-				onClick={() => setOpen((o) => !o)}
-				aria-label="Open menu"
+		<>
+			<motion.header
+				initial={{ y: -30, opacity: 0 }}
+				animate={{ y: 0, opacity: 1 }}
+				transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+				className="fixed top-0 inset-x-0 z-50 flex justify-center px-4 pointer-events-none"
 			>
-				<Menu className="w-7 h-7 text-lightgrey" />
-			</button>
-			{/* Mobile Navigation Drawer */}
+				<div
+					className={`pointer-events-auto mt-4 flex items-center gap-2 rounded-full border px-2 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-all duration-500
+					${scrolled
+						? "bg-midnight/85 border-lightgrey/15 shadow-[0_8px_40px_rgba(0,0,0,0.35)]"
+						: "bg-midnight/10 border-lightgrey/10 bg-blur"}
+					w-full max-w-[1080px] justify-between md:justify-between`}
+					style={{
+						backdropFilter: "blur(16px) saturate(140%)",
+						WebkitBackdropFilter: "blur(16px) saturate(140%)",
+					}}
+				>
+					{/* Logo */}
+					<Link href="/" className="flex items-center pl-2 pr-2 shrink-0">
+						<Logomark color="lightgray" width={150} height={36} className="h-[30px] md:h-[34px] w-auto object-contain" priority />
+						<span className="hidden lg:block ml-3 h-6 w-px bg-lightgrey/15" />
+						<span className="hidden lg:block ml-3 text-[10px] leading-none tracking-[0.22em] uppercase text-lightgrey/60">
+							25 años
+							<br />
+							<span className="text-mint">materializando ideas</span>
+						</span>
+					</Link>
+
+					{/* Desktop Nav */}
+					<nav className="hidden md:flex items-center gap-1">{children}</nav>
+
+					{/* Right cluster */}
+					<div className="flex items-center gap-2">
+						<Link
+							href="/cotizaciones"
+							className="hidden md:inline-flex items-center gap-2 rounded-full bg-mint text-midnight px-5 py-2 text-[11px] tracking-[0.16em] uppercase font-semibold hover:bg-lightgrey transition-colors duration-300"
+						>
+							<span className="size-1.5 rounded-full bg-midnight animate-pulse" />
+							Cotizar
+						</Link>
+						<button
+							onClick={() => setOpen((o) => !o)}
+							aria-label={open ? "Cerrar menú" : "Abrir menú"}
+							aria-expanded={open}
+							className="md:hidden size-10 grid place-items-center rounded-full bg-lightgrey/10 border border-lightgrey/10 text-lightgrey hover:bg-mint hover:text-midnight hover:border-mint transition-colors"
+						>
+							<Menu className={`size-5 transition ${open ? "opacity-0" : "opacity-100"}`} />
+						</button>
+					</div>
+				</div>
+			</motion.header>
+
+			{/* Mobile Drawer */}
 			<AnimatePresence>
 				{open && (
 					<motion.div
-						initial={{ opacity: 0, y: -40 }}
-						animate={{ opacity: 1, y: 0 }}
-						exit={{ opacity: 0, y: -40 }}
-						transition={{ duration: 0.25 }}
-						className="fixed text-center top-0 left-0 w-full h-full bg-midnight flex flex-col items-center justify-center z-50"
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.3 }}
+						className="fixed inset-0 z-[60] md:hidden"
 					>
-						<button
-							className="absolute top-4 right-4 p-2 cursor-pointer"
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							className="absolute inset-0 bg-midnight/90 backdrop-blur-2xl"
 							onClick={() => setOpen(false)}
-							aria-label="Close menu"
+						/>
+						<motion.div
+							initial={{ y: "100%" }}
+							animate={{ y: 0 }}
+							exit={{ y: "100%" }}
+							transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+							className="absolute inset-x-0 bottom-0 top-16 bg-midnight border-t border-lightgrey/10 rounded-t-[28px] overflow-hidden flex flex-col"
 						>
-							<X className="w-7 h-7 text-lightgrey" />
-						</button>
-						<Link href="/" className="mb-8" onClick={() => setOpen(false)}>
-							<Image
-								src="/Logo%20Lightgray.svg"
-								alt="Graphics Impresos"
-								width={220}
-								height={54}
-								className="h-12 w-auto object-contain"
-							/>
-						</Link>
-						<nav className="flex flex-col gap-6" onClick={() => setOpen(false)}>{children}</nav>
+							<div className="flex items-center justify-between px-6 py-5 border-b border-lightgrey/10">
+								<Logomark color="lightgray" width={150} height={36} className="h-7 w-auto" />
+								<button
+									onClick={() => setOpen(false)}
+									aria-label="Cerrar menú"
+									className="size-10 grid place-items-center rounded-full bg-lightgrey text-midnight"
+								>
+									<X className="size-5" />
+								</button>
+							</div>
+
+							<div className="flex-1 px-6 py-8 flex flex-col">
+								<nav className="flex flex-col gap-2">
+									{React.Children.map(children, (child) => {
+										if (!React.isValidElement(child)) return child;
+										// clone to enlarge typography
+										return (
+											<div className="[&>a]:text-[28px] [&>a]:tracking-tight [&>a]:normal-case [&>a]:font-light [&>a]:py-3 [&>a]:px-0 [&>a]:rounded-none [&>a]:bg-transparent [&>a]:justify-start [&>a]:text-lightgrey [&>a:hover]:text-mint [&>a:hover]:bg-transparent">
+												{child}
+											</div>
+										);
+									})}
+								</nav>
+
+								<div className="mt-auto space-y-4">
+									<div className="h-px bg-lightgrey/10" />
+									<p className="text-sm text-lightgrey/60 leading-relaxed">
+										Cuéntanos qué necesitas lograr.
+										<br />
+										Nosotros lo hacemos tangible.
+									</p>
+									<Link
+										href="/cotizaciones"
+										onClick={() => setOpen(false)}
+										className="flex items-center justify-center gap-3 w-full rounded-full bg-mint text-midnight py-4 text-sm tracking-[0.14em] uppercase font-semibold"
+									>
+										Solicitar cotización →
+									</Link>
+									<div className="flex justify-between text-[11px] tracking-widest uppercase text-lightgrey/40 pt-2">
+										<span>55 8773 0703</span>
+										<span>CDMX · 25 años</span>
+									</div>
+								</div>
+							</div>
+						</motion.div>
 					</motion.div>
 				)}
 			</AnimatePresence>
-		</header>
+		</>
 	);
 }
