@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { HeroSection, Container, Eyebrow, Section } from "@/components/ui/sections";
-import { CTA, TextLink } from "@/components/ui/button";
+import { Container, Eyebrow, Section } from "@/components/ui/sections";
+import HomeHero from "@/components/sections/home-hero";
+import { TextLink } from "@/components/ui/button";
 import Heading from "@/components/ui/heading";
 import ParallaxImage from "@/components/ui/parallax-image";
 import SiteCTA from "@/components/site-cta";
-import { Counter, ImageReveal, Lines, Reveal } from "@/components/motion/reveal";
-import { Drift, ScaleViewport } from "@/components/motion/scroll";
+import HomeDuo from "@/components/sections/home-duo";
+import { ImageReveal, Lines, Reveal } from "@/components/motion/reveal";
+import { ClipOpen, Drift, ScaleViewport, ScrollRise, Words } from "@/components/motion/scroll";
 import { SOLUTIONS } from "@/utils/site";
 import { cn } from "@/utils/cn";
 
@@ -66,22 +68,8 @@ const STACK_TOP = ["lg:top-[104px]", "lg:top-[128px]", "lg:top-[152px]"];
 export default function HomePage() {
 	return (
 		<main className="w-full bg-midnight">
-			{/* ————— HERO ————— */}
-			<HeroSection
-				kicker="Imprenta · Asesoría · Diseño · Producción"
-				sub="Más de 25 años ayudando a empresas, negocios y marcas a materializar su comunicación."
-				actions={
-					<>
-						<CTA href="/cotizaciones">Cuéntanos tu proyecto</CTA>
-						<CTA href="/soluciones" variant="ghost">
-							Ver soluciones
-						</CTA>
-					</>
-				}
-				meta={["25+ años", "CDMX · México", "Asesoría + Diseño + Producción"]}
-			>
-				{["Convertimos", "tus ideas en", "soluciones impresas."]}
-			</HeroSection>
+			{/* ————— HERO · portada editorial ————— */}
+			<HomeHero />
 
 			{/* ————— WOW 01 · imagen que crece al viewport ————— */}
 			<ScaleViewport
@@ -90,7 +78,7 @@ export default function HomePage() {
 				caption="Del archivo al objeto — impresión offset"
 			/>
 
-			{/* ————— 02 EXPERIENCIA · intro editorial ————— */}
+			{/* ————— 02 EXPERIENCIA · intro editorial con scrub ————— */}
 			<Section aria-labelledby="experiencia">
 				<Container>
 					<Eyebrow>02 — Experiencia</Eyebrow>
@@ -100,71 +88,25 @@ export default function HomePage() {
 						/>
 					</Heading>
 					<div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-16">
-						<Reveal>
-							<p className="max-w-xl leading-relaxed text-lightgrey/75">
-								Durante más de 25 años hemos acompañado a empresas,
-								PyMEs, emprendedores y marcas en la creación y
-								producción de materiales que les ayudan a comunicar,
-								promocionar y fortalecer su imagen.
-							</p>
-						</Reveal>
-						<Reveal delay={0.1}>
-							<div>
-								<p className="max-w-xl leading-relaxed text-lightgrey/75">
-									Hoy combinamos nuestra experiencia en impresión con
-									asesoría, diseño y producción personalizada.
-								</p>
-								<div className="mt-6">
-									<TextLink href="/nosotros">Conoce quiénes somos</TextLink>
-								</div>
-							</div>
-						</Reveal>
+						<Words
+							className="max-w-xl leading-relaxed text-lightgrey/85 sm:text-lg"
+							text="Durante más de 25 años hemos acompañado a empresas, PyMEs, emprendedores y marcas en la creación y producción de materiales que les ayudan a comunicar, promocionar y fortalecer su imagen."
+						/>
+						<div>
+							<Words
+								className="max-w-xl leading-relaxed text-lightgrey/85 sm:text-lg"
+								text="Hoy combinamos nuestra experiencia en impresión con asesoría, diseño y producción personalizada."
+							/>
+							<Reveal delay={0.1} className="mt-6">
+								<TextLink href="/nosotros">Conoce quiénes somos</TextLink>
+							</Reveal>
+						</div>
 					</div>
 				</Container>
 			</Section>
 
-			{/* ————— WOW 02 · sticky 25+ / conceptos ————— */}
-			<section
-				aria-label="Trayectoria en conceptos"
-				className="border-y border-lightgrey/10 bg-midnight-deep/60"
-			>
-				<Container className="grid gap-4 lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:px-10">
-					<div className="flex flex-col justify-center px-5 py-14 sm:px-10 lg:sticky lg:top-0 lg:h-svh lg:px-0 lg:py-0">
-						<Reveal>
-							<p className="font-display leading-none">
-								<Counter
-									to={25}
-									suffix="+"
-									className="text-[clamp(7rem,20vw,14rem)] font-medium text-mint"
-								/>
-								<span className="mt-3 block text-[11px] uppercase tracking-[0.3em] text-lightgrey/60">
-									años — trayectoria
-								</span>
-							</p>
-						</Reveal>
-					</div>
-					<div className="px-5 pb-16 sm:px-10 lg:px-0 lg:py-10">
-						{CONCEPTS.map((c) => (
-							<div
-								key={c.n}
-								className="flex min-h-[52svh] flex-col justify-center border-t border-lightgrey/10 py-10 last:border-b lg:min-h-[86svh]"
-							>
-								<Reveal>
-									<span className="font-display text-sm tracking-[0.2em] text-mint">
-										/ {c.n}
-									</span>
-									<p className="mt-3 font-display text-5xl font-medium uppercase leading-[0.95] tracking-tight sm:text-7xl">
-										{c.title}
-									</p>
-									<p className="mt-4 max-w-md leading-relaxed text-lightgrey/70 sm:text-lg">
-										{c.copy}
-									</p>
-								</Reveal>
-							</div>
-						))}
-					</div>
-				</Container>
-			</section>
+			{/* ————— WOW 02 · sticky 25+ con riel de progreso ————— */}
+			<HomeDuo concepts={CONCEPTS} />
 
 			{/* ————— WOW 03 · TU MARCA / TAMBIÉN SE IMPRIME ————— */}
 			<section aria-labelledby="marca" className="relative overflow-hidden bg-midnight">
@@ -181,29 +123,25 @@ export default function HomePage() {
 					<Heading level={2} id="marca" className="max-w-4xl text-mint">
 						<Lines lines={["También se", "imprime."]} />
 					</Heading>
-					<Reveal delay={0.12}>
-						<p className="mt-6 max-w-xl leading-relaxed text-lightgrey/80">
-							Una marca también vive en el empaque que recibe tu cliente,
-							la tarjeta que guarda, la etiqueta que observa y cada
-							material que toca. Cada punto de contacto construye
-							percepción.
-						</p>
-					</Reveal>
+					<Words
+						className="mt-6 max-w-xl leading-relaxed text-lightgrey/85 sm:text-lg"
+						text="Una marca también vive en el empaque que recibe tu cliente, la tarjeta que guarda, la etiqueta que observa y cada material que toca. Cada punto de contacto construye percepción."
+					/>
 				</Container>
 				<div className="relative h-[72svh] min-h-[480px] w-full overflow-hidden">
 					<ParallaxImage
-						src="/offset.jpg"
-						alt="Prensa offset en producción — Graphics Impresos"
+						src="/background.webp"
+						alt="Taller de impresión — Graphics Impresos"
 						className="absolute inset-0"
 						strength={0.16}
 					/>
 					<div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/25 to-transparent" />
 					<Container className="absolute inset-x-0 bottom-0 pb-12 sm:pb-16">
-						<Reveal>
+						<ScrollRise>
 							<p className="max-w-2xl border-l-2 border-mint pl-5 font-display text-2xl font-light uppercase leading-snug tracking-wide text-lightgrey sm:text-4xl">
 								Nosotros ayudamos a hacerla tangible.
 							</p>
-						</Reveal>
+						</ScrollRise>
 					</Container>
 				</div>
 			</section>
@@ -215,13 +153,10 @@ export default function HomePage() {
 					<Heading level={2} id="proceso" className="max-w-3xl">
 						<Lines lines={["De la idea", "a la realidad."]} />
 					</Heading>
-					<Reveal delay={0.1}>
-						<p className="mt-5 max-w-xl leading-relaxed text-lightgrey/75">
-							Un buen resultado comienza mucho antes de imprimir. Integramos
-							diferentes etapas del proceso para ofrecer una solución
-							completa.
-						</p>
-					</Reveal>
+					<Words
+						className="mt-5 max-w-xl leading-relaxed text-lightgrey/85 sm:text-lg"
+						text="Un buen resultado comienza mucho antes de imprimir. Integramos diferentes etapas del proceso para ofrecer una solución completa."
+					/>
 
 					<div className="mt-12 flex flex-col gap-5">
 						{PROCESS.map((step, i) => (
@@ -251,15 +186,15 @@ export default function HomePage() {
 				</Container>
 			</Section>
 
-			{/* ————— 05 SOLUCIONES · índice editorial lightgray ————— */}
-			<section aria-labelledby="soluciones" className="bg-lightgrey py-20 text-midnight sm:py-28 lg:py-36">
+			{/* ————— 05 SOLUCIONES · índice editorial con entradas laterales ————— */}
+			<section aria-labelledby="soluciones" className="overflow-hidden bg-lightgrey py-20 text-midnight sm:py-28 lg:py-36">
 				<Container>
 					<Eyebrow light>05 — Soluciones</Eyebrow>
 					<div className="flex flex-wrap items-end justify-between gap-6">
 						<Heading level={2} id="soluciones" className="max-w-3xl">
 							<Lines lines={["Soluciones gráficas", "para cada necesidad."]} />
 						</Heading>
-						<Reveal delay={0.1}>
+						<Reveal delay={0.1} x={32}>
 							<p className="max-w-sm leading-relaxed text-midnight/70">
 								Creamos y producimos soluciones gráficas personalizadas para
 								diferentes necesidades de comunicación.
@@ -268,14 +203,20 @@ export default function HomePage() {
 					</div>
 
 					<ul className="mt-12 border-t border-midnight/15">
-						{SOLUTIONS.map((s) => (
-							<li key={s.slug} className="border-b border-midnight/15">
+						{SOLUTIONS.map((s, i) => (
+							<Reveal
+								key={s.slug}
+								as="li"
+								y={0}
+								x={i % 2 === 0 ? -48 : 48}
+								className="border-b border-midnight/15"
+							>
 								<Link
 									href="/soluciones"
 									className="group grid items-center gap-4 py-7 transition-colors sm:grid-cols-[auto_1fr_auto] sm:gap-8 sm:py-9"
 									aria-label={`${s.title} — ver en Soluciones`}
 								>
-									<span className="font-display text-sm tracking-[0.2em] text-mint">
+									<span className="font-display text-sm tracking-[0.2em] text-mint [filter:saturate(1.4)_brightness(0.72)]">
 										/{s.n}
 									</span>
 									<span>
@@ -300,7 +241,7 @@ export default function HomePage() {
 										<ArrowUpRight className="h-5 w-5" aria-hidden />
 									</span>
 								</Link>
-							</li>
+							</Reveal>
 						))}
 					</ul>
 				</Container>
@@ -313,13 +254,10 @@ export default function HomePage() {
 					<Heading level={2} id="calidad" className="max-w-3xl">
 						<Lines lines={["La calidad", "también comunica."]} />
 					</Heading>
-					<Reveal delay={0.12}>
-						<p className="mt-5 max-w-xl leading-relaxed text-lightgrey/75">
-							Un material impreso representa a tu negocio. La calidad no es
-							solamente una característica técnica. También es parte de la
-							percepción que generas.
-						</p>
-					</Reveal>
+					<Words
+						className="mt-5 max-w-xl leading-relaxed text-lightgrey/85 sm:text-lg"
+						text="Un material impreso representa a tu negocio. La calidad no es solamente una característica técnica. También es parte de la percepción que generas."
+					/>
 				</Container>
 			</Section>
 
@@ -337,15 +275,20 @@ export default function HomePage() {
 						</Reveal>
 						<ul className="mt-8 border-t border-midnight/15">
 							{QUALITY.map((q, i) => (
-								<Reveal key={q} delay={Math.min(i * 0.05, 0.25)}>
-									<li className="flex items-baseline justify-between gap-4 border-b border-midnight/15 py-3.5">
-										<span className="font-display text-xl font-light uppercase tracking-wide sm:text-2xl">
-											{q}
-										</span>
-										<span className="font-display text-xs text-mint">
-											0{i + 1}
-										</span>
-									</li>
+								<Reveal
+									key={q}
+									as="li"
+									delay={Math.min(i * 0.05, 0.25)}
+									y={0}
+									x={i % 2 === 0 ? -32 : 32}
+									className="flex items-baseline justify-between gap-4 border-b border-midnight/15 py-3.5"
+								>
+									<span className="font-display text-xl font-light uppercase tracking-wide sm:text-2xl">
+										{q}
+									</span>
+									<span className="font-display text-xs text-mint [filter:saturate(1.4)_brightness(0.72)]">
+										0{i + 1}
+									</span>
 								</Reveal>
 							))}
 						</ul>
@@ -367,10 +310,10 @@ export default function HomePage() {
 							alt="Taller de impresión Graphics Impresos"
 							ratio="aspect-[4/3]"
 						/>
-						<ImageReveal
+						<ClipOpen
 							src="/offset.jpg"
 							alt="Prensa offset en producción"
-							ratio="aspect-[4/3]"
+							className="aspect-[4/3]"
 						/>
 					</div>
 				</Container>

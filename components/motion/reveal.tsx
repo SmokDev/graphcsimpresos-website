@@ -23,6 +23,7 @@ export function Reveal({
 	children,
 	delay = 0,
 	y = 28,
+	x = 0,
 	className,
 	once = true,
 	as = "div",
@@ -30,6 +31,7 @@ export function Reveal({
 	children: React.ReactNode;
 	delay?: number;
 	y?: number;
+	x?: number;
 	className?: string;
 	once?: boolean;
 	as?: "div" | "span" | "li" | "p";
@@ -39,8 +41,8 @@ export function Reveal({
 	return (
 		<Tag
 			className={className}
-			initial={{ opacity: 0, y: reduce ? 0 : y }}
-			whileInView={{ opacity: 1, y: 0 }}
+			initial={{ opacity: 0, y: reduce ? 0 : y, x: reduce ? 0 : x }}
+			whileInView={{ opacity: 1, y: 0, x: 0 }}
 			viewport={{ once, margin: "-12% 0px" }}
 			transition={{ duration: 0.9, delay, ease: EASE }}
 		>

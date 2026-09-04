@@ -172,3 +172,46 @@ export function ScrollRise({
 		</div>
 	);
 }
+
+/* -------------------------------- Word scrub ------------------------------ */
+/** Paragraph that lights up word by word as you scroll — editorial scrub. */
+function Word({
+	children,
+	progress,
+	index,
+	total,
+}: {
+	children: React.ReactNode;
+	progress: ReturnType<typeof useScroll>["scrollYProgress"];
+	index: number;
+	total: number;
+}) {
+	const start = index / total;
+	const end = Math.min(1, start + 1.6 / total);
+	const opacity = useTransform(progress, [start, end], [0.13, 1]);
+	return <motion.span style={{ opacity }}>{children} </motion.span>;
+}
+
+export function Words({
+	text,
+	className,
+}: {
+	text: string;
+	className?: string;
+}) {
+	const ref = useRef<HTMLParagraphElement>(null);
+	const { scrollYProgress } = useScroll({
+		target: ref,
+		offset: ["start 0.88", "end 0.42"],
+	});
+	const words = text.split(" ");
+	return (
+		<p ref={ref} className={className}>
+			{words.map((w, i) => (
+				<Word key={i} progress={scrollYProgress} index={i} total={words.length}>
+					{w}
+				</Word>
+			))}
+		</p>
+	);
+}
