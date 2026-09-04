@@ -94,7 +94,7 @@ export default function CotizacionesPage() {
 
 					{/* Form */}
 					<Reveal delay={0.1}>
-						<div className="rounded-3xl border border-lightgrey/10 bg-midnight-deep/50 p-6 sm:p-10">
+						<div className="rounded-3xl bg-mint p-6 text-midnight sm:p-10">
 							<QuoteForm />
 						</div>
 					</Reveal>

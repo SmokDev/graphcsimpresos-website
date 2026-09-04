@@ -5,7 +5,7 @@ import Heading from "@/components/ui/heading";
 import ParallaxImage from "@/components/ui/parallax-image";
 import SiteCTA from "@/components/site-cta";
 import { Lines, Reveal } from "@/components/motion/reveal";
-import { ClipOpen, Drift } from "@/components/motion/scroll";
+import { ClipOpen, Drift, ScrollRise, Words } from "@/components/motion/scroll";
 import { SOLUTIONS } from "@/utils/site";
 import { Check } from "lucide-react";
 import { cn } from "@/utils/cn";
@@ -26,34 +26,15 @@ const ART: { image: string; variant: Variant; align: "left" | "right"; mobile: "
 	{ image: "/background.webp", variant: "bleed", align: "left", mobile: "dark", position: "object-bottom" },
 ];
 
-const DESCRIPTIONS: Record<string, React.ReactNode> = {
-	"identidad-corporativa": (
-		<p className="mt-4 max-w-lg leading-relaxed">
-			Los materiales corporativos forman parte de la experiencia que construyes
-			con tus clientes. Creamos y producimos piezas que ayudan a mantener una
-			imagen profesional y coherente.
-		</p>
-	),
-	"publicidad-promocion": (
-		<p className="mt-4 max-w-lg leading-relaxed">
-			Materiales impresos para comunicar promociones, presentar productos,
-			generar presencia y apoyar campañas publicitarias.
-		</p>
-	),
-	packaging: (
-		<p className="mt-4 max-w-lg leading-relaxed">
-			El empaque es uno de los puntos de contacto más importantes entre una
-			marca y sus clientes. Desarrollamos y producimos soluciones de packaging
-			que ayudan a presentar tus productos de manera profesional y coherente
-			con tu identidad.
-		</p>
-	),
-	uniformes: (
-		<p className="mt-4 max-w-lg leading-relaxed">
-			Los uniformes ayudan a construir una imagen reconocible y profesional en
-			cada interacción con tus clientes.
-		</p>
-	),
+const DESCRIPTIONS: Record<string, string> = {
+	"identidad-corporativa":
+		"Los materiales corporativos forman parte de la experiencia que construyes con tus clientes. Creamos y producimos piezas que ayudan a mantener una imagen profesional y coherente.",
+	"publicidad-promocion":
+		"Materiales impresos para comunicar promociones, presentar productos, generar presencia y apoyar campañas publicitarias.",
+	packaging:
+		"El empaque es uno de los puntos de contacto más importantes entre una marca y sus clientes. Desarrollamos y producimos soluciones de packaging que ayudan a presentar tus productos de manera profesional y coherente con tu identidad.",
+	uniformes:
+		"Los uniformes ayudan a construir una imagen reconocible y profesional en cada interacción con tus clientes.",
 };
 
 function SolutionPanel({
@@ -111,12 +92,18 @@ function SolutionPanel({
 					</span>
 				)}
 				{art.variant === "bleed" && (
-					<span
-						aria-hidden
-						className="absolute -right-10 top-1/2 hidden -translate-y-1/2 select-none font-display text-[27vw] font-medium leading-none text-lightgrey/10 lg:block"
+					<Drift
+						from="3%"
+						to="-9%"
+						className="absolute -right-10 top-1/2 hidden -translate-y-1/2 select-none lg:block"
 					>
-						{n}
-					</span>
+						<span
+							aria-hidden
+							className="font-display text-[27vw] font-medium leading-none text-lightgrey/10"
+						>
+							{n}
+						</span>
+					</Drift>
 				)}
 				{art.variant === "clip" && (
 					<span
@@ -181,15 +168,15 @@ function SolutionPanel({
 								{headline}
 							</p>
 						</Reveal>
-						<Reveal
-							delay={0.12}
+						<Words
 							className={cn(
-								light ? "text-midnight/75 lg:text-lightgrey/80" : "text-lightgrey/75 lg:text-lightgrey/80"
+								"mt-4 max-w-lg leading-relaxed sm:text-lg",
+								light ? "text-midnight/80 lg:text-lightgrey/85" : "text-lightgrey/85"
 							)}
-						>
-							{DESCRIPTIONS[slug]}
-						</Reveal>
-						<ul className="mt-7 flex flex-wrap gap-2.5">
+							text={DESCRIPTIONS[slug]}
+						/>
+						<Reveal delay={0.16} y={16}>
+							<ul className="mt-7 flex flex-wrap gap-2.5">
 							{items.map((item) => (
 								<li
 									key={item}
@@ -204,9 +191,10 @@ function SolutionPanel({
 									{item}
 								</li>
 							))}
-						</ul>
+							</ul>
+						</Reveal>
 						{slug === "packaging" && (
-							<Reveal delay={0.1}>
+							<ScrollRise>
 								<p
 									className={cn(
 										"mt-6 border-l-2 border-mint pl-5 font-display text-lg font-light uppercase tracking-wide",
@@ -215,7 +203,7 @@ function SolutionPanel({
 								>
 									Haz tangible la experiencia de tu marca.
 								</p>
-							</Reveal>
+							</ScrollRise>
 						)}
 						<Reveal delay={0.15}>
 							<div className="mt-8">
@@ -267,23 +255,21 @@ export default function SolucionesPage() {
 						<Heading level={2} id="asesoria">
 							<Lines lines={["No tienes que saber", "exactamente qué imprimir."]} />
 						</Heading>
-						<Reveal delay={0.12}>
-							<p className="mt-5 leading-relaxed text-lightgrey/78 sm:text-lg">
-								Cuéntanos qué necesitas lograr y nosotros te ayudamos a
-								encontrar la solución. Podemos orientarte sobre:
-							</p>
-						</Reveal>
+						<Words
+							className="mt-5 leading-relaxed text-lightgrey/85 sm:text-lg"
+							text="Cuéntanos qué necesitas lograr y nosotros te ayudamos a encontrar la solución. Podemos orientarte sobre:"
+						/>
 						<Reveal delay={0.18}>
 							<p className="mt-6 font-display text-lg font-light uppercase tracking-[0.14em] text-mint sm:text-xl">
 								Materiales · Formatos · Acabados · Producción · Cantidades
 							</p>
 						</Reveal>
-						<Reveal delay={0.22}>
-							<blockquote className="mt-8 border-l-2 border-mint pl-5 font-display text-xl font-light uppercase leading-snug text-lightgrey/90 sm:text-2xl">
+						<ScrollRise className="mt-8">
+							<blockquote className="border-l-2 border-mint pl-5 font-display text-xl font-light uppercase leading-snug text-lightgrey/90 sm:text-2xl">
 								Nuestra labor no comienza cuando imprimimos. Comienza
 								cuando entendemos tu proyecto.
 							</blockquote>
-						</Reveal>
+						</ScrollRise>
 					</div>
 				</Container>
 			</Section>

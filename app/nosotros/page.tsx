@@ -5,6 +5,7 @@ import Heading from "@/components/ui/heading";
 import ParallaxImage from "@/components/ui/parallax-image";
 import SiteCTA from "@/components/site-cta";
 import { Counter, Lines, Reveal } from "@/components/motion/reveal";
+import { ScrollRise, Words } from "@/components/motion/scroll";
 
 export const metadata: Metadata = {
 	title: "Nosotros — Imprenta con experiencia en soluciones gráficas",
@@ -53,32 +54,25 @@ export default function NosotrosPage() {
 						<Lines lines={["No solo imprimimos.", "Entendemos lo que necesitas."]} />
 					</Heading>
 					<div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-16">
-						<Reveal>
-							<div className="space-y-4 leading-relaxed text-lightgrey/78">
-								<p>
-									Somos una empresa especializada en transformar ideas y
-									necesidades de comunicación en soluciones impresas.
-								</p>
-								<p>
-									Durante más de 25 años hemos acompañado a negocios y
-									empresas en la creación y producción de materiales que
-									les ayudan a comunicar, promocionar y fortalecer su
-									imagen.
-								</p>
-							</div>
-						</Reveal>
-						<Reveal delay={0.1}>
-							<div className="space-y-4 leading-relaxed text-lightgrey/78">
-								<p>
-									Hoy combinamos nuestra experiencia en impresión con
-									asesoría, diseño y producción personalizada para ofrecer
-									soluciones que van más allá de simplemente imprimir.
-								</p>
-								<div className="pt-2">
-									<TextLink href="/soluciones">Ver lo que producimos</TextLink>
-								</div>
-							</div>
-						</Reveal>
+						<div className="space-y-4">
+							<Words
+								className="leading-relaxed text-lightgrey/85 sm:text-lg"
+								text="Somos una empresa especializada en transformar ideas y necesidades de comunicación en soluciones impresas."
+							/>
+							<Words
+								className="leading-relaxed text-lightgrey/85 sm:text-lg"
+								text="Durante más de 25 años hemos acompañado a negocios y empresas en la creación y producción de materiales que les ayudan a comunicar, promocionar y fortalecer su imagen."
+							/>
+						</div>
+						<div className="space-y-4">
+							<Words
+								className="leading-relaxed text-lightgrey/85 sm:text-lg"
+								text="Hoy combinamos nuestra experiencia en impresión con asesoría, diseño y producción personalizada para ofrecer soluciones que van más allá de simplemente imprimir."
+							/>
+							<Reveal delay={0.1} className="pt-2">
+								<TextLink href="/soluciones">Ver lo que producimos</TextLink>
+							</Reveal>
+						</div>
 					</div>
 				</Container>
 			</Section>
@@ -97,29 +91,23 @@ export default function NosotrosPage() {
 						<Heading level={2} id="vision" className="max-w-3xl">
 							<Lines lines={["Cada proyecto", "comienza con", "una necesidad."]} />
 						</Heading>
-						<Reveal delay={0.15}>
+						<ScrollRise>
 							<blockquote className="mt-8 border-l-2 border-mint pl-6">
 								<p className="font-display text-3xl font-light uppercase tracking-tight text-mint sm:text-5xl">
 									“¿Qué necesitas lograr?”
 								</p>
 							</blockquote>
-						</Reveal>
-						<Reveal delay={0.2}>
-							<div className="mt-8 max-w-xl space-y-4 leading-relaxed text-lightgrey/80">
-								<p>
-									En Graphics Impresos no partimos solamente de la
-									pregunta: “¿Qué quieres imprimir?” Partimos de una
-									pregunta más importante: “¿Qué necesitas lograr?”
-								</p>
-								<p>
-									A partir de ahí encontramos la mejor manera de convertir
-									esa necesidad en una solución gráfica. No se trata
-									solamente de poner tinta sobre papel. Se trata de
-									convertir una idea en algo que puedas ver, tocar y
-									compartir con tus clientes.
-								</p>
-							</div>
-						</Reveal>
+						</ScrollRise>
+						<div className="mt-8 max-w-xl space-y-4">
+							<Words
+								className="leading-relaxed text-lightgrey/85 sm:text-lg"
+								text="En Graphics Impresos no partimos solamente de la pregunta: “¿Qué quieres imprimir?” Partimos de una pregunta más importante: “¿Qué necesitas lograr?”"
+							/>
+							<Words
+								className="leading-relaxed text-lightgrey/85 sm:text-lg"
+								text="A partir de ahí encontramos la mejor manera de convertir esa necesidad en una solución gráfica. No se trata solamente de poner tinta sobre papel. Se trata de convertir una idea en algo que puedas ver, tocar y compartir con tus clientes."
+							/>
+						</div>
 					</Container>
 				</div>
 			</section>
@@ -160,6 +148,8 @@ export default function NosotrosPage() {
 								key={s.n}
 								delay={i * 0.07}
 								as="li"
+								y={0}
+								x={i % 2 === 0 ? -28 : 28}
 								className="group flex h-full flex-col gap-3 bg-midnight p-7 transition-colors duration-500 hover:bg-midnight-deep sm:p-8"
 							>
 								<span className="font-display text-sm tracking-[0.2em] text-mint">
@@ -192,6 +182,8 @@ export default function NosotrosPage() {
 								key={a}
 								delay={Math.min(i * 0.04, 0.3)}
 								as="li"
+								y={0}
+								x={i % 2 === 0 ? -28 : 28}
 								className="flex items-baseline gap-4 border-b border-midnight/12 py-4"
 							>
 								<span className="font-display text-xs text-mint">
@@ -203,11 +195,11 @@ export default function NosotrosPage() {
 							</Reveal>
 						))}
 					</ul>
-					<Reveal delay={0.1}>
-						<p className="mt-10 max-w-2xl border-l-2 border-mint pl-5 font-display text-xl font-light uppercase leading-snug text-midnight/85 sm:text-2xl">
+					<ScrollRise className="mt-10">
+						<p className="max-w-2xl border-l-2 border-mint pl-5 font-display text-xl font-light uppercase leading-snug text-midnight/85 sm:text-2xl">
 							La forma en que presentas tu negocio también comunica su valor.
 						</p>
-					</Reveal>
+					</ScrollRise>
 				</Container>
 			</section>
 

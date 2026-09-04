@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronDown, Loader2 } from "lucide-react";
 import Input from "@/components/ui/input";
 import { QUOTE_TYPES } from "@/utils/site";
 import { cn } from "@/utils/cn";
@@ -110,30 +110,30 @@ export default function QuoteForm() {
 						initial={{ opacity: 0, y: 24 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-						className="flex flex-col items-start gap-5 rounded-3xl border border-mint/30 bg-mint/[0.07] p-8 sm:p-12"
-						role="status"
+					className="flex flex-col items-start gap-5 rounded-3xl border border-midnight/25 bg-midnight/[0.06] p-8 sm:p-12"
+					role="status"
+				>
+					<CheckCircle2 className="h-10 w-10 text-midnight" aria-hidden />
+					<h2 className="font-display text-3xl font-medium uppercase sm:text-4xl">
+						Solicitud lista. Hablemos.
+					</h2>
+					<p className="max-w-lg leading-relaxed text-midnight/75">
+						Se abrió tu correo con la cotización preparada. Si prefieres,
+						escríbenos directo al{" "}
+						<a className="underline underline-offset-4 hover:no-underline" href="tel:+525587730703">
+							55 8773 0703
+						</a>{" "}
+						y le damos seguimiento a tu proyecto.
+					</p>
+					<button
+						onClick={() => {
+							setValues(EMPTY);
+							setStatus("idle");
+						}}
+						className="mt-2 rounded-full border border-midnight/30 px-7 py-3 text-[13px] uppercase tracking-[0.18em] transition-colors hover:bg-midnight hover:text-lightgrey"
 					>
-						<CheckCircle2 className="h-10 w-10 text-mint" aria-hidden />
-						<h2 className="font-display text-3xl font-medium uppercase sm:text-4xl">
-							Solicitud lista. Hablemos.
-						</h2>
-						<p className="max-w-lg leading-relaxed text-lightgrey/80">
-							Se abrió tu correo con la cotización preparada. Si prefieres,
-							escríbenos directo al{" "}
-							<a className="text-mint hover:underline" href="tel:+525587730703">
-								55 8773 0703
-							</a>{" "}
-							y le damos seguimiento a tu proyecto.
-						</p>
-						<button
-							onClick={() => {
-								setValues(EMPTY);
-								setStatus("idle");
-							}}
-							className="mt-2 rounded-full border border-lightgrey/25 px-7 py-3 text-[13px] uppercase tracking-[0.18em] transition-colors hover:border-mint hover:text-mint"
-						>
-							Solicitar otra cotización
-						</button>
+						Solicitar otra cotización
+					</button>
 					</motion.div>
 				) : (
 					<motion.form
@@ -148,11 +148,11 @@ export default function QuoteForm() {
 						{/* 01 Contacto */}
 						<fieldset className="flex flex-col gap-2">
 							<legend className="mb-2 flex items-center gap-4">
-								<span className="font-display text-sm text-mint">01</span>
-								<span className="text-[11px] uppercase tracking-[0.28em] text-lightgrey/60">
+								<span className="font-display text-sm text-midnight">01</span>
+								<span className="text-[11px] uppercase tracking-[0.28em] text-midnight/60">
 									Información de contacto
 								</span>
-								<span aria-hidden className="h-px w-16 bg-lightgrey/15" />
+								<span aria-hidden className="h-px w-16 bg-midnight/20" />
 							</legend>
 							<div className="grid gap-x-8 sm:grid-cols-2">
 								<Input label="Nombre" name="nombre" value={values.nombre} onChange={set("nombre")} required autoComplete="name" error={errors.nombre} placeholder=" " />
@@ -165,18 +165,18 @@ export default function QuoteForm() {
 						{/* 02 Proyecto */}
 						<fieldset className="flex flex-col gap-2">
 							<legend className="mb-2 flex items-center gap-4">
-								<span className="font-display text-sm text-mint">02</span>
-								<span className="text-[11px] uppercase tracking-[0.28em] text-lightgrey/60">
+								<span className="font-display text-sm text-midnight">02</span>
+								<span className="text-[11px] uppercase tracking-[0.28em] text-midnight/60">
 									Tu proyecto
 								</span>
-								<span aria-hidden className="h-px w-16 bg-lightgrey/15" />
+								<span aria-hidden className="h-px w-16 bg-midnight/20" />
 							</legend>
 							<div className="relative mt-2 w-full">
 								<label
 									htmlFor="tipo"
-									className="mb-2 block text-xs uppercase tracking-[0.18em] text-lightgrey/60"
+									className="pointer-events-none absolute left-1 top-1 text-xs uppercase tracking-[0.18em] text-midnight/60"
 								>
-									¿Qué necesitas? <span aria-hidden className="text-mint">*</span>
+									¿Qué necesitas? <span aria-hidden className="text-midnight">*</span>
 								</label>
 								<select
 									id="tipo"
@@ -186,23 +186,28 @@ export default function QuoteForm() {
 									aria-invalid={!!errors.tipo}
 									aria-describedby={errors.tipo ? "tipo-error" : undefined}
 									className={cn(
-										"w-full appearance-none rounded-2xl border bg-midnight-deep/60 px-5 py-4 text-[15px] text-lightgrey outline-none transition-colors",
+										"w-full appearance-none border-b bg-transparent px-1 pb-3 pt-7 text-[15px] text-midnight outline-none transition-colors duration-200",
 										errors.tipo
-											? "border-red-400/70"
-											: "border-lightgrey/20 hover:border-lightgrey/40 focus:border-mint"
+											? "border-red-700"
+											: "border-midnight/25 hover:border-midnight/50 focus:border-midnight",
+										!values.tipo && "text-midnight/50"
 									)}
 								>
 									<option value="" disabled>
 										Selecciona una opción
 									</option>
 									{QUOTE_TYPES.map((t) => (
-										<option key={t} value={t} className="bg-midnight">
+										<option key={t} value={t} className="bg-midnight-deep text-lightgrey">
 											{t}
 										</option>
 									))}
 								</select>
+								<ChevronDown
+									className="pointer-events-none absolute bottom-4 right-1 h-4 w-4 text-midnight/60"
+									aria-hidden
+								/>
 								{errors.tipo && (
-									<p id="tipo-error" role="alert" className="mt-2 text-sm text-red-300">
+									<p id="tipo-error" role="alert" className="mt-2 text-sm text-red-800">
 										{errors.tipo}
 									</p>
 								)}
@@ -213,11 +218,11 @@ export default function QuoteForm() {
 						{/* 03 Especificaciones */}
 						<fieldset className="flex flex-col gap-2">
 							<legend className="mb-2 flex items-center gap-4">
-								<span className="font-display text-sm text-mint">03</span>
-								<span className="text-[11px] uppercase tracking-[0.28em] text-lightgrey/60">
+								<span className="font-display text-sm text-midnight">03</span>
+								<span className="text-[11px] uppercase tracking-[0.28em] text-midnight/60">
 									Especificaciones <span className="normal-case tracking-normal">(opcional)</span>
 								</span>
-								<span aria-hidden className="h-px w-16 bg-lightgrey/15" />
+								<span aria-hidden className="h-px w-16 bg-midnight/20" />
 							</legend>
 							<div className="grid gap-x-8 sm:grid-cols-2">
 								<Input label="Cantidad aproximada" name="cantidad" value={values.cantidad} onChange={set("cantidad")} placeholder=" " />
@@ -225,7 +230,7 @@ export default function QuoteForm() {
 								<Input label="Material" name="material" value={values.material} onChange={set("material")} placeholder=" " />
 								<Input label="Acabado" name="acabado" value={values.acabado} onChange={set("acabado")} placeholder=" " />
 							</div>
-							<p className="mt-2 text-sm text-lightgrey/55">
+							<p className="mt-2 text-sm text-midnight/60">
 								¿Tienes un diseño o referencia? Puedes adjuntarlo al enviar el
 								correo — lo revisamos contigo.
 							</p>
@@ -233,7 +238,7 @@ export default function QuoteForm() {
 
 						<div id="quote-form-error" aria-live="polite">
 							{status === "error" && (
-								<p role="alert" className="mb-4 text-sm text-red-300">
+								<p role="alert" className="mb-4 text-sm text-red-800">
 									Algo salió mal al preparar tu solicitud. Intenta de nuevo o
 									escríbenos a contacto@graphicsimpresos.com
 								</p>
@@ -241,7 +246,7 @@ export default function QuoteForm() {
 							<button
 								type="submit"
 								disabled={status === "sending"}
-								className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-mint px-8 py-4.5 text-sm uppercase tracking-[0.2em] text-midnight transition-colors duration-300 hover:bg-lightgrey disabled:opacity-60 sm:w-auto sm:px-12"
+								className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-midnight px-8 py-4.5 text-sm uppercase tracking-[0.2em] text-lightgrey transition-colors duration-300 hover:bg-midnight-deep disabled:opacity-60 sm:w-auto sm:px-12"
 							>
 								{status === "sending" ? (
 									<>
