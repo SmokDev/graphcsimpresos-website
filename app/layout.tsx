@@ -3,7 +3,6 @@ import { Oswald } from "next/font/google";
 import "./globals.css";
 import Header, { NavLink } from "@/components/ui/header";
 import Footer from "@/components/footer";
-import LenisProvider from "@/components/lenis-provider";
 
 const oswald = Oswald({
 	subsets: ["latin"],
@@ -18,16 +17,14 @@ export default function RootLayout({
 	return (
 		<html lang="es">
 			<body className={`antialiased ${oswald.className} bg-lightgrey text-midnight`}>
-				<LenisProvider>
-					<Header>
-						<NavLink href="/">Inicio</NavLink>
-						<NavLink href="/nosotros">Nosotros</NavLink>
-						<NavLink href="/soluciones">Soluciones</NavLink>
-						<NavLink href="/cotizaciones">Cotizaciones</NavLink>
-					</Header>
-					{children}
-					<Footer />
-				</LenisProvider>
+				<Header>
+					<NavLink href="/">Inicio</NavLink>
+					<NavLink href="/nosotros">Nosotros</NavLink>
+					<NavLink href="/soluciones">Soluciones</NavLink>
+					<NavLink href="/contacto">Contacto</NavLink>
+				</Header>
+				{children}
+				<Footer />
 			</body>
 		</html>
 	);

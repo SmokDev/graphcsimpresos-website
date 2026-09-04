@@ -1,15 +1,11 @@
-import * as React from "react";
-
 export default function Button({
 	children,
 	className,
-	type = "button",
 	...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+}: React.HTMLAttributes<HTMLButtonElement>) {
 	return (
 		<button
-			type={type}
-			className={`inline-flex items-center justify-center rounded-full bg-mint px-8 py-3.5 text-[12px] tracking-[0.16em] uppercase font-semibold text-midnight hover:bg-lightgrey transition-colors duration-300 disabled:opacity-50 disabled:pointer-events-none ${className ?? ""}`}
+			className={`px-8 py-2 bg-foreground cursor-pointer text-base hover:bg-accent hover:text-accent-foreground rounded-md uppercase transition-colors duration-200 ${className}`}
 			{...props}
 		>
 			{children}
