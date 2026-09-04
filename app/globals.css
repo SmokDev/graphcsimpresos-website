@@ -6,11 +6,71 @@
 
 :root {
 	--midnight: #002855;
+	--midnight-deep: #001c3e;
+	--midnight-soft: #0b3568;
 	--mint: #00bfb2;
+	--mint-soft: rgba(0, 191, 178, 0.12);
 	--lightgrey: #d9d9d6;
-	--header-height: 70px;
-	--body-padding: 10px;
-	@apply font-light;
+	--header-height: 76px;
+	--line: rgba(217, 217, 214, 0.14);
+	--line-strong: rgba(217, 217, 214, 0.28);
+}
+
+html {
+	scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+
+.lenis.lenis-smooth {
+	scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+	overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+	overflow: hidden;
+}
+
+body {
+	background-color: var(--midnight);
+	color: var(--lightgrey);
+	overflow-x: clip;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+::selection {
+	background: var(--mint);
+	color: var(--midnight);
+}
+
+/* Refined scrollbar — thin, on-palette */
+::-webkit-scrollbar {
+	width: 10px;
+}
+::-webkit-scrollbar-track {
+	background: var(--midnight-deep);
+}
+::-webkit-scrollbar-thumb {
+	background: rgba(0, 191, 178, 0.45);
+	border-radius: 8px;
+	border: 2px solid var(--midnight-deep);
+}
+::-webkit-scrollbar-thumb:hover {
+	background: var(--mint);
+}
+
+/* Accessible focus — always visible, on-palette */
+:focus-visible {
+	outline: 2px solid var(--mint);
+	outline-offset: 3px;
+	border-radius: 2px;
 }
 
 /* Midnight = principal (fondo oscuro), contraste = mint */
@@ -18,7 +78,7 @@
 
 @utility midnight {
 	--base: var(--midnight);
-	--foreground: var(--mint);
+	--foreground: var(--lightgrey);
 	--accent: var(--mint);
 	--accent-foreground: var(--midnight);
 }
@@ -42,13 +102,54 @@
 	color: var(--foreground);
 }
 
+@utility text-outline {
+	-webkit-text-stroke: 1px var(--line-strong);
+	-webkit-text-fill-color: transparent;
+	color: transparent;
+}
+
+@utility text-outline-mint {
+	-webkit-text-stroke: 1px rgba(0, 191, 178, 0.55);
+	-webkit-text-fill-color: transparent;
+	color: transparent;
+}
+
 @theme inline {
 	--color-midnight: var(--midnight);
+	--color-midnight-deep: var(--midnight-deep);
+	--color-midnight-soft: var(--midnight-soft);
 	--color-mint: var(--mint);
 	--color-lightgrey: var(--lightgrey);
 	--color-base: var(--base);
 	--color-foreground: var(--foreground);
 	--color-accent: var(--accent);
 	--color-accent-foreground: var(--accent-foreground);
-	--font-sans: "Oswald", sans-serif;
+	--color-line: var(--line);
+	--font-display: var(--font-oswald), "Oswald", sans-serif;
+	--font-body: var(--font-inter), system-ui, sans-serif;
+}
+
+@layer base {
+	h1,
+	h2,
+	h3 {
+		text-wrap: balance;
+	}
+	p {
+		text-wrap: pretty;
+	}
+	img {
+		user-select: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
 }

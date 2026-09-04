@@ -1,43 +1,75 @@
 import React from "react";
+import { cn } from "@/utils/cn";
+
+type Base = {
+	label: string;
+	error?: string;
+	isTextarea?: boolean;
+	hint?: string;
+};
 
 type InputProps =
-	| ({
-			label: string;
-			isTextarea?: false;
-	  } & React.InputHTMLAttributes<HTMLInputElement>)
-	| ({
-			label: string;
-			isTextarea: true;
-	  } & React.TextareaHTMLAttributes<HTMLTextAreaElement>);
+	| (Base & { isTextarea?: false } & React.InputHTMLAttributes<HTMLInputElement>)
+	| (Base & { isTextarea: true } & React.TextareaHTMLAttributes<HTMLTextAreaElement>);
 
+/** Premium underline field — midnight panel, mint focus, inline errors. */
 export function Input(props: InputProps) {
-	const { label, isTextarea, ...rest } = props;
+	const { label, isTextarea, error, hint, ...rest } = props;
+	const id = (rest.id as string) || label.toLowerCase().replace(/[^a-z0-9]+/gi, "-");
+	const describedBy = error ? `${id}-error` : hint ? `${id}-hint` : undefined;
+
+	const fieldClass = cn(
+		"peer w-full border-b bg-transparent px-1 pb-3 pt-7 text-[15px] text-lightgrey placeholder-transparent outline-none transition-colors duration-200",
+		error
+			? "border-red-400/80 focus:border-red-300"
+			: "border-lightgrey/25 hover:border-lightgrey/50 focus:border-mint"
+	);
+
 	return (
-		<div className="relative mt-4 flex-grow w-full">
+		<div className="relative mt-2 w-full flex-grow">
 			{isTextarea ? (
 				<textarea
-					className="peer bg-base w-full border-b-2 border-foreground px-2 pb-3 pt-7 text-foreground placeholder-transparent outline-none transition-colors duration-200 focus:border-accent hover:border-assent resize-none"
-					id={label}
+					rows={5}
+					aria-invalid={!!error}
+					aria-describedby={describedBy}
+					className={cn(fieldClass, "min-h-32 resize-y")}
+					id={id}
+					placeholder=" "
 					{...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
 				/>
 			) : (
 				<input
-					className="peer bg-base w-full border-b-2 border-foreground px-2 pb-3 pt-7 text-foreground placeholder-transparent outline-none transition-colors duration-200 focus:border-accent hover:border-assent"
-					id={label}
+					aria-invalid={!!error}
+					aria-describedby={describedBy}
+					className={fieldClass}
+					id={id}
+					placeholder=" "
 					{...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
 				/>
 			)}
 			<label
-				htmlFor={label}
-				className="absolute left-2 top-2 text-foreground text-sm pointer-events-none transition-all duration-200 peer-placeholder-shown:top-0 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm"
+				htmlFor={id}
+				className={cn(
+					"pointer-events-none absolute left-1 top-1 text-xs uppercase tracking-[0.18em] transition-all duration-200",
+					"peer-placeholder-shown:top-6 peer-placeholder-shown:text-sm peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:text-lightgrey/50",
+					"peer-focus:top-1 peer-focus:text-xs peer-focus:uppercase peer-focus:tracking-[0.18em] peer-focus:text-mint",
+					error ? "text-red-300" : "text-lightgrey/60"
+				)}
 			>
 				{label}
+				{rest.required && <span aria-hidden className="text-mint"> *</span>}
 			</label>
+			{error ? (
+				<p id={`${id}-error`} role="alert" className="mt-2 text-sm text-red-300">
+					{error}
+				</p>
+			) : hint ? (
+				<p id={`${id}-hint`} className="mt-2 text-xs text-lightgrey/50">
+					{hint}
+				</p>
+			) : null}
 		</div>
 	);
 }
 
 export default Input;
-
-// Usage example:
-// <Input label="Nombre" placeholder=" " />

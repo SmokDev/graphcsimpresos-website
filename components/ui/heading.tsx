@@ -1,4 +1,5 @@
 import React from "react";
+import { cn } from "@/utils/cn";
 
 interface HeadingProps {
 	children: React.ReactNode;
@@ -6,6 +7,7 @@ interface HeadingProps {
 	element?: React.ElementType;
 }
 
+/** Display heading — Oswald, uppercase, fluid sizes via clamp. */
 export default function Heading({
 	children,
 	element,
@@ -13,23 +15,23 @@ export default function Heading({
 	...props
 }: HeadingProps & React.HTMLAttributes<HTMLHeadingElement>) {
 	const { className, ...rest } = props;
-	const textSizeClass =
+	const sizes =
 		level === 1
-			? "text-7xl"
+			? "text-[clamp(2.75rem,8vw,6.5rem)] leading-[0.95]"
 			: level === 2
-				? "text-6xl"
+				? "text-[clamp(2rem,5.2vw,4.25rem)] leading-[1.02]"
 				: level === 3
-					? "text-5xl"
+					? "text-[clamp(1.5rem,3.4vw,2.75rem)] leading-[1.08]"
 					: level === 4
-						? "text-4xl"
+						? "text-[clamp(1.15rem,2.2vw,1.6rem)] leading-snug"
 						: level === 5
-							? "text-3xl"
+							? "text-lg"
 							: "text-base";
 
 	const Tag: React.ElementType = element ?? (`h${level}` as React.ElementType);
 	return (
 		<Tag
-			className={`${textSizeClass} font-medium uppercase ${className}`}
+			className={cn("font-display font-medium uppercase tracking-tight", sizes, className)}
 			{...rest}
 		>
 			{children}
