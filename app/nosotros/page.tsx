@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { HeroSection, Container, Eyebrow, Section } from "@/components/ui/sections";
 import { TextLink } from "@/components/ui/button";
 import Heading from "@/components/ui/heading";
@@ -38,10 +39,24 @@ export default function NosotrosPage() {
 	return (
 		<main className="w-full bg-midnight">
 			<HeroSection
-				useAltBackground
 				kicker="Nosotros · Quiénes somos"
 				sub="Más de 25 años acompañando a empresas y negocios a materializar sus ideas."
 				meta={["Desde hace 25+ años", "Asesoría · Diseño · Producción"]}
+				background={
+					<div className="relative h-full w-full">
+						<Image
+							src="/tmp8krfc32l.png"
+							alt=""
+							aria-hidden
+							fill
+							priority
+							className="object-cover"
+							sizes="100vw"
+						/>
+						<div className="absolute inset-0 bg-midnight/72" />
+						<div className="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent" />
+					</div>
+				}
 			>
 				{["Experiencia que", "se convierte", "en soluciones."]}
 			</HeroSection>
