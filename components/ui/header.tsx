@@ -5,16 +5,15 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { cn } from "@/utils/cn";
+import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { startScroll, stopScroll } from "@/components/providers/smooth-scroll";
 
 const NAV = [
 	{ href: "/", label: "Inicio" },
 	{ href: "/nosotros", label: "Nosotros" },
 	{ href: "/soluciones", label: "Soluciones" },
-	{ href: "/cotizaciones", label: "Cotizaciones" },
 ];
 
 export function NavLink({
@@ -36,8 +35,8 @@ export function NavLink({
 			onClick={onNavigate}
 			aria-current={active ? "page" : undefined}
 			className={cn(
-				"group relative px-3 py-2 text-[13px] font-normal uppercase tracking-[0.18em] transition-colors duration-300",
-				active ? "text-mint" : "text-lightgrey/75 hover:text-lightgrey",
+				"group relative px-4 py-2 text-[13px] font-normal uppercase tracking-[0.18em] transition-colors duration-300 ease-out",
+				active ? "text-mint" : "text-lightgrey/80 hover:text-lightgrey",
 				className
 			)}
 		>
@@ -45,7 +44,7 @@ export function NavLink({
 			<span
 				aria-hidden
 				className={cn(
-					"absolute inset-x-3 -bottom-0.5 h-px bg-mint transition-transform duration-300 origin-left",
+					"absolute inset-x-4 bottom-0.5 h-px origin-left bg-mint transition-transform duration-300 ease-out",
 					active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
 				)}
 			/>
@@ -54,17 +53,9 @@ export function NavLink({
 }
 
 export default function Header() {
-	const [scrolled, setScrolled] = useState(false);
 	const [open, setOpen] = useState(false);
 	const pathname = usePathname();
 	const reduce = usePrefersReducedMotion();
-
-	useEffect(() => {
-		const onScroll = () => setScrolled(window.scrollY > 40);
-		onScroll();
-		window.addEventListener("scroll", onScroll, { passive: true });
-		return () => window.removeEventListener("scroll", onScroll);
-	}, []);
 
 	useEffect(() => {
 		setOpen(false);
@@ -77,25 +68,15 @@ export default function Header() {
 
 	return (
 		<>
-			<motion.header
-				initial={false}
-				animate={{
-					y: 0,
-					opacity: 1,
-				}}
-				className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:px-6 sm:pt-4"
-			>
+			<header className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:px-6 sm:pt-5">
 				<div
 					className={cn(
-						"flex w-full max-w-5xl items-center justify-between gap-2 rounded-2xl border pl-4 pr-2 transition-all duration-500",
-						scrolled
-							? "border-lightgrey/15 bg-midnight/80 py-2 shadow-[0_18px_50px_-20px_rgba(0,0,0,0.7)] backdrop-blur-xl"
-							: "border-transparent bg-midnight/20 py-3 backdrop-blur-md"
+						"flex w-full max-w-6xl items-center justify-between gap-2 rounded-full border border-lightgrey/10 bg-midnight/60 py-2.5 pl-4 pr-2 shadow-[0_10px_40px_-24px_rgba(0,0,0,0.8)] backdrop-blur-xl backdrop-saturate-150 transition-[background-color,border-color] duration-500 ease-out hover:border-lightgrey/20 hover:bg-midnight/80 sm:pl-6"
 					)}
 				>
 					<Link
 						href="/"
-						className="flex shrink-0 items-center"
+						className="flex shrink-0 items-center transition-opacity duration-300 ease-out hover:opacity-85"
 						aria-label="Graphics Impresos — inicio"
 					>
 						<Image
@@ -122,7 +103,7 @@ export default function Header() {
 					<div className="flex items-center gap-2">
 						<Link
 							href="/cotizaciones"
-							className="group hidden items-center gap-1.5 rounded-full bg-mint px-5 py-2.5 text-[13px] font-normal uppercase tracking-[0.16em] text-midnight transition-colors duration-300 hover:bg-lightgrey sm:inline-flex"
+							className="group hidden items-center gap-1.5 rounded-full bg-mint py-2.5 pl-5 pr-4 text-[13px] font-normal uppercase tracking-[0.16em] text-midnight transition-all duration-300 hover:bg-lightgrey hover:shadow-[0_0_28px_-6px_var(--mint)] sm:inline-flex"
 						>
 							Cotizar proyecto
 							<ArrowUpRight
@@ -140,7 +121,7 @@ export default function Header() {
 						</button>
 					</div>
 				</div>
-			</motion.header>
+			</header>
 
 			<AnimatePresence>
 				{open && (
@@ -149,16 +130,16 @@ export default function Header() {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: reduce ? 0 : 0.3 }}
-						className="fixed inset-0 z-[60] flex flex-col bg-midnight-deep/95 backdrop-blur-2xl lg:hidden"
+						className="fixed inset-0 z-[60] flex flex-col bg-midnight-deep/90 backdrop-blur-2xl lg:hidden"
 						role="dialog"
 						aria-modal="true"
 						aria-label="Menú de navegación"
 					>
 						<div className="flex items-center justify-between px-5 pt-5">
 							<Image
-								src="/Logo%20Lightgray.svg"
-								alt="Graphics Impresos"
-								width={170}
+							src="/Logo%20Lightgray.svg"
+							alt="Graphics Impresos"
+							width={170}
 								height={42}
 								className="h-8 w-auto object-contain"
 							/>
@@ -193,14 +174,14 @@ export default function Header() {
 											onClick={() => setOpen(false)}
 											aria-current={active ? "page" : undefined}
 											className={cn(
-												"group flex items-baseline gap-4 border-b border-lightgrey/10 py-4",
+												"group flex items-baseline gap-4 border-b border-lightgrey/10 py-5",
 												active ? "text-mint" : "text-lightgrey"
 											)}
 										>
 											<span className="font-display text-sm text-mint/70">
 												0{i + 1}
 											</span>
-											<span className="font-display text-4xl font-medium uppercase leading-none tracking-tight">
+											<span className="font-display text-5xl font-medium uppercase leading-none tracking-tight">
 												{item.label}
 											</span>
 											<ArrowUpRight
@@ -216,7 +197,7 @@ export default function Header() {
 						<motion.div
 							initial={{ opacity: 0, y: reduce ? 0 : 20 }}
 							animate={{ opacity: 1, y: 0 }}
-							transition={{ delay: reduce ? 0 : 0.35, duration: 0.5 }}
+							transition={{ delay: reduce ? 0 : 0.3, duration: 0.5 }}
 							className="px-8 pb-10"
 						>
 							<Link
