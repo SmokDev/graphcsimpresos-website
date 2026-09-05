@@ -53,8 +53,8 @@ export default function NosotrosPage() {
 							className="object-cover"
 							sizes="100vw"
 						/>
-						<div className="absolute inset-0 bg-midnight/72" />
-						<div className="absolute inset-0 bg-gradient-to-t from-midnight/80 via-transparent to-transparent" />
+						<div className="absolute inset-0 bg-midnight/45" />
+						<div className="absolute inset-0 bg-gradient-to-t from-midnight via-transparent to-midnight/40" />
 					</div>
 				}
 			>

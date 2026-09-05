@@ -102,8 +102,8 @@ export function HeroSection(
 					sizes="100vw"
 				/>
 			</Parallax>
-			<div className="absolute inset-0 bg-midnight/72" />
-			<div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/20 to-midnight/55" />
+			<div className="absolute inset-0 bg-midnight/45" />
+			<div className="absolute inset-0 bg-gradient-to-t from-midnight via-transparent to-midnight/40" />
 		</div>
 	);
 
