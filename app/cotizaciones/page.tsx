@@ -17,7 +17,6 @@ export default function CotizacionesPage() {
 	return (
 		<main className="w-full bg-midnight">
 			<HeroSection
-				useAltBackground
 				kicker="Cotizaciones"
 				sub="Describe tu proyecto y te ayudaremos a encontrar la mejor solución gráfica."
 				meta={["Respuesta personalizada", "Sin compromiso"]}

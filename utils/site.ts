@@ -25,7 +25,7 @@ export const SOLUTIONS = [
 			"Formatos empresariales",
 			"Materiales personalizados",
 		],
-		image: "/background.webp",
+		image: "/papeleria%20corporativa.webp",
 	},
 	{
 		n: "02",
@@ -41,7 +41,7 @@ export const SOLUTIONS = [
 			"Catálogos",
 			"Artículos promocionales",
 		],
-		image: "/offset.jpg",
+		image: "/boleto.jpg",
 	},
 	{
 		n: "03",
@@ -50,7 +50,7 @@ export const SOLUTIONS = [
 		headline: "Tu producto también comunica.",
 		description: "Cajas, etiquetas, stickers y empaques.",
 		items: ["Cajas", "Etiquetas", "Stickers", "Empaques personalizados"],
-		image: "/background%202.webp",
+		image: "/packaging%20colorido.webp",
 	},
 	{
 		n: "04",
@@ -64,7 +64,7 @@ export const SOLUTIONS = [
 			"Prendas personalizadas",
 			"Ropa para equipos",
 		],
-		image: "/background.webp",
+		image: "/mandil%20cafe.webp",
 	},
 ] as const;
 

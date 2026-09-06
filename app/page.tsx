@@ -97,7 +97,7 @@ export default function HomePage() {
 				</Container>
 				<div className="relative h-[72svh] min-h-[480px] w-full overflow-hidden">
 					<ParallaxImage
-						src="/graphics%20impresos%20bag.jpg"
+						src="/graphics%20impresos%20bag.webp"
 						alt="Empaque de marca — Graphics Impresos"
 						className="absolute inset-0"
 						strength={0.16}
@@ -194,7 +194,7 @@ export default function HomePage() {
 					<Drift from="10%" to="-7%">
 						{/* eslint-disable-next-line @next/next/no-img-element */}
 						<img
-							src="/tmpzmidou46.jpeg"
+							src="/graphicsimpresos%20impreta%20revision%20de%20calida%20offset.webp"
 							alt="Detalle de impresión — color y acabado"
 							loading="lazy"
 							className="h-[46svh] w-[86vw] rounded-3xl object-cover sm:h-[56svh] lg:h-[68svh] lg:w-[50vw]"

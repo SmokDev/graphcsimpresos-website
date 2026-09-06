@@ -20,10 +20,10 @@ export const metadata: Metadata = {
 type Variant = "standard" | "bleed" | "clip" | "drift";
 
 const ART: { image: string; variant: Variant; align: "left" | "right"; mobile: "light" | "dark"; position?: string }[] = [
-	{ image: "/background%202.webp", variant: "bleed", align: "left", mobile: "dark" },
-	{ image: "/offset.jpg", variant: "bleed", align: "left", mobile: "dark" },
-	{ image: "/background.webp", variant: "bleed", align: "left", mobile: "dark" },
-	{ image: "/background.webp", variant: "bleed", align: "left", mobile: "dark", position: "object-bottom" },
+	{ image: "/papeleria%20corporatiav%202.webp", variant: "bleed", align: "left", mobile: "dark" },
+	{ image: "/Flyers%20festival.webp", variant: "bleed", align: "left", mobile: "dark" },
+	{ image: "/packaging%20premium.webp", variant: "bleed", align: "left", mobile: "dark" },
+	{ image: "/playera%20nova%20craft.webp", variant: "bleed", align: "left", mobile: "dark", position: "object-top" },
 ];
 
 const DESCRIPTIONS: Record<string, string> = {
@@ -227,6 +227,7 @@ export default function SolucionesPage() {
 	return (
 		<main className="w-full bg-midnight">
 			<HeroSection
+				useAltBackground
 				kicker="Soluciones · Catálogo"
 				sub="Desde materiales corporativos hasta packaging y publicidad, desarrollamos y producimos soluciones gráficas adaptadas a cada proyecto."
 				actions={<CTA href="/cotizaciones">Solicitar cotización</CTA>}

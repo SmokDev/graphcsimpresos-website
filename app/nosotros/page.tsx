@@ -42,21 +42,6 @@ export default function NosotrosPage() {
 				kicker="Nosotros · Quiénes somos"
 				sub="Más de 25 años acompañando a empresas y negocios a materializar sus ideas."
 				meta={["Desde hace 25+ años", "Asesoría · Diseño · Producción"]}
-				background={
-					<div className="relative h-full w-full">
-						<Image
-							src="/tmp8krfc32l.png"
-							alt=""
-							aria-hidden
-							fill
-							priority
-							className="object-cover"
-							sizes="100vw"
-						/>
-						<div className="absolute inset-0 bg-midnight/45" />
-						<div className="absolute inset-0 bg-gradient-to-t from-midnight via-transparent to-midnight/40" />
-					</div>
-				}
 			>
 				{["Experiencia que", "se convierte", "en soluciones."]}
 			</HeroSection>
@@ -129,22 +114,36 @@ export default function NosotrosPage() {
 
 			{/* Experiencia band */}
 			<section aria-label="Trayectoria" className="border-y border-lightgrey/10 bg-midnight">
-				<Container className="flex flex-col items-start gap-4 py-14 sm:flex-row sm:items-center sm:gap-10 sm:py-20">
-					<Reveal>
-						<p className="font-display text-[clamp(4.5rem,14vw,10rem)] font-medium leading-none text-mint">
-							<Counter to={25} suffix="+" />
-						</p>
-					</Reveal>
-					<Reveal delay={0.1}>
-						<div>
-							<Heading level={2} className="max-w-xl">
-								años de experiencia
-							</Heading>
-							<p className="mt-3 max-w-xl leading-relaxed text-lightgrey/70">
-								La experiencia como un activo que genera confianza: miles
-								de proyectos nos respaldan, y cada uno empezó con una
-								conversación.
+				<Container className="grid items-center gap-10 py-14 sm:py-20 lg:grid-cols-2 lg:gap-16">
+					<div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-10">
+						<Reveal>
+							<p className="font-display text-[clamp(4.5rem,14vw,10rem)] font-medium leading-none text-mint">
+								<Counter to={25} suffix="+" />
 							</p>
+						</Reveal>
+						<Reveal delay={0.1}>
+							<div>
+								<Heading level={2} className="max-w-xl">
+									años de experiencia
+								</Heading>
+								<p className="mt-3 max-w-xl leading-relaxed text-lightgrey/70">
+									La experiencia como un activo que genera confianza: miles
+									de proyectos nos respaldan, y cada uno empezó con una
+									conversación.
+								</p>
+							</div>
+						</Reveal>
+					</div>
+					<Reveal delay={0.15} className="relative">
+						<div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-lightgrey/10">
+							<Image
+								src="/graphicsimresos%20personal%20imrenta.webp"
+								alt="Equipo de Graphics Impresos en el taller de impresión"
+								fill
+								loading="lazy"
+								className="object-cover object-top"
+								sizes="(max-width: 1024px) 100vw, 50vw"
+							/>
 						</div>
 					</Reveal>
 				</Container>

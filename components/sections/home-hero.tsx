@@ -47,7 +47,7 @@ export default function HomeHero() {
 				<motion.div style={{ y: imgY, scale: imgScale }} className="absolute inset-0 will-change-transform">
 					{/* eslint-disable-next-line @next/next/no-img-element */}
 					<img
-						src="/tmpsfemmlk7.png"
+						src="/graphics%20impresos%20offset%20impreta.webp"
 						alt=""
 						aria-hidden
 						loading="eager"
