@@ -119,8 +119,8 @@ export default function HomeHero() {
 							transition={{ duration: 0.9 * d || 0.01, ease: EASE, delay: 1 * d }}
 						>
 							<p className="max-w-md text-base leading-relaxed text-lightgrey/85 sm:text-lg">
-								Más de 25 años ayudando a empresas, negocios y marcas a
-								materializar su comunicación.
+								Más de 25 años ayudando a empresas y negocios a
+								materializar su marca y comunicación.
 							</p>
 							<div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
 								<CTA href="/cotizaciones" className="justify-center sm:justify-start">
@@ -137,16 +137,6 @@ export default function HomeHero() {
 								</span>
 							</p>
 						</motion.div>
-						<motion.p
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							transition={{ duration: 1 * d || 0.01, ease: EASE, delay: 1.25 * d }}
-							className="hidden shrink-0 items-center gap-3 text-[11px] uppercase tracking-[0.24em] text-lightgrey/55 lg:flex"
-						>
-							CDMX · México
-							<span aria-hidden className="h-px w-12 bg-lightgrey/25" />
-							Asesoría + Diseño + Producción
-						</motion.p>
 					</div>
 				</Container>
 			</motion.div>

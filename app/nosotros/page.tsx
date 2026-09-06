@@ -19,7 +19,8 @@ const STEPS = [
 	{ n: "01", title: "Entendemos", copy: "Conocemos tu necesidad y objetivo." },
 	{ n: "02", title: "Asesoramos", copy: "Te ayudamos a definir la solución adecuada." },
 	{ n: "03", title: "Diseñamos", copy: "Desarrollamos o adaptamos la propuesta." },
-	{ n: "04", title: "Producimos", copy: "Convertimos la idea en una pieza física." },
+	{ n: "04", title: "Prototipamos", copy: "Creamos pruebas de impresión para validar la propuesta." },
+	{ n: "05", title: "Producimos", copy: "Convertimos la idea en una pieza física." },
 ];
 
 const AUDIENCES = [
@@ -61,7 +62,7 @@ export default function NosotrosPage() {
 							/>
 							<Words
 								className="leading-relaxed text-lightgrey/85 sm:text-lg"
-								text="Durante más de 25 años hemos acompañado a negocios y empresas en la creación y producción de materiales que les ayudan a comunicar, promocionar y fortalecer su imagen."
+								text="Durante más de 25 años hemos acompañado a negocios y empresas en la creación y producción de materiales impresos que les ayudan a comunicar, promocionar y fortalecer su imagen."
 							/>
 						</div>
 						<div className="space-y-4">
@@ -128,7 +129,7 @@ export default function NosotrosPage() {
 								</Heading>
 								<p className="mt-3 max-w-xl leading-relaxed text-lightgrey/70">
 									La experiencia como un activo que genera confianza: miles
-									de proyectos nos respaldan, y cada uno empezó con una
+									de proyectos nos respaldan y cada uno empezó con una
 									conversación.
 								</p>
 							</div>
@@ -156,7 +157,7 @@ export default function NosotrosPage() {
 					<Heading level={2} id="como" className="max-w-2xl">
 						<Lines lines={["Un proceso claro,", "de principio a fin."]} />
 					</Heading>
-					<ol className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-lightgrey/10 bg-lightgrey/10 sm:grid-cols-2 lg:grid-cols-4">
+					<ol className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-lightgrey/10 bg-lightgrey/10 sm:grid-cols-2 lg:grid-cols-5">
 						{STEPS.map((s, i) => (
 							<Reveal
 								key={s.n}

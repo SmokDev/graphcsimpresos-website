@@ -16,11 +16,11 @@ export const SOLUTIONS = [
 		title: "Identidad corporativa",
 		headline: "Haz que tu marca esté presente en cada detalle.",
 		description:
-			"Tarjetas, papelería, carpetas, sobres, formatos y materiales empresariales.",
+			"Tarjetas, folders, hojas membretadas, sobres y materiales empresariales.",
 		items: [
-			"Tarjetas de presentación",
-			"Papelería corporativa",
-			"Carpetas",
+			"Tarjetas",
+			"Folders",
+			"Hojas membretadas",
 			"Sobres",
 			"Formatos empresariales",
 			"Materiales personalizados",
@@ -33,12 +33,13 @@ export const SOLUTIONS = [
 		title: "Publicidad y promoción",
 		headline: "Haz que tu mensaje llegue más lejos.",
 		description:
-			"Flyers, posters, brochures, catálogos y artículos promocionales.",
+			"Flyers, posters, brochures, catálogos, boletos y artículos promocionales.",
 		items: [
 			"Flyers",
 			"Posters",
 			"Brochures",
 			"Catálogos",
+			"Boletos",
 			"Artículos promocionales",
 		],
 		image: "/boleto.jpg",
@@ -55,15 +56,10 @@ export const SOLUTIONS = [
 	{
 		n: "04",
 		slug: "uniformes",
-		title: "Uniformes corporativos",
+		title: "Uniformes y distintivos",
 		headline: "Tu equipo también forma parte de tu marca.",
-		description:
-			"Uniformes y prendas personalizadas que ayudan a fortalecer la imagen de tu equipo.",
-		items: [
-			"Uniformes corporativos",
-			"Prendas personalizadas",
-			"Ropa para equipos",
-		],
+		description: "Uniformes, prendas personalizadas, gafetes y pines.",
+		items: ["Uniformes", "Prendas personalizadas", "Gafetes", "Pines"],
 		image: "/mandil%20cafe.webp",
 	},
 ] as const;
@@ -72,6 +68,6 @@ export const QUOTE_TYPES = [
 	"Identidad corporativa",
 	"Publicidad y promoción",
 	"Packaging",
-	"Uniformes corporativos",
+	"Uniformes y distintivos",
 	"Otro",
 ] as const;

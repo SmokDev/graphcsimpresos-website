@@ -119,7 +119,7 @@ export default function QuoteForm() {
 					</h2>
 					<p className="max-w-lg leading-relaxed text-midnight/75">
 						Se abrió tu correo con la cotización preparada. Si prefieres,
-						escríbenos directo al{" "}
+						escríbenos directamente al{" "}
 						<a className="underline underline-offset-4 hover:no-underline" href="tel:+525587730703">
 							55 8773 0703
 						</a>{" "}
@@ -212,7 +212,7 @@ export default function QuoteForm() {
 									</p>
 								)}
 							</div>
-							<Input label="Cuéntanos sobre tu proyecto" name="proyecto" isTextarea value={values.proyecto} onChange={set("proyecto")} required error={errors.proyecto} hint="Objetivo, piezas que imaginas, fechas clave… entre más contexto, mejor propuesta." placeholder=" " />
+							<Input label="Cuéntanos sobre tu proyecto" name="proyecto" isTextarea value={values.proyecto} onChange={set("proyecto")} required error={errors.proyecto} hint="Objetivo, piezas que imaginas, fechas clave… mientras más contexto, mejor propuesta." placeholder=" " />
 						</fieldset>
 
 						{/* 03 Especificaciones */}

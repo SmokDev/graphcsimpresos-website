@@ -30,6 +30,11 @@ const PROCESS = [
 	},
 	{
 		n: "03",
+		title: "Prototipado",
+		copy: "Creamos pruebas de impresión para validar colores, materiales y acabados antes de la producción final.",
+	},
+	{
+		n: "04",
 		title: "Producción",
 		copy: "Convertimos las ideas en piezas físicas cuidando la calidad y los detalles.",
 	},
@@ -37,7 +42,7 @@ const PROCESS = [
 
 const QUALITY = ["Material", "Color", "Formato", "Acabado", "Impresión", "Terminados"];
 
-const STACK_TOP = ["lg:top-[104px]", "lg:top-[128px]", "lg:top-[152px]"];
+const STACK_TOP = ["lg:top-[104px]", "lg:top-[128px]", "lg:top-[152px]", "lg:top-[176px]"];
 
 export default function HomePage() {
 	return (
@@ -57,7 +62,7 @@ export default function HomePage() {
 					<div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-16">
 						<Words
 							className="max-w-xl leading-relaxed text-lightgrey/85 sm:text-lg"
-							text="Durante más de 25 años hemos acompañado a empresas, PyMEs, emprendedores y marcas en la creación y producción de materiales que les ayudan a comunicar, promocionar y fortalecer su imagen."
+							text="Durante más de 25 años hemos acompañado a empresas, PyMEs, emprendedores y marcas en la creación y producción de materiales impresos que les ayudan a comunicar, promocionar y fortalecer su imagen."
 						/>
 						<div>
 							<Words

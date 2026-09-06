@@ -124,7 +124,7 @@ export default function Footer() {
 				<div className="flex flex-col items-center justify-between gap-4 border-t border-lightgrey/10 py-6 text-xs uppercase tracking-[0.2em] text-lightgrey/45 sm:flex-row">
 					<p>© {year} Graphics Impresos</p>
 					<p className="hidden text-mint/70 md:block">
-						25+ años · Asesoría · Diseño · Producción
+						25+ años · Asesoría · Diseño · Prototipado · Producción
 					</p>
 					<button
 						type="button"

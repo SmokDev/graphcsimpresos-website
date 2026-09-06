@@ -13,7 +13,7 @@ import { cn } from "@/utils/cn";
 export const metadata: Metadata = {
 	title: "Soluciones de impresión para empresas y negocios",
 	description:
-		"Impresión de identidad corporativa, publicidad y promoción, packaging, etiquetas, cajas, artículos promocionales y uniformes corporativos en CDMX.",
+		"Impresión de identidad corporativa, publicidad y promoción, packaging, etiquetas, cajas, artículos promocionales y uniformes y distintivos en CDMX.",
 	alternates: { canonical: "/soluciones" },
 };
 

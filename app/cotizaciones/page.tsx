@@ -35,7 +35,7 @@ export default function CotizacionesPage() {
 						<Reveal delay={0.12}>
 							<p className="mt-5 max-w-md leading-relaxed text-lightgrey/75">
 								Completa lo que puedas — no necesitas tener todo definido.
-								Con tu idea es suficiente para empezar la conversación.
+								Tu idea es suficiente para empezar la conversación.
 							</p>
 						</Reveal>
 						<Reveal delay={0.18}>
