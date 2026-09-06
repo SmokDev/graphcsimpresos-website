@@ -19,6 +19,7 @@ type Fields = {
 	medidas: string;
 	material: string;
 	acabado: string;
+	prueba: string;
 };
 
 const EMPTY: Fields = {
@@ -32,6 +33,7 @@ const EMPTY: Fields = {
 	medidas: "",
 	material: "",
 	acabado: "",
+	prueba: "",
 };
 
 export default function QuoteForm() {
@@ -91,6 +93,7 @@ export default function QuoteForm() {
 					`Medidas / formato: ${values.medidas || "—"}`,
 					`Material: ${values.material || "—"}`,
 					`Acabado: ${values.acabado || "—"}`,
+					`Prueba de impresión: ${values.prueba === "si" ? "Sí" : values.prueba === "no" ? "No" : "—"}`,
 				].join("\n")
 			);
 			await new Promise((r) => setTimeout(r, 900));
@@ -229,6 +232,44 @@ export default function QuoteForm() {
 								<Input label="Medidas / formato" name="medidas" value={values.medidas} onChange={set("medidas")} placeholder=" " />
 								<Input label="Material" name="material" value={values.material} onChange={set("material")} placeholder=" " />
 								<Input label="Acabado" name="acabado" value={values.acabado} onChange={set("acabado")} placeholder=" " />
+							</div>
+							<div className="mt-4">
+								<p id="prueba-label" className="text-xs uppercase tracking-[0.18em] text-midnight/60">
+									¿Es necesaria una prueba de impresión?
+								</p>
+								<div role="radiogroup" aria-labelledby="prueba-label" className="mt-3 flex flex-wrap gap-3">
+									{[
+										{ value: "si", label: "Sí" },
+										{ value: "no", label: "No" },
+									].map((opt) => {
+										const selected = values.prueba === opt.value;
+										return (
+											<label
+												key={opt.value}
+												className={cn(
+													"cursor-pointer rounded-full border px-6 py-2.5 text-sm uppercase tracking-[0.14em] transition-colors duration-200",
+													selected
+														? "border-midnight bg-midnight text-lightgrey"
+														: "border-midnight/25 text-midnight/70 hover:border-midnight/60 hover:text-midnight"
+												)}
+											>
+												<input
+													type="radio"
+													name="prueba"
+													value={opt.value}
+													checked={selected}
+													onChange={set("prueba")}
+													className="sr-only"
+												/>
+												{opt.label}
+											</label>
+										);
+									})}
+								</div>
+								<p className="mt-2 text-sm text-midnight/60">
+									Recomendada para validar colores, materiales y acabados
+									antes de la producción final.
+								</p>
 							</div>
 							<p className="mt-2 text-sm text-midnight/60">
 								¿Tienes un diseño o referencia? Puedes adjuntarlo al enviar el
