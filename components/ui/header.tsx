@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { cn } from "@/utils/cn";
 import { SOLUTIONS } from "@/utils/site";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
@@ -115,16 +115,7 @@ export default function Header() {
 							}}
 						>
 							<NavLink href="/soluciones" aria-haspopup="true" aria-expanded={dropOpen}>
-								<span className="inline-flex items-center gap-1.5">
-									Soluciones
-									<ChevronDown
-										className={cn(
-											"h-3.5 w-3.5 transition-transform duration-300",
-											dropOpen && "rotate-180"
-										)}
-										aria-hidden
-									/>
-								</span>
+								Soluciones
 							</NavLink>
 							<div
 								className={cn(

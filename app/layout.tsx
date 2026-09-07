@@ -4,6 +4,7 @@ import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/header";
 import Footer from "@/components/footer";
+import SiteLoader from "@/components/site-loader";
 import SmoothScroll from "@/components/providers/smooth-scroll";
 import { SITE } from "@/utils/site";
 
@@ -60,6 +61,7 @@ export default function RootLayout({
 				>
 					Saltar al contenido
 				</a>
+				<SiteLoader />
 				<SmoothScroll>
 					<Header />
 					<div id="contenido">{children}</div>
