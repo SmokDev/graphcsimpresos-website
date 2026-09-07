@@ -11,10 +11,40 @@ import { Drift, ScrollRise, Words } from "@/components/motion/scroll";
 import { cn } from "@/utils/cn";
 
 export const metadata: Metadata = {
-	title: "Convertimos tus ideas en soluciones impresas",
+	title: "Imprenta y soluciones impresas",
 	description:
-		"Imprenta y soluciones de impresión en CDMX: más de 25 años de asesoría, diseño y producción. Identidad corporativa, publicidad, packaging y uniformes.",
+		"Imprenta en Atizapán de Zaragoza con más de 25 años de experiencia. Asesoría, diseño y producción: papelería, publicidad, packaging y uniformes.",
+	keywords: [
+		"imprenta Atizapán de Zaragoza",
+		"soluciones impresas",
+		"papelería corporativa",
+		"publicidad impresa",
+		"packaging",
+		"uniformes y distintivos",
+	],
 	alternates: { canonical: "/" },
+	openGraph: {
+		type: "website",
+		locale: "es_MX",
+		url: "/",
+		siteName: "Graphics Impresos",
+		title: "Imprenta y soluciones impresas · Graphics Impresos",
+		description:
+			"Imprenta en Atizapán de Zaragoza con más de 25 años de experiencia. Asesoría, diseño y producción para empresas y negocios.",
+		images: [
+			{
+				url: "/graphics%20impresos%20offset%20impreta.webp",
+				alt: "Prensa offset de Graphics Impresos en Atizapán de Zaragoza",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Imprenta y soluciones impresas · Graphics Impresos",
+		description:
+			"Más de 25 años ayudando a empresas y negocios a materializar su marca y comunicación.",
+		images: ["/graphics%20impresos%20offset%20impreta.webp"],
+	},
 };
 
 const PROCESS = [

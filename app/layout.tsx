@@ -25,21 +25,57 @@ const inter = Inter({
 export const metadata: Metadata = {
 	metadataBase: new URL(SITE.baseUrl),
 	title: {
-		default: "Graphics Impresos — Convertimos tus ideas en soluciones impresas",
+		default: "Graphics Impresos — Imprenta en Atizapán de Zaragoza",
 		template: "%s · Graphics Impresos",
 	},
 	description:
-		"Más de 25 años ayudando a empresas, negocios y marcas a materializar su comunicación. Asesoría, diseño y producción de soluciones impresas.",
+		"Imprenta en Atizapán de Zaragoza con más de 25 años de experiencia. Diseñamos tu idea, imprimimos tu éxito: asesoría, diseño y producción.",
+	keywords: [
+		"imprenta Atizapán de Zaragoza",
+		"imprenta Estado de México",
+		"soluciones impresas",
+		"identidad corporativa",
+		"publicidad impresa",
+		"packaging",
+		"uniformes personalizados",
+	],
+	authors: [{ name: SITE.name, url: SITE.baseUrl }],
+	creator: SITE.name,
+	publisher: SITE.name,
 	alternates: { canonical: "/" },
 	openGraph: {
 		type: "website",
 		locale: "es_MX",
+		url: "/",
 		siteName: SITE.name,
-		title: "Graphics Impresos — Convertimos tus ideas en soluciones impresas",
+		title: "Graphics Impresos — Imprenta en Atizapán de Zaragoza",
 		description:
-			"Más de 25 años ayudando a empresas, negocios y marcas a materializar su comunicación.",
+			"Imprenta con más de 25 años de experiencia. Asesoría, diseño y producción de soluciones impresas para empresas y negocios.",
+		images: [
+			{
+				url: "/graphics%20impresos%20offset%20impreta.webp",
+				alt: "Prensa offset de Graphics Impresos en Atizapán de Zaragoza",
+			},
+		],
 	},
-	robots: { index: true, follow: true },
+	twitter: {
+		card: "summary_large_image",
+		title: "Graphics Impresos — Imprenta en Atizapán de Zaragoza",
+		description:
+			"Imprenta con más de 25 años de experiencia. Asesoría, diseño y producción de soluciones impresas.",
+		images: ["/graphics%20impresos%20offset%20impreta.webp"],
+	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			"max-video-preview": -1,
+			"max-image-preview": "large",
+			"max-snippet": -1,
+		},
+	},
 };
 
 export const viewport: Viewport = {

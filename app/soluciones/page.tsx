@@ -11,10 +11,40 @@ import { Check } from "lucide-react";
 import { cn } from "@/utils/cn";
 
 export const metadata: Metadata = {
-	title: "Soluciones de impresión para empresas y negocios",
+	title: "Soluciones de impresión para empresas",
 	description:
-		"Impresión de identidad corporativa, publicidad y promoción, packaging, etiquetas, cajas, artículos promocionales y uniformes y distintivos en CDMX.",
+		"Identidad corporativa, publicidad, packaging y uniformes en Atizapán de Zaragoza. Diseño, prototipado y producción con más de 25 años de experiencia.",
+	keywords: [
+		"identidad corporativa",
+		"publicidad impresa",
+		"packaging personalizado",
+		"uniformes y distintivos",
+		"etiquetas y cajas",
+		"boletos impresos",
+	],
 	alternates: { canonical: "/soluciones" },
+	openGraph: {
+		type: "website",
+		locale: "es_MX",
+		url: "/soluciones",
+		siteName: "Graphics Impresos",
+		title: "Soluciones de impresión para empresas · Graphics Impresos",
+		description:
+			"Papelería, publicidad, packaging y uniformes: soluciones gráficas adaptadas a cada proyecto.",
+		images: [
+			{
+				url: "/packaging%20premium.webp",
+				alt: "Packaging premium producido por Graphics Impresos",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Soluciones de impresión para empresas · Graphics Impresos",
+		description:
+			"Desde materiales corporativos hasta packaging y publicidad, desarrollamos soluciones a tu medida.",
+		images: ["/packaging%20premium.webp"],
+	},
 };
 
 type Variant = "standard" | "bleed" | "clip" | "drift";

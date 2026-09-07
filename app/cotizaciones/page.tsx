@@ -9,8 +9,35 @@ import { Clock, Mail, Phone } from "lucide-react";
 export const metadata: Metadata = {
 	title: "Solicitar cotización de impresión",
 	description:
-		"Solicita tu cotización de impresión: identidad corporativa, publicidad, packaging y uniformes. Cuéntanos tu proyecto y te ayudamos a encontrar la mejor solución gráfica.",
+		"Solicita tu cotización de impresión en Atizapán de Zaragoza: papelería, publicidad, packaging y uniformes. Respuesta personalizada y sin compromiso.",
+	keywords: [
+		"cotización de impresión",
+		"cotizar impresión",
+		"precios de imprenta",
+	],
 	alternates: { canonical: "/cotizaciones" },
+	openGraph: {
+		type: "website",
+		locale: "es_MX",
+		url: "/cotizaciones",
+		siteName: "Graphics Impresos",
+		title: "Solicitar cotización de impresión · Graphics Impresos",
+		description:
+			"Describe tu proyecto y te ayudaremos a encontrar la mejor solución gráfica. Sin compromiso.",
+		images: [
+			{
+				url: "/background.webp",
+				alt: "Graphics Impresos — solicita tu cotización",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Solicitar cotización de impresión · Graphics Impresos",
+		description:
+			"Cuéntanos qué necesitas imprimir y recibe una propuesta personalizada.",
+		images: ["/background.webp"],
+	},
 };
 
 export default function CotizacionesPage() {
@@ -83,7 +110,7 @@ export default function CotizacionesPage() {
 											Ubicación
 										</span>
 										<span className="text-sm leading-relaxed text-lightgrey/80">
-											Tacuba, Miguel Hidalgo — CDMX
+											Atizapán de Zaragoza, Estado de México
 										</span>
 									</span>
 								</li>

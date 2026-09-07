@@ -97,9 +97,9 @@ export default function Footer() {
 									</a>
 								</li>
 								<li className="text-sm leading-relaxed text-lightgrey/55">
-									Mar Mediterráneo 30, Tacuba,
+									Atizapán de Zaragoza,
 									<br />
-									Miguel Hidalgo, CDMX
+									Estado de México
 								</li>
 							</ul>
 						</div>
