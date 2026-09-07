@@ -85,9 +85,9 @@ export default function HomePage() {
 				<Container className="pt-20 sm:pt-28">
 					<Eyebrow>04 — Marca</Eyebrow>
 				</Container>
-				<Drift from="4%" to="-24%" className="mt-4">
+				<Drift from="-24%" to="4%" className="mt-4">
 					<p className="whitespace-nowrap font-display text-[21vw] font-medium uppercase leading-[0.9] tracking-tight lg:text-[15rem]">
-						<span className="text-outline">Tu&nbsp;</span>
+						<span className="bg-mint px-[0.12em] text-midnight">Tu</span>&nbsp;
 						<span className="text-lightgrey">marca</span>
 					</p>
 				</Drift>
@@ -196,13 +196,13 @@ export default function HomePage() {
 							))}
 						</ul>
 					</div>
-					<Drift from="10%" to="-7%">
+					<Drift from="8%" to="-6%" className="rounded-3xl" innerClassName="w-full">
 						{/* eslint-disable-next-line @next/next/no-img-element */}
 						<img
 							src="/graphicsimpresos%20impreta%20revision%20de%20calida%20offset.webp"
 							alt="Detalle de impresión — color y acabado"
 							loading="lazy"
-							className="h-[46svh] w-[86vw] rounded-3xl object-cover sm:h-[56svh] lg:h-[68svh] lg:w-[50vw]"
+							className="h-[46svh] w-full scale-[1.2] object-cover sm:h-[56svh] lg:h-[68svh]"
 						/>
 					</Drift>
 					</div>

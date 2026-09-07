@@ -70,6 +70,7 @@ interface HeroProps {
 	sub?: React.ReactNode;
 	actions?: React.ReactNode;
 	meta?: string[];
+	metaLinks?: { label: string; href: string }[];
 }
 
 export function HeroSection(
@@ -84,6 +85,7 @@ export function HeroSection(
 		sub,
 		actions,
 		meta,
+		metaLinks,
 		...rest
 	} = props;
 
@@ -133,6 +135,19 @@ export function HeroSection(
 					</p>
 				)}
 				{actions && <div className="mt-2 flex flex-wrap items-center gap-3">{actions}</div>}
+				{metaLinks && metaLinks.length > 0 && (
+					<nav aria-label="Índice de soluciones" className="mt-6 flex flex-wrap gap-2.5 border-t border-lightgrey/15 pt-6">
+						{metaLinks.map((l) => (
+							<a
+								key={l.href}
+								href={l.href}
+								className="rounded-full border border-lightgrey/20 px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-lightgrey/70 transition-colors hover:border-mint/60 hover:text-mint"
+							>
+								{l.label}
+							</a>
+						))}
+					</nav>
+				)}
 				{meta && meta.length > 0 && (
 					<dl className="mt-6 flex flex-wrap gap-x-10 gap-y-3 border-t border-lightgrey/15 pt-6">
 						{meta.map((m) => (

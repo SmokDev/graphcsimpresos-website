@@ -5,8 +5,9 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/utils/cn";
+import { SOLUTIONS } from "@/utils/site";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { startScroll, stopScroll } from "@/components/providers/smooth-scroll";
 
@@ -54,11 +55,16 @@ export function NavLink({
 
 export default function Header() {
 	const [open, setOpen] = useState(false);
+	const [dropOpen, setDropOpen] = useState(false);
 	const pathname = usePathname();
 	const reduce = usePrefersReducedMotion();
 
 	useEffect(() => {
 		setOpen(false);
+	}, [pathname]);
+
+	useEffect(() => {
+		setDropOpen(false);
 	}, [pathname]);
 
 	useEffect(() => {
@@ -93,11 +99,61 @@ export default function Header() {
 						className="hidden items-center gap-1 lg:flex"
 						aria-label="Navegación principal"
 					>
-						{NAV.map((item) => (
-							<NavLink key={item.href} href={item.href}>
-								{item.label}
+						<NavLink href="/">Inicio</NavLink>
+						<NavLink href="/nosotros">Nosotros</NavLink>
+						<div
+							className="relative"
+							onMouseEnter={() => setDropOpen(true)}
+							onMouseLeave={() => setDropOpen(false)}
+							onFocusCapture={() => setDropOpen(true)}
+							onBlur={(e) => {
+								if (!e.currentTarget.contains(e.relatedTarget as Node | null))
+									setDropOpen(false);
+							}}
+							onKeyDown={(e) => {
+								if (e.key === "Escape") setDropOpen(false);
+							}}
+						>
+							<NavLink href="/soluciones" aria-haspopup="true" aria-expanded={dropOpen}>
+								<span className="inline-flex items-center gap-1.5">
+									Soluciones
+									<ChevronDown
+										className={cn(
+											"h-3.5 w-3.5 transition-transform duration-300",
+											dropOpen && "rotate-180"
+										)}
+										aria-hidden
+									/>
+								</span>
 							</NavLink>
-						))}
+							<div
+								className={cn(
+									"absolute left-1/2 top-full -translate-x-1/2 pt-3 transition-all duration-300",
+									dropOpen
+										? "visible opacity-100"
+										: "invisible opacity-0"
+								)}
+							>
+								<div className="w-80 rounded-2xl border border-lightgrey/10 bg-midnight-deep/95 p-2 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.9)] backdrop-blur-xl">
+									{SOLUTIONS.map((s) => (
+										<Link
+											key={s.slug}
+											href={`/soluciones#${s.slug}`}
+											scroll={false}
+											onClick={() => setDropOpen(false)}
+											className="group/item flex items-baseline gap-3 rounded-xl px-4 py-2.5 transition-colors hover:bg-lightgrey/5"
+										>
+											<span className="font-display text-xs text-mint/70">
+												{s.n}
+											</span>
+											<span className="font-display text-lg font-light uppercase tracking-wide text-lightgrey/85 transition-colors group-hover/item:text-mint">
+												{s.title}
+											</span>
+										</Link>
+									))}
+								</div>
+							</div>
+						</div>
 					</nav>
 
 					<div className="flex items-center gap-2">
@@ -189,6 +245,21 @@ export default function Header() {
 												aria-hidden
 											/>
 										</Link>
+										{item.href === "/soluciones" && (
+											<div className="flex flex-wrap gap-2 py-4">
+												{SOLUTIONS.map((s) => (
+													<Link
+														key={s.slug}
+														href={`/soluciones#${s.slug}`}
+														scroll={false}
+														onClick={() => setOpen(false)}
+														className="rounded-full border border-lightgrey/15 px-4 py-2 text-[12px] uppercase tracking-[0.16em] text-lightgrey/75 transition-colors hover:border-mint/60 hover:text-mint"
+													>
+														{s.title}
+													</Link>
+												))}
+											</div>
+										)}
 									</motion.div>
 								);
 							})}

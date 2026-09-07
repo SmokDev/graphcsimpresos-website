@@ -147,7 +147,8 @@ export default function HomeSolutions() {
 									{s.description}
 								</p>
 								<Link
-									href="/soluciones"
+									href={`/soluciones#${s.slug}`}
+									scroll={false}
 									aria-label={`${s.title} — ver en Soluciones`}
 									className="group mt-6 inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.2em] text-midnight/85 transition-colors hover:text-mint"
 								>

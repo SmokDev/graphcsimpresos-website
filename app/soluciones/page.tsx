@@ -59,7 +59,7 @@ function SolutionPanel({
 		<section
 			id={slug}
 			aria-labelledby={`${slug}-title`}
-			className="relative scroll-mt-20 border-t border-lightgrey/10"
+			className="relative scroll-mt-24 border-t border-lightgrey/10"
 		>
 			{/* ——— Imagen: bloque en mobile, full-viewport en desktop ——— */}
 			<div className="relative h-[54svh] min-h-[340px] overflow-hidden lg:h-[104svh]">
@@ -231,7 +231,7 @@ export default function SolucionesPage() {
 				kicker="Soluciones · Catálogo"
 				sub="Desde materiales corporativos hasta packaging y publicidad, desarrollamos y producimos soluciones gráficas adaptadas a cada proyecto."
 				actions={<CTA href="/cotizaciones">Solicitar cotización</CTA>}
-				meta={["Identidad", "Publicidad", "Packaging", "Uniformes"]}
+				metaLinks={SOLUTIONS.map((s) => ({ label: s.title, href: `#${s.slug}` }))}
 			>
 				{["Soluciones de impresión", "para empresas", "y negocios."]}
 			</HeroSection>
