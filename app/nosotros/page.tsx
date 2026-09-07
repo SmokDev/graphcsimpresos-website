@@ -9,10 +9,38 @@ import { Counter, Lines, Reveal } from "@/components/motion/reveal";
 import { ScrollRise, Words } from "@/components/motion/scroll";
 
 export const metadata: Metadata = {
-	title: "Nosotros — Imprenta con experiencia en soluciones gráficas",
+	title: "Imprenta con 25 años de experiencia",
 	description:
-		"Empresa de impresión con más de 25 años de experiencia. No solo imprimimos: entendemos lo que necesitas. Asesoría, diseño y producción en CDMX.",
+		"Graphics Impresos: imprenta en Atizapán de Zaragoza con más de 25 años. Asesoría, diseño y producción de soluciones impresas para empresas y negocios.",
+	keywords: [
+		"imprenta con experiencia",
+		"empresa de impresión",
+		"asesoría en impresión",
+		"Graphics Impresos",
+	],
 	alternates: { canonical: "/nosotros" },
+	openGraph: {
+		type: "website",
+		locale: "es_MX",
+		url: "/nosotros",
+		siteName: "Graphics Impresos",
+		title: "Imprenta con 25 años de experiencia · Graphics Impresos",
+		description:
+			"No solo imprimimos: entendemos lo que necesitas. Asesoría, diseño y producción en Atizapán de Zaragoza.",
+		images: [
+			{
+				url: "/graphicsimresos%20personal%20imrenta.webp",
+				alt: "Equipo de Graphics Impresos en el taller de impresión",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Imprenta con 25 años de experiencia · Graphics Impresos",
+		description:
+			"Más de 25 años acompañando a empresas y negocios a materializar sus ideas.",
+		images: ["/graphicsimresos%20personal%20imrenta.webp"],
+	},
 };
 
 const STEPS = [

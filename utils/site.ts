@@ -5,7 +5,7 @@ export const SITE = {
 	phoneHref: "tel:+525587730703",
 	email: "contacto@graphicsimpresos.com",
 	site: "graphicsimpresos.com",
-	address: "Mar Mediterráneo 30, Tacuba, Miguel Hidalgo, 11410 Ciudad de México, CDMX",
+	address: "Atizapán de Zaragoza, Estado de México",
 	baseUrl: "https://graphicsimpresos.com",
 } as const;
 

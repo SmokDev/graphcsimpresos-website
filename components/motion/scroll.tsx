@@ -162,8 +162,8 @@ export function ScrollRise({
 		target: ref,
 		offset: ["start end", "end start"],
 	});
-	const opacity = useTransform(scrollYProgress, [0.15, 0.45], [0, 1]);
-	const y = useTransform(scrollYProgress, [0.15, 0.5], reduce ? [0, 0] : [56, 0]);
+	const opacity = useTransform(scrollYProgress, [0.05, 0.35], [0, 1]);
+	const y = useTransform(scrollYProgress, [0.05, 0.4], reduce ? [0, 0] : [56, 0]);
 	return (
 		<div ref={ref} className={className}>
 			<motion.div style={{ opacity, y }} className="will-change-transform">
@@ -202,7 +202,7 @@ export function Words({
 	const ref = useRef<HTMLParagraphElement>(null);
 	const { scrollYProgress } = useScroll({
 		target: ref,
-		offset: ["start 0.88", "end 0.42"],
+		offset: ["start 0.95", "end 0.6"],
 	});
 	const words = text.split(" ");
 	return (
