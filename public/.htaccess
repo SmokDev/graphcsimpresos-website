@@ -1,0 +1,27 @@
+# Graphics Impresos — config Apache para hosting compartido.
+# Este archivo va en public/ para que Next.js lo copie a out/ en la exportación.
+# Subir el CONTENIDO de out/ (incluido este .htaccess) a public_html/.
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	# URLs limpias: /nosotros -> /nosotros.html (solo si existe el archivo).
+	# No toca directorios reales ni archivos existentes (assets, _next, imágenes).
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME}\.html -f
+	RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+# Página 404 generada por Next.js en la exportación estática.
+ErrorDocument 404 /404.html
+
+# Caché agresivo para assets versionados de Next.js (nombres con hash).
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresByType text/css "access plus 1 year"
+	ExpiresByType application/javascript "access plus 1 year"
+	ExpiresByType image/webp "access plus 1 year"
+	ExpiresByType image/jpeg "access plus 1 year"
+	ExpiresByType image/png "access plus 1 year"
+	ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>
