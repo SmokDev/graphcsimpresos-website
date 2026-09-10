@@ -106,7 +106,7 @@ export default function SiteLoader() {
 							Graphics Impresos
 						</p>
 						<p className="font-display text-sm tracking-wide text-lightgrey/60">
-							25+ años
+							CDMX — México
 						</p>
 					</div>
 

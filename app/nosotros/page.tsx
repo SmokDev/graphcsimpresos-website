@@ -70,7 +70,7 @@ export default function NosotrosPage() {
 			<HeroSection
 				kicker="Nosotros · Quiénes somos"
 				sub="Más de 25 años acompañando a empresas y negocios a materializar sus ideas."
-				meta={["Desde hace 25+ años", "Asesoría · Diseño · Producción"]}
+				meta={["CDMX · México", "Asesoría · Diseño · Producción"]}
 			>
 				{["Experiencia que", "se convierte", "en soluciones."]}
 			</HeroSection>

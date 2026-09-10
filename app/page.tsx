@@ -86,7 +86,7 @@ export default function HomePage() {
 					<Eyebrow>02 — Experiencia</Eyebrow>
 					<Heading level={2} id="experiencia" className="max-w-3xl">
 						<Lines
-							lines={["Más de 25 años", "convirtiendo ideas", "en soluciones."]}
+							lines={["Experiencia que", "convierte ideas", "en soluciones."]}
 						/>
 					</Heading>
 					<div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-16">
