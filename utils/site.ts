@@ -1,8 +1,8 @@
 export const SITE = {
 	name: "Graphics Impresos",
 	tagline: "Diseñamos tu idea, imprimimos tu éxito.",
-	phone: "55 8773 0703",
-	phoneHref: "tel:+525587730703",
+	phone: "56 5722 9563",
+	phoneHref: "tel:+525657229563",
 	email: "contacto@graphicsimpresos.com",
 	site: "graphicsimpresos.com",
 	address: "Atizapán de Zaragoza, Estado de México",

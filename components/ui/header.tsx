@@ -271,7 +271,7 @@ export default function Header() {
 								<ArrowUpRight className="h-4 w-4" aria-hidden />
 							</Link>
 							<p className="mt-4 text-center text-xs uppercase tracking-[0.2em] text-lightgrey/50">
-								55 8773 0703 · graphicsimpresos.com
+								56 5722 9563 · graphicsimpresos.com
 							</p>
 						</motion.div>
 					</motion.div>

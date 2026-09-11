@@ -123,8 +123,8 @@ export default function QuoteForm() {
 					<p className="max-w-lg leading-relaxed text-midnight/75">
 						Se abrió tu correo con la cotización preparada. Si prefieres,
 						escríbenos directamente al{" "}
-						<a className="underline underline-offset-4 hover:no-underline" href="tel:+525587730703">
-							55 8773 0703
+						<a className="underline underline-offset-4 hover:no-underline" href="tel:+525657229563">
+							56 5722 9563
 						</a>{" "}
 						y le damos seguimiento a tu proyecto.
 					</p>
