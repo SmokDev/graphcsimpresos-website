@@ -26,7 +26,7 @@ export default function HomeHero() {
 	const imgY = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["0%", "14%"]);
 	const imgScale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.1]);
 	const contentY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, 130]);
-	const contentOpacity = useTransform(scrollYProgress, [0, 0.72], [1, 0]);
+	const contentOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
 	const cueOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
 
 	const d = reduce ? 0 : 1; // multiplicador de duraciones/delays
@@ -130,7 +130,7 @@ export default function HomeHero() {
 									Ver soluciones
 								</CTA>
 							</div>
-							<p className="mt-6 flex items-baseline gap-3 sm:hidden">
+							<p className="mt-6 flex items-baseline gap-5 sm:hidden">
 								<span className="font-display text-4xl font-medium text-mint">25+</span>
 								<span className="text-[11px] uppercase tracking-[0.24em] text-lightgrey/65">
 									años de experiencia
@@ -151,7 +151,7 @@ export default function HomeHero() {
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ duration: 1 * d || 0.01, ease: EASE, delay: 1.3 * d }}
-					className="flex items-center gap-4 text-[11px] uppercase tracking-[0.32em] text-lightgrey/65 [writing-mode:vertical-rl]"
+					className="flex items-center gap-6 text-[11px] uppercase tracking-[0.32em] text-lightgrey/65 [writing-mode:vertical-rl]"
 				>
 					<span className="font-display text-2xl tracking-normal text-mint [writing-mode:horizontal-tb]">
 						25+
