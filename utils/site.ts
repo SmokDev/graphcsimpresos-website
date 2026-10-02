@@ -7,6 +7,9 @@ export const SITE = {
 	site: "graphicsimpresos.com",
 	address: "Atizapán de Zaragoza, Estado de México",
 	baseUrl: "https://graphicsimpresos.com",
+	// Clave de FormSubmit para el formulario de cotizaciones (evita exponer
+	// el correo en el HTML y es el endpoint ya activado).
+	formSubmitKey: "85a71d701a461f21fffcd52def86babf",
 } as const;
 
 export const SOLUTIONS = [
