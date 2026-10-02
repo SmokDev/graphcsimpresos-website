@@ -24,7 +24,9 @@ export default function BrandScene({
 	const { ref, progress: p } = useScene<HTMLElement>("pass");
 
 	// La imagen crece primero; el texto se queda fijo y sale después.
-	const frameScale = useTransform(p, [0.08, 0.6], reduce ? [1, 1] : [0.58, 1]);
+	// Base 0.68 (no 0.58): en móvil el marco ya no se ve diminuto
+	// con grandes franjas midnight a los lados.
+	const frameScale = useTransform(p, [0.08, 0.6], reduce ? [1, 1] : [0.68, 1]);
 	const radV = useTransform(p, [0.08, 0.6], [26, 0]);
 	const frameRad = useMotionTemplate`inset(0% round ${radV}px)`;
 	// El zoom interior termina junto con el marco: sin encogido posterior.
@@ -54,9 +56,9 @@ export default function BrandScene({
 	});
 
 	return (
-		<section ref={ref} aria-label="Escena 4 — Tu marca" className="relative h-[260svh] bg-midnight">
-			<motion.div style={{ opacity: sceneOp }} className="sticky top-0 h-svh overflow-hidden">
-				<p className="absolute left-5 top-24 z-20 text-[11px] uppercase tracking-[0.3em] text-mint sm:left-10">
+		<section ref={ref} aria-label="Escena 4 — Tu marca" className="relative h-[300svh] overflow-x-clip bg-midnight sm:h-[260svh]">
+			<motion.div style={{ opacity: sceneOp }} className="sticky top-0 h-svh min-h-[560px] overflow-hidden">
+				<p className="absolute left-5 top-[max(5.5rem,env(safe-area-inset-top,0px)+4.5rem)] z-20 text-[11px] uppercase tracking-[0.3em] text-mint sm:left-10 sm:top-24">
 					{tag}
 				</p>
 
@@ -72,7 +74,7 @@ export default function BrandScene({
 							alt="Empaque de marca — Graphics Impresos"
 							loading="lazy"
 							decoding="async"
-							className="h-full w-full object-cover"
+							className="h-full w-full object-cover object-center"
 						/>
 					</motion.div>
 					<div className="absolute inset-0 bg-midnight/35" aria-hidden />
@@ -84,20 +86,22 @@ export default function BrandScene({
 						opacity: txtOp,
 						visibility: gone ? "hidden" : "visible",
 					}}
-					className="absolute inset-x-0 top-[16%] will-change-transform [backface-visibility:hidden]"
+					className="absolute inset-x-0 top-[12%] will-change-transform [backface-visibility:hidden] sm:top-[16%]"
 				>
-					<Drift from="0%" to="14%">
-						<p className="whitespace-nowrap font-display text-[21vw] font-medium uppercase leading-[0.9] tracking-tight lg:text-[13rem]">
+					{/* Drift corto (0→8%): el 14% original sacaba el
+					    gigante fuera de cuadro en 360–390px */}
+					<Drift from="0%" to="8%">
+						<p className="whitespace-nowrap font-display text-[16.5vw] font-medium uppercase leading-[0.9] tracking-tight sm:text-[15vw] lg:text-[13rem]">
 							<span className="bg-mint px-[0.12em] text-midnight">Tu&nbsp;</span>
 							<span className="text-lightgrey">marca</span>
 						</p>
 					</Drift>
 					<div className="mx-auto w-full max-w-7xl px-5 sm:px-10">
-						<h2 className="max-w-4xl font-display text-4xl font-medium uppercase leading-[1.02] tracking-tight text-mint sm:text-6xl">
+						<h2 className="max-w-4xl text-balance font-display text-[clamp(1.9rem,8.5vw,2.5rem)] font-medium uppercase leading-[1.02] tracking-tight text-mint sm:text-6xl">
 							<Lines lines={["También se", "imprime."]} />
 						</h2>
 						<Words
-							className="mt-5 max-w-xl leading-relaxed text-lightgrey/85 sm:text-lg"
+							className="mt-4 max-w-xl text-[15px] leading-relaxed text-lightgrey/85 sm:mt-5 sm:text-lg"
 							text="Una marca también vive en el empaque que recibe tu cliente, la tarjeta que guarda, la etiqueta que observa y cada material que toca. Cada punto de contacto construye percepción."
 						/>
 					</div>
@@ -108,14 +112,14 @@ export default function BrandScene({
 					style={{ opacity: shown ? 1 : 0, scale: endScale }}
 					className="absolute inset-x-0 bottom-0 will-change-transform"
 				>
-					<div className="mx-auto w-full max-w-7xl px-5 pb-16 sm:px-10 sm:pb-24">
-						<p className="max-w-3xl border-l-2 border-mint pl-5 font-display text-3xl font-light uppercase leading-tight tracking-wide sm:text-5xl">
+					<div className="mx-auto w-full max-w-7xl px-5 pb-20 sm:px-10 sm:pb-24">
+						<p className="max-w-3xl text-balance border-l-2 border-mint pl-5 font-display text-[clamp(1.5rem,7.5vw,1.875rem)] font-light uppercase leading-tight tracking-wide sm:text-5xl">
 							{quote}
 						</p>
 					</div>
 				</motion.div>
 				{/* Degradado inferior estático: no acompaña al texto */}
-				<div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-midnight to-transparent" aria-hidden />
+				<div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-midnight via-midnight/60 to-transparent sm:h-40" aria-hidden />
 			</motion.div>
 		</section>
 	);
