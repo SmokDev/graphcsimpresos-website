@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, CheckCircle2, ChevronDown, Loader2 } from "lucide-react";
 import Input from "@/components/ui/input";
-import { QUOTE_TYPES } from "@/utils/site";
+import { QUOTE_TYPES, SITE } from "@/utils/site";
 import { cn } from "@/utils/cn";
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -40,12 +40,16 @@ export default function QuoteForm() {
 	const [values, setValues] = useState<Fields>(EMPTY);
 	const [errors, setErrors] = useState<Partial<Fields>>({});
 	const [status, setStatus] = useState<Status>("idle");
+	const [formError, setFormError] = useState<string | null>(null);
 
 	const set = (k: keyof Fields) => (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
 	) => {
 		setValues((v) => ({ ...v, [k]: e.target.value }));
 		setErrors((prev) => ({ ...prev, [k]: undefined }));
+		// Si había un error de envío, lo limpiamos al editar para reintentar limpio.
+		setFormError(null);
+		if (status === "error") setStatus("idle");
 	};
 
 	function validate(v: Fields) {
@@ -61,46 +65,100 @@ export default function QuoteForm() {
 		return e;
 	}
 
-	async function onSubmit(e: React.FormEvent) {
+	async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		const e2 = validate(values);
 		setErrors(e2);
-		if (Object.keys(e2).length > 0) {
+		const firstErrorKey = (
+			["nombre", "email", "telefono", "tipo", "proyecto"] as const
+		).find((k) => e2[k]);
+		if (firstErrorKey) {
+			// Resumen visible junto al botón + foco en el primer campo con error.
+			setFormError(
+				"Revisa los campos marcados antes de enviar (nombre, correo, teléfono, tipo de proyecto y descripción)."
+			);
+			setStatus("idle");
 			document
-				.getElementById("quote-form-error")
+				.getElementById(`quote-${firstErrorKey}`)
 				?.scrollIntoView({ behavior: "smooth", block: "center" });
+			// El scroll es animado; enfocamos tras un momento para no interrumpirlo.
+			window.setTimeout(
+				() => document.getElementById(`quote-${firstErrorKey}`)?.focus(),
+				350
+			);
 			return;
 		}
 		setStatus("sending");
+		setFormError(null);
+		const controller = new AbortController();
+		const timeout = window.setTimeout(() => controller.abort(), 20000);
 		try {
-			// Canal actual: compone un correo con los datos (sin backend).
-			// Si existe integración (API/CRM), conectar aquí sin cambiar la UI.
-			const subject = encodeURIComponent(
-				`Cotización — ${values.tipo} — ${values.nombre}`
+			// Envío real sin backend: FormSubmit AJAX reenvía a SITE.email.
+			// Funciona con `output: "export"` (hosting estático, sin API routes).
+			// La primera vez, FormSubmit pide activar el correo desde la bandeja
+			// de contacto@graphicsimpresos.com.
+			const prueba =
+				values.prueba === "si" ? "Sí" : values.prueba === "no" ? "No" : "—";
+			const res = await fetch(
+				`https://formsubmit.co/ajax/${SITE.formSubmitKey}`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Accept: "application/json",
+					},
+					signal: controller.signal,
+					body: JSON.stringify({
+						_subject: `Cotización — ${values.tipo} — ${values.nombre}`,
+						_template: "table",
+						_captcha: "false",
+						_honey: "",
+						_replyto: values.email.trim(),
+						nombre: values.nombre.trim(),
+						email: values.email.trim(),
+						"teléfono / whatsapp": values.telefono.trim(),
+						"empresa / negocio": values.empresa.trim() || "—",
+						"tipo de proyecto": values.tipo,
+						"descripción del proyecto": values.proyecto.trim(),
+						"cantidad aproximada": values.cantidad.trim() || "—",
+						"medidas / formato": values.medidas.trim() || "—",
+						material: values.material.trim() || "—",
+						acabado: values.acabado.trim() || "—",
+						"prueba de impresión": prueba,
+						message: [
+							`Nombre: ${values.nombre}`,
+							`Empresa / negocio: ${values.empresa || "—"}`,
+							`Correo: ${values.email}`,
+							`Teléfono / WhatsApp: ${values.telefono}`,
+							`Tipo: ${values.tipo}`,
+							``,
+							`Proyecto:`,
+							values.proyecto,
+							``,
+							`Cantidad aproximada: ${values.cantidad || "—"}`,
+							`Medidas / formato: ${values.medidas || "—"}`,
+							`Material: ${values.material || "—"}`,
+							`Acabado: ${values.acabado || "—"}`,
+							`Prueba de impresión: ${prueba}`,
+						].join("\n"),
+					}),
+				}
 			);
-			const body = encodeURIComponent(
-				[
-					`Nombre: ${values.nombre}`,
-					`Empresa / negocio: ${values.empresa || "—"}`,
-					`Correo: ${values.email}`,
-					`Teléfono / WhatsApp: ${values.telefono}`,
-					`Tipo: ${values.tipo}`,
-					``,
-					`Proyecto:`,
-					values.proyecto,
-					``,
-					`Cantidad aproximada: ${values.cantidad || "—"}`,
-					`Medidas / formato: ${values.medidas || "—"}`,
-					`Material: ${values.material || "—"}`,
-					`Acabado: ${values.acabado || "—"}`,
-					`Prueba de impresión: ${values.prueba === "si" ? "Sí" : values.prueba === "no" ? "No" : "—"}`,
-				].join("\n")
-			);
-			await new Promise((r) => setTimeout(r, 900));
-			window.location.href = `mailto:contacto@graphicsimpresos.com?subject=${subject}&body=${body}`;
+			if (!res.ok) throw new Error(`el servidor respondió ${res.status}`);
 			setStatus("success");
-		} catch {
+		} catch (err) {
+			console.error("Error al enviar la cotización:", err);
 			setStatus("error");
+			setFormError(
+				err instanceof DOMException && err.name === "AbortException"
+					? "La solicitud tardó demasiado. Revisa tu conexión e intenta de nuevo."
+					: "No pudimos enviar tu solicitud. Intenta de nuevo o escríbenos directo."
+			);
+			document
+				.getElementById("quote-form-error")
+				?.scrollIntoView({ behavior: "smooth", block: "center" });
+		} finally {
+			window.clearTimeout(timeout);
 		}
 	}
 
@@ -118,15 +176,15 @@ export default function QuoteForm() {
 				>
 					<CheckCircle2 className="h-10 w-10 text-midnight" aria-hidden />
 					<h2 className="font-display text-3xl font-medium uppercase sm:text-4xl">
-						Solicitud lista. Hablemos.
+						Solicitud enviada. Gracias.
 					</h2>
 					<p className="max-w-lg leading-relaxed text-midnight/75">
-						Se abrió tu correo con la cotización preparada. Si prefieres,
-						escríbenos directamente al{" "}
+						Recibimos tu solicitud y te contactaremos a la brevedad. Si
+						prefieres, escríbenos directamente al{" "}
 						<a className="underline underline-offset-4 hover:no-underline" href="tel:+525657229563">
 							56 5722 9563
 						</a>{" "}
-						y le damos seguimiento a tu proyecto.
+						o a {SITE.email}.
 					</p>
 					<button
 						onClick={() => {
@@ -158,10 +216,10 @@ export default function QuoteForm() {
 								<span aria-hidden className="h-px w-16 bg-midnight/20" />
 							</legend>
 							<div className="grid gap-x-8 sm:grid-cols-2">
-								<Input label="Nombre" name="nombre" value={values.nombre} onChange={set("nombre")} required autoComplete="name" error={errors.nombre} placeholder=" " />
+								<Input label="Nombre" id="quote-nombre" name="nombre" value={values.nombre} onChange={set("nombre")} required autoComplete="name" error={errors.nombre} placeholder=" " />
 								<Input label="Empresa / negocio" name="empresa" value={values.empresa} onChange={set("empresa")} autoComplete="organization" placeholder=" " />
-								<Input label="Correo electrónico" name="email" type="email" value={values.email} onChange={set("email")} required autoComplete="email" error={errors.email} placeholder=" " />
-								<Input label="Teléfono / WhatsApp" name="telefono" type="tel" value={values.telefono} onChange={set("telefono")} required autoComplete="tel" error={errors.telefono} placeholder=" " />
+								<Input label="Correo electrónico" id="quote-email" name="email" type="email" value={values.email} onChange={set("email")} required autoComplete="email" error={errors.email} placeholder=" " />
+								<Input label="Teléfono / WhatsApp" id="quote-telefono" name="telefono" type="tel" value={values.telefono} onChange={set("telefono")} required autoComplete="tel" error={errors.telefono} placeholder=" " />
 							</div>
 						</fieldset>
 
@@ -176,13 +234,13 @@ export default function QuoteForm() {
 							</legend>
 							<div className="relative mt-2 w-full">
 								<label
-									htmlFor="tipo"
+									htmlFor="quote-tipo"
 									className="pointer-events-none absolute left-1 top-1 text-xs uppercase tracking-[0.18em] text-midnight/60"
 								>
 									¿Qué necesitas? <span aria-hidden className="text-midnight">*</span>
 								</label>
 								<select
-									id="tipo"
+									id="quote-tipo"
 									value={values.tipo}
 									onChange={set("tipo")}
 									required
@@ -215,7 +273,7 @@ export default function QuoteForm() {
 									</p>
 								)}
 							</div>
-							<Input label="Cuéntanos sobre tu proyecto" name="proyecto" isTextarea value={values.proyecto} onChange={set("proyecto")} required error={errors.proyecto} hint="Objetivo, piezas que imaginas, fechas clave… mientras más contexto, mejor propuesta." placeholder=" " />
+							<Input label="Cuéntanos sobre tu proyecto" id="quote-proyecto" name="proyecto" isTextarea value={values.proyecto} onChange={set("proyecto")} required error={errors.proyecto} hint="Objetivo, piezas que imaginas, fechas clave… mientras más contexto, mejor propuesta." placeholder=" " />
 						</fieldset>
 
 						{/* 03 Especificaciones */}
@@ -272,16 +330,27 @@ export default function QuoteForm() {
 								</p>
 							</div>
 							<p className="mt-2 text-sm text-midnight/60">
-								¿Tienes un diseño o referencia? Puedes adjuntarlo al enviar el
-								correo — lo revisamos contigo.
+								¿Tienes un diseño o referencia? Después de enviar, puedes
+								reenviarlo a {SITE.email} y lo revisamos contigo.
 							</p>
 						</fieldset>
 
 						<div id="quote-form-error" aria-live="polite">
-							{status === "error" && (
+							{formError && (
 								<p role="alert" className="mb-4 text-sm text-red-800">
-									Algo salió mal al preparar tu solicitud. Intenta de nuevo o
-									escríbenos a contacto@graphicsimpresos.com
+									{formError}{" "}
+									{status === "error" && (
+										<>
+											Tel.{" "}
+											<a className="underline underline-offset-4" href="tel:+525657229563">
+												56 5722 9563
+											</a>{" "}
+											o <a className="underline underline-offset-4" href={`mailto:${SITE.email}`}>
+												{SITE.email}
+											</a>
+											.
+										</>
+									)}
 								</p>
 							)}
 							<button
@@ -292,7 +361,7 @@ export default function QuoteForm() {
 								{status === "sending" ? (
 									<>
 										<Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-										Preparando solicitud…
+										Enviando solicitud…
 									</>
 								) : (
 									<>
