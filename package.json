@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
+    "postbuild": "node scripts/verify-export.mjs",
+    "verify:export": "node scripts/verify-export.mjs",
+    "package:hosting": "npm run build && node scripts/package-hosting.mjs",
     "start": "next start",
     "lint": "eslint"
   },

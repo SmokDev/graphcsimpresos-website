@@ -17,7 +17,8 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
  */
 export default function SiteLoader() {
 	const reduce = usePrefersReducedMotion();
-	const [visible, setVisible] = useState(true);
+	// El HTML estático no debe quedar tapado si falla la descarga de JavaScript.
+	const [visible, setVisible] = useState(false);
 	const [skipped, setSkipped] = useState(false);
 	const [progress, setProgress] = useState(0);
 	const doneRef = useRef(false);
@@ -38,6 +39,8 @@ export default function SiteLoader() {
 			return;
 		}
 
+		setVisible(true);
+		doneRef.current = false;
 		document.documentElement.style.overflow = "hidden";
 
 		let loaded = document.readyState === "complete";
