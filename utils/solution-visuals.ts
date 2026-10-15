@@ -2,6 +2,15 @@ type Visual = { src: string; alt: string; caption: string; position?: string };
 type SolutionVisuals = { cover: Visual; feature?: Visual; line: string; gallery: [Visual, Visual] };
 
 export const SOLUTION_VISUALS: Record<string, SolutionVisuals> = {
+  "promocionales-personalizados": {
+    cover: { src: "/images/soluciones/cover-promocionales.webp", alt: "Composición ilustrativa en azul y mint de termo, botella, pluma, agenda, calendario, audífonos y accesorios de bar", caption: "Regalos, eventos y uso diario" },
+    line: "Más usos. Más momentos para tu marca.",
+    feature: { src: "/images/soluciones/promocionales-bar.webp", alt: "Shaker, destapador y vaso personalizados de la marca ficticia BRAVIO", caption: "BRAVIO · Marca ficticia" },
+    gallery: [
+      { src: "/images/soluciones/promocionales-diario.webp", alt: "Kit de regalo de la marca ficticia NUVIA con termo, botella, agenda, pluma, calendario y audífonos", caption: "Regalos y kits para acompañar el día a día." },
+      { src: "/images/soluciones/promocionales-belleza.webp", alt: "Kit ilustrativo AURELA con cosmetiquera, espejo, cepillo, brochas, bálsamo labial y crema de manos personalizados", caption: "Belleza y cuidado personal para regalos con identidad." }
+    ]
+  },
   "papeleria-corporativa": {
     cover: { src: "/images/soluciones/cover-papeleria.webp", alt: "Composición ilustrativa de tarjetas, folders, sobres y papelería en azul y mint", caption: "Papelería corporativa" },
     feature: { src: "/images/soluciones/papeleria-nubora.webp", alt: "Papelería de la marca ficticia NUBORA: tarjetas, folder, hoja membretada y sobre", caption: "NUBORA · Marca ficticia" },

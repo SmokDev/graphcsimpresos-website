@@ -6,7 +6,7 @@ import ParallaxImage from "@/components/ui/parallax-image";
 import SiteCTA from "@/components/site-cta";
 import { Lines, Reveal } from "@/components/motion/reveal";
 import { ClipOpen, Drift, ScrollRise, Words } from "@/components/motion/scroll";
-import { SOLUTIONS } from "@/utils/site";
+import { SOLUTIONS, SITE } from "@/utils/site";
 import { solutionHref } from "@/utils/solution-links";
 import { Check } from "lucide-react";
 import { cn } from "@/utils/cn";
@@ -14,7 +14,7 @@ import { cn } from "@/utils/cn";
 export const metadata: Metadata = {
 	title: "Soluciones de impresión para empresas",
 	description:
-		"Papelería corporativa, publicidad impresa y materiales para punto de venta con envíos a todo México. Empaques, etiquetas y uniformes según tu proyecto.",
+		"Papelería corporativa, publicidad impresa y materiales para punto de venta con envíos a todo México. Empaques, uniformes y promocionales personalizados según tu proyecto.",
 	keywords: [
 		"identidad corporativa",
 		"publicidad impresa",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 		siteName: "Graphics Impresos",
 		title: "Soluciones de impresión para empresas · Graphics Impresos",
 		description:
-			"Papelería, publicidad y materiales para punto de venta. Empaques, etiquetas y uniformes según tu proyecto.",
+			"Papelería, publicidad y materiales para punto de venta. Empaques, uniformes y promocionales personalizados según tu proyecto.",
 		images: [
 			{
 				url: "/packaging%20premium.webp",
@@ -55,9 +55,11 @@ const ART: { image: string; variant: Variant; align: "left" | "right"; mobile: "
 	{ image: "/Flyers%20festival.webp", variant: "bleed", align: "left", mobile: "dark" },
 	{ image: "/packaging%20premium.webp", variant: "bleed", align: "left", mobile: "dark" },
 	{ image: "/playera%20nova%20craft.webp", variant: "bleed", align: "left", mobile: "dark", position: "object-top" },
+	{ image: "/images/soluciones/promocionales-diario.webp", variant: "bleed", align: "left", mobile: "dark" },
 ];
 
 const DESCRIPTIONS: Record<string, string> = {
+	promocionales: "Personalizamos termos, plumas, agendas, calendarios, audífonos y accesorios de bar para campañas, regalos, eventos y uso diario. Explora opciones para tu equipo o tus clientes y cotiza según el modelo, la cantidad y la aplicación de tu marca.",
 	"identidad-corporativa":
 		"Los materiales corporativos forman parte de la experiencia que construyes con tus clientes. Creamos y producimos piezas que ayudan a mantener una imagen profesional y coherente.",
 	"publicidad-promocion":
@@ -237,7 +239,7 @@ function SolutionPanel({
 							</ScrollRise>
 						)}
 						<Reveal delay={0.15}>
-							<div className="mt-8">
+							<div className="mt-8 flex flex-wrap gap-3">
 								<CTA
 									href={solutionHref(slug)}
 									variant={light ? "dark" : "solid"}
@@ -245,6 +247,7 @@ function SolutionPanel({
 								>
 									Explorar productos y opciones
 								</CTA>
+								{slug === "promocionales" && <CTA href={SITE.promotionalCatalogUrl} target="_blank" rel="noopener noreferrer" variant="ghost">Ver catálogo de promocionales</CTA>}
 							</div>
 						</Reveal>
 					</div>

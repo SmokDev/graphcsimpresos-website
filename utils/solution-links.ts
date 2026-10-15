@@ -3,6 +3,7 @@ const SOLUTION_ROUTES: Record<string, string> = {
   "publicidad-promocion": "publicidad-y-promocion",
   packaging: "empaques-y-etiquetas",
   uniformes: "uniformes-y-distintivos",
+  promocionales: "promocionales-personalizados",
 };
 
 export function solutionHref(catalogSlug: string) {

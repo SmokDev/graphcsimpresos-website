@@ -70,7 +70,7 @@ export default async function SolutionLanding({ params }: Props) {
             <p className="max-w-2xl leading-relaxed text-lightgrey/90 sm:text-lg">{page.intro}</p>
             <div className="flex flex-wrap gap-3 lg:justify-end">
               <CTA href={quote}>Solicitar cotización</CTA>
-              <CTA href="#productos" variant="ghost">Ver productos</CTA>
+              <CTA href={page.catalogUrl ?? "#productos"} variant="ghost" target={page.catalogUrl ? "_blank" : undefined} rel={page.catalogUrl ? "noopener noreferrer" : undefined}>{page.catalogUrl ? "Explorar catálogo" : "Ver productos"}</CTA>
             </div>
           </div>
           <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-lightgrey/20 pt-5">
@@ -110,6 +110,28 @@ export default async function SolutionLanding({ params }: Props) {
           </div>
         </Container>
       </Section>
+
+      {page.catalogUrl && (
+        <Section aria-labelledby="catalogo-promocionales" className="border-y border-mint/20 bg-midnight-deep">
+          <Container className="grid items-center gap-10 lg:grid-cols-[1.2fr_1fr]">
+            <div>
+              <Eyebrow>Ideas para cada ocasión</Eyebrow>
+              <Heading level={2} id="catalogo-promocionales">Encuentra el artículo. Nosotros lo personalizamos.</Heading>
+              <p className="mt-6 max-w-2xl leading-relaxed text-lightgrey/80">Explora el catálogo de productos promocionales y guarda las referencias que te interesen. Desde un regalo de bienvenida hasta un accesorio de bar, revisamos contigo qué opciones funcionan para tu marca.</p>
+            </div>
+            <div className="space-y-6 rounded-3xl border border-lightgrey/15 p-7 sm:p-10">
+              <h3 className="text-xl font-bold">Del catálogo a tu cotización</h3>
+              <ol className="list-inside list-decimal space-y-3 leading-relaxed text-lightgrey/80">
+                <li>Elige un modelo y anota su referencia.</li>
+                <li>Comparte cantidad, color y tu logotipo.</li>
+                <li>Confirmamos disponibilidad, personalización y envío.</li>
+              </ol>
+              <CTA href={page.catalogUrl} target="_blank" rel="noopener noreferrer">Ver catálogo de promocionales</CTA>
+              <p className="text-xs leading-relaxed text-lightgrey/60">El catálogo abre en otra pestaña. Existencias, precios y tiempos se confirman al cotizar.</p>
+            </div>
+          </Container>
+        </Section>
+      )}
 
       <SolutionScene src={visual.feature?.src ?? page.image} alt={visual.feature?.alt ?? page.alt} className="relative isolate flex min-h-[55svh] items-end overflow-hidden bg-midnight-deep py-16 sm:min-h-[70svh] sm:py-24" labelledBy="marca-materializada">
         <Container>
@@ -166,7 +188,7 @@ export default async function SolutionLanding({ params }: Props) {
       <Section aria-labelledby="relacionadas">
         <Container>
           <h2 id="relacionadas" className="text-2xl font-bold">Más formas de materializar tu marca</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {SOLUTION_PAGES.filter((p) => p.slug !== slug).map((p) => (
               <Link key={p.slug} href={`/soluciones/${p.slug}`} className="group flex items-center justify-between gap-5 rounded-2xl border border-lightgrey/15 p-6 hover:border-mint">
                 <span className="font-bold">{p.name}</span><ArrowUpRight className="h-5 w-5 shrink-0 text-mint" aria-hidden />

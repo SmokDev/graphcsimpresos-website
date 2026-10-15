@@ -14,7 +14,7 @@ import { cn } from "@/utils/cn";
 export const metadata: Metadata = {
 	title: "Imprenta con envíos a todo México",
 	description:
-		"Imprenta con más de 25 años de experiencia y envíos a toda la República Mexicana. Papelería corporativa, publicidad impresa y materiales para punto de venta. Solicita cotización.",
+		"Papelería corporativa, publicidad, empaques, uniformes y promocionales personalizados. Más de 25 años de experiencia y envíos a todo México.",
 	keywords: [
 		"imprenta Atizapán de Zaragoza",
 		"soluciones impresas",

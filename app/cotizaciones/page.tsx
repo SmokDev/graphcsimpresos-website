@@ -9,7 +9,7 @@ import { Clock, Mail, Phone } from "lucide-react";
 export const metadata: Metadata = {
 	title: "Solicitar cotización de impresión",
 	description:
-		"Cotiza tus impresos con envío a toda la República Mexicana: papelería, publicidad, materiales para punto de venta, empaques y uniformes. Respuesta personalizada y sin compromiso.",
+		"Cotiza impresos, uniformes y promocionales personalizados para tu marca. Papelería, publicidad y empaques con envíos a toda la República Mexicana.",
 	keywords: [
 		"cotización de impresión",
 		"cotizar impresión",

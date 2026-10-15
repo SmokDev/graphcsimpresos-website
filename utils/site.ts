@@ -7,6 +7,7 @@ export const SITE = {
 	site: "graphicsimpresos.com",
 	address: "Atizapán de Zaragoza, Estado de México",
 	baseUrl: "https://graphicsimpresos.com",
+	promotionalCatalogUrl: "https://link.graphicsimpresos.com/promocionales-catalogo",
 	// Clave de FormSubmit para el formulario de cotizaciones (evita exponer
 	// el correo en el HTML y es el endpoint ya activado).
 	formSubmitKey: "85a71d701a461f21fffcd52def86babf",
@@ -46,7 +47,6 @@ export const SOLUTIONS = [
 			"Revistas",
 			"Danglers (colgantes publicitarios)",
 			"Cenefas para anaqueles",
-			"Artículos promocionales",
 		],
 		image: "/boleto.jpg",
 	},
@@ -68,6 +68,15 @@ export const SOLUTIONS = [
 		items: ["Uniformes y camisas", "Playeras y polos", "Mandiles", "Gafetes", "Botones publicitarios", "Pines personalizados"],
 		image: "/mandil%20cafe.webp",
 	},
+	{
+		n: "05",
+		slug: "promocionales",
+		title: "Promocionales personalizados",
+		headline: "Tu marca, en lo que se usa todos los días.",
+		description: "Termos, plumas, agendas, calendarios, audífonos y accesorios de bar personalizados para regalos, eventos y equipos.",
+		items: ["Termos y botellas", "Plumas", "Agendas y calendarios", "Audífonos y tecnología", "Destapadores y shakers", "Kits de regalo"],
+		image: "/images/soluciones/promocionales-diario.webp",
+	},
 ] as const;
 
 export const QUOTE_TYPES = [
@@ -75,5 +84,6 @@ export const QUOTE_TYPES = [
 	"Publicidad y promoción",
 	"Empaques y etiquetas",
 	"Uniformes y distintivos",
+	"Promocionales personalizados",
 	"Otro",
 ] as const;

@@ -52,6 +52,14 @@ const SOLUTIONS = [
 		image: "/playera%20nova%20craft.webp",
 		alt: "Uniformes corporativos — Graphics Impresos",
 	},
+	{
+		n: "05",
+		href: solutionHref("promocionales"),
+		title: "Promocionales personalizados",
+		copy: "Termos, plumas, agendas, calendarios, audífonos y accesorios de bar personalizados para regalos, eventos y uso diario.",
+		image: "/images/soluciones/promocionales-diario.webp",
+		alt: "Kit ilustrativo de artículos promocionales personalizados",
+	},
 ];
 
 const CLIENTES = [

@@ -1,11 +1,38 @@
+import { SITE } from "@/utils/site";
+
 export type SolutionPage = {
   slug: string; catalogSlug: string; name: string; title: string; description: string;
   intro: string; image: string; alt: string; eyebrow: string;
+  catalogUrl?: string;
   products: { name: string; copy: string }[];
   advice: string; checklist: string[]; faq: { q: string; a: string }[];
 };
 
 export const SOLUTION_PAGES: SolutionPage[] = [
+  {
+    slug: "promocionales-personalizados", catalogSlug: "promocionales", name: "Promocionales personalizados",
+    title: "Artículos promocionales personalizados para tu marca",
+    description: "Termos, plumas, agendas, calendarios, audífonos y accesorios de bar personalizados. Explora el catálogo y cotiza con envíos a todo México.",
+    intro: "Tu marca también acompaña los momentos cotidianos. Personalizamos artículos para regalos de empresa, kits de bienvenida, eventos, campañas y espacios de trabajo. Elige según quién lo usará y para qué quieres entregarlo.",
+    image: "/images/soluciones/promocionales-diario.webp", alt: "Kit ilustrativo de artículos personalizados: termo, botella, agenda, pluma, calendario y audífonos", eyebrow: "Tu marca, en lo que se usa todos los días",
+    catalogUrl: SITE.promotionalCatalogUrl,
+    products: [
+      { name: "Termos, botellas y vasos", copy: "Artículos para acompañar al equipo, recibir a un nuevo cliente o complementar un evento. Revisamos capacidad, material, color y área de personalización según el modelo." },
+      { name: "Plumas y artículos de escritura", copy: "Una opción para oficinas, congresos y entregas comerciales. Comparte la cantidad, el tipo de pluma y el acabado que buscas para revisar alternativas." },
+      { name: "Agendas, libretas y calendarios", copy: "Lleva tu identidad a la organización diaria y los regalos de temporada. Elige formato, presentación y opciones de personalización según el artículo." },
+      { name: "Audífonos y tecnología", copy: "Complementa regalos y kits con accesorios de uso cotidiano. Consulta modelos, características y posibilidades de aplicación de tu marca antes de elegir." },
+      { name: "Accesorios de bar", copy: "Destapadores, shakers o cocteleras y otros artículos para marcas de hospitalidad, eventos y regalos. Confirmamos material y técnica de personalización para cada modelo." },
+      { name: "Kits y otras ideas de regalo", copy: "Combina artículos de distintas familias para una bienvenida, un reconocimiento o una campaña. Explora el catálogo y comparte las referencias que te interesan para revisar opciones." }
+    ],
+    advice: "Un buen promocional empieza por la persona que lo recibe. Cuéntanos si es para uso diario, un evento o un regalo especial, y comparte tu presupuesto aproximado. Revisamos materiales, área de aplicación y técnica disponible según el producto; el precio final considera el artículo y el alcance de la personalización.",
+    checklist: ["Referencia del catálogo o tipo de artículo", "Cantidad por modelo y color", "Logotipo, colores y zona de personalización", "Uso previsto, fecha deseada, ciudad y código postal"],
+    faq: [
+      { q: "¿Los artículos del catálogo se pueden personalizar?", a: "Personalizamos productos promocionales. Las posibilidades dependen del material, la forma y el área disponible en cada modelo. Envíanos la referencia y tu logotipo para confirmar técnica, alcance y costo antes de producir." },
+      { q: "¿Solo sirven para publicidad?", a: "También pueden formar parte de regalos de empresa, kits de bienvenida, reconocimientos, eventos, materiales para equipos y accesorios para espacios de hospitalidad. Te ayudamos a revisar opciones según el uso y el destinatario." },
+      { q: "¿Cómo cotizo un artículo que vi en el catálogo?", a: "Comparte su código o referencia, una captura si la tienes, la cantidad y el color deseado. Añade tu logotipo y la fecha en que lo necesitas. Revisamos disponibilidad y personalización para preparar la cotización." },
+      { q: "¿El catálogo garantiza existencias y precios?", a: "El catálogo funciona como referencia para explorar opciones. Confirmamos existencias, colores, características, precios y tiempos al cotizar; pueden variar según el modelo y la cantidad." }
+    ]
+  },
   {
     slug: "papeleria-corporativa", catalogSlug: "identidad-corporativa", name: "Papelería corporativa",
     title: "Papelería corporativa personalizada para empresas",

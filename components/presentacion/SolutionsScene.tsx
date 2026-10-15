@@ -105,7 +105,7 @@ export default function SolutionsScene({ items }: { items: StageSolution[] }) {
 		target: ref,
 		offset: ["start start", "end end"],
 	});
-	const x = useTransform(p, [0, 1], reduce ? ["0%", "0%"] : ["0%", "-75%"]);
+	const x = useTransform(p, [0, 1], reduce ? ["0%", "0%"] : ["0%", `-${((items.length - 1) / items.length) * 100}%`]);
 	const bar = useTransform(p, [0, 1], [0, 1]);
 	// Zoom lento continuo + parallax agresivo de entrada y salida.
 	const bgZoom = useTransform(p, [0, 1], reduce ? [1, 1] : [1.12, 1]);
@@ -125,8 +125,22 @@ export default function SolutionsScene({ items }: { items: StageSolution[] }) {
 		return entry + e * 220;
 	});
 
+	if (reduce) {
+		return (
+			<section aria-label="Escena 5 — Soluciones" className="bg-midnight">
+				{items.map((s, i) => (
+					<div key={s.n} className="relative isolate overflow-hidden">
+						<BgImage src={s.image} alt={s.alt} isActive />
+						<div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/40 to-transparent" aria-hidden />
+						<Panel s={s} index={i} active={active} />
+					</div>
+				))}
+			</section>
+		);
+	}
+
 	return (
-		<section ref={ref} aria-label="Escena 5 — Soluciones" className="relative h-[440svh] bg-midnight">
+		<section ref={ref} aria-label="Escena 5 — Soluciones" className="relative bg-midnight" style={{ height: `${items.length * 110}svh` }}>
 			<div className="sticky top-0 h-svh overflow-hidden">
 				<motion.div style={{ scale: bgZoom, y: bgY }} className="absolute inset-0 will-change-transform">
 					{items.map((s, i) => (
@@ -140,7 +154,7 @@ export default function SolutionsScene({ items }: { items: StageSolution[] }) {
 					Soluciones
 				</p>
 
-				<motion.div style={{ x }} className="absolute inset-0 flex w-[400vw] will-change-transform">
+				<motion.div style={{ x, width: `${items.length * 100}vw` }} className="absolute inset-0 flex will-change-transform">
 					{items.map((s, i) => (
 						<Panel key={s.n} s={s} index={i} active={active} />
 					))}
