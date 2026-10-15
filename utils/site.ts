@@ -64,8 +64,8 @@ export const SOLUTIONS = [
 		slug: "uniformes",
 		title: "Uniformes y distintivos",
 		headline: "Tu equipo también forma parte de tu marca.",
-		description: "Uniformes, prendas personalizadas, gafetes y pines.",
-		items: ["Uniformes", "Prendas personalizadas", "Gafetes", "Pines"],
+		description: "Camisas, playeras, polos, mandiles, gafetes, botones y pines personalizados.",
+		items: ["Uniformes y camisas", "Playeras y polos", "Mandiles", "Gafetes", "Botones publicitarios", "Pines personalizados"],
 		image: "/mandil%20cafe.webp",
 	},
 ] as const;

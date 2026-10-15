@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { solutionHref } from "@/utils/solution-links";
 import { Container, Eyebrow } from "@/components/ui/sections";
 import Heading from "@/components/ui/heading";
 import HeroScene from "@/components/presentacion/HeroScene";
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
 const SOLUTIONS = [
 	{
 		n: "01",
+		href: solutionHref("identidad-corporativa"),
 		title: "Papelería corporativa",
 		copy: "Tarjetas, papelería, carpetas, sobres y formatos que mantienen tu imagen profesional y coherente.",
 		image: "/papeleria%20corporatiav%202.webp",
@@ -28,6 +30,7 @@ const SOLUTIONS = [
 	},
 	{
 		n: "02",
+		href: solutionHref("publicidad-promocion"),
 		title: "Publicidad y promoción",
 		copy: "Volantes, flyers, pósters, folletos y catálogos para campañas. Danglers y cenefas para promoción en punto de venta.",
 		image: "/Flyers%20festival.webp",
@@ -35,6 +38,7 @@ const SOLUTIONS = [
 	},
 	{
 		n: "03",
+		href: solutionHref("packaging"),
 		title: "Empaques y etiquetas",
 		copy: "Cajas, etiquetas y empaques que hacen tangible la experiencia de tu marca.",
 		image: "/packaging%20premium.webp",
@@ -42,8 +46,9 @@ const SOLUTIONS = [
 	},
 	{
 		n: "04",
-		title: "Uniformes corporativos",
-		copy: "Prendas personalizadas para un equipo reconocible y profesional.",
+		href: solutionHref("uniformes"),
+		title: "Uniformes y distintivos",
+		copy: "Camisas, playeras, mandiles, gafetes, botones y pines para un equipo reconocible y profesional.",
 		image: "/playera%20nova%20craft.webp",
 		alt: "Uniformes corporativos — Graphics Impresos",
 	},

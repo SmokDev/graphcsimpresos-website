@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { cn } from "@/utils/cn";
 import { SOLUTIONS } from "@/utils/site";
+import { solutionHref } from "@/utils/solution-links";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { startScroll, stopScroll } from "@/components/providers/smooth-scroll";
 
@@ -129,8 +130,7 @@ export default function Header() {
 									{SOLUTIONS.map((s) => (
 										<Link
 											key={s.slug}
-											href={`/soluciones#${s.slug}`}
-											scroll={false}
+											href={solutionHref(s.slug)}
 											onClick={() => setDropOpen(false)}
 											className="group/item flex items-baseline gap-3 rounded-xl px-4 py-2.5 transition-colors hover:bg-lightgrey/5"
 										>
@@ -241,8 +241,7 @@ export default function Header() {
 												{SOLUTIONS.map((s) => (
 													<Link
 														key={s.slug}
-														href={`/soluciones#${s.slug}`}
-														scroll={false}
+														href={solutionHref(s.slug)}
 														onClick={() => setOpen(false)}
 														className="rounded-full border border-lightgrey/15 px-4 py-2 text-[12px] uppercase tracking-[0.16em] text-lightgrey/75 transition-colors hover:border-mint/60 hover:text-mint"
 													>

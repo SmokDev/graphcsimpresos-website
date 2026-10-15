@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, CheckCircle2, ChevronDown, Loader2 } from "lucide-react";
 import Input from "@/components/ui/input";
@@ -41,6 +41,13 @@ export default function QuoteForm() {
 	const [errors, setErrors] = useState<Partial<Fields>>({});
 	const [status, setStatus] = useState<Status>("idle");
 	const [formError, setFormError] = useState<string | null>(null);
+
+	useEffect(() => {
+		const selected = new URLSearchParams(window.location.search).get("solucion");
+		if (selected && QUOTE_TYPES.some((type) => type === selected)) {
+			setValues((current) => ({ ...current, tipo: selected }));
+		}
+	}, []);
 
 	const set = (k: keyof Fields) => (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>

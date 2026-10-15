@@ -16,6 +16,7 @@ import { Container, Eyebrow } from "@/components/ui/sections";
 import { CTA } from "@/components/ui/button";
 import { EASE, ImageReveal, Lines, Reveal } from "@/components/motion/reveal";
 import { SOLUTIONS } from "@/utils/site";
+import { solutionHref } from "@/utils/solution-links";
 
 type Solution = (typeof SOLUTIONS)[number];
 
@@ -80,16 +81,15 @@ function SolutionBlock({
 				<span className="font-display text-sm tracking-[0.2em] text-mint [filter:saturate(1.4)_brightness(0.72)]">
 					/ {s.n}
 				</span>
-				<p className="mt-3 font-display text-4xl font-medium uppercase leading-[0.95] tracking-tight text-midnight sm:text-6xl">
+				<p className="mt-3 font-display text-4xl font-bold uppercase leading-[0.95] tracking-tight text-midnight sm:text-6xl">
 					{s.title}
 				</p>
 				<p className="mt-4 max-w-md leading-relaxed text-midnight/70 sm:text-lg">
 					{s.description}
 				</p>
 				<Link
-					href={`/soluciones#${s.slug}`}
-					scroll={false}
-					aria-label={`${s.title} — ver en Soluciones`}
+					href={solutionHref(s.slug)}
+					aria-label={`${s.title} — explorar productos y opciones`}
 					className="group mt-6 inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.2em] text-midnight/85 transition-colors hover:text-mint"
 				>
 					<span className="border-b border-midnight/25 pb-1 transition-colors group-hover:border-mint">

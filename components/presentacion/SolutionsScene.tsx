@@ -2,10 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useMotionValue, useMotionValueEvent, useScroll, useTransform } from "motion/react";
+import { TextLink } from "@/components/ui/button";
 import { EASE } from "@/components/motion/reveal";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 
 export interface StageSolution {
+	href: string;
 	n: string;
 	title: string;
 	copy: string;
@@ -79,6 +81,7 @@ function Panel({
 					<p className="mt-4 max-w-xl text-base leading-relaxed text-lightgrey/85 sm:text-lg">
 						{s.copy}
 					</p>
+					<TextLink href={s.href} className="mt-6" aria-label={`Explorar ${s.title}`}>Explorar productos y opciones</TextLink>
 				</div>
 			</div>
 		</div>

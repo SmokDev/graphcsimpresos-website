@@ -7,6 +7,7 @@ import SiteCTA from "@/components/site-cta";
 import { Lines, Reveal } from "@/components/motion/reveal";
 import { ClipOpen, Drift, ScrollRise, Words } from "@/components/motion/scroll";
 import { SOLUTIONS } from "@/utils/site";
+import { solutionHref } from "@/utils/solution-links";
 import { Check } from "lucide-react";
 import { cn } from "@/utils/cn";
 
@@ -238,11 +239,11 @@ function SolutionPanel({
 						<Reveal delay={0.15}>
 							<div className="mt-8">
 								<CTA
-									href="/cotizaciones"
+									href={solutionHref(slug)}
 									variant={light ? "dark" : "solid"}
-									aria-label={`Solicitar cotización de ${title}`}
+									aria-label={`Explorar ${title}`}
 								>
-									Solicitar cotización
+									Explorar productos y opciones
 								</CTA>
 							</div>
 						</Reveal>
