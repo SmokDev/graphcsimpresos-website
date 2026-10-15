@@ -7,25 +7,26 @@ import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced
 
 /** The section, not its moving layers, anchors progress so scrolling stays stable. */
 export function SolutionScene({
-  src, alt, children, className, mode = "feature", labelledBy,
+  src, alt, children, className, mode = "feature", labelledBy, imagePosition,
 }: {
   src: string; alt: string; children: ReactNode; className: string;
-  mode?: "hero" | "feature"; labelledBy?: string;
+  mode?: "hero" | "feature"; labelledBy?: string; imagePosition?: string;
 }) {
   const ref = useRef<HTMLElement>(null);
   const reduce = usePrefersReducedMotion();
   const hero = mode === "hero";
+  const anchorTopRight = imagePosition === "object-right-top";
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: hero ? ["start start", "end start"] : ["start end", "end start"],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : hero ? ["-3%", "8%"] : ["-7%", "7%"]);
-  const imageScale = useTransform(scrollYProgress, [0, 1], reduce ? [1, 1] : hero ? [1.02, 1.08] : [1.08, 1.02]);
+  const imageY = useTransform(scrollYProgress, [0, 1], reduce || anchorTopRight ? ["0%", "0%"] : hero ? ["-3%", "8%"] : ["-7%", "7%"]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], reduce || anchorTopRight ? [1, 1] : hero ? [1.02, 1.08] : [1.08, 1.02]);
   const contentY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : hero ? [0, 36] : [30, -24]);
   return (
     <section ref={ref} className={className} aria-labelledby={labelledBy}>
-      <motion.div style={{ y: imageY, scale: imageScale }} className="pointer-events-none absolute -inset-y-[14%] inset-x-0 -z-20 will-change-transform">
-        <Image src={src} alt={alt} fill priority={hero} sizes="100vw" className={hero ? "object-cover object-[65%_center] lg:object-center" : "object-cover"} />
+      <motion.div style={{ y: imageY, scale: imageScale, transformOrigin: anchorTopRight ? "right top" : "center" }} className={`pointer-events-none absolute inset-x-0 -z-20 will-change-transform ${anchorTopRight ? "top-0 bottom-0" : "-inset-y-[14%]"}`}>
+        <Image src={src} alt={alt} fill priority={hero} sizes="100vw" className={`object-cover ${imagePosition ?? (hero ? "object-[65%_center] lg:object-center" : "")}`} />
       </motion.div>
       {hero && <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-midnight/90 via-midnight/65 to-midnight/20" aria-hidden />}
       <div className={`pointer-events-none absolute inset-0 -z-10 ${hero ? "bg-gradient-to-t from-midnight via-transparent to-midnight/35" : "bg-gradient-to-t from-midnight via-midnight/50 to-midnight/20"}`} aria-hidden />
@@ -44,15 +45,15 @@ export function ScrollContent({ children, className, distance = 32 }: { children
   return <div ref={ref} className={className}><motion.div style={{ y, opacity }} className="h-full will-change-transform">{children}</motion.div></div>;
 }
 
-export function GalleryParallax({ src, alt, className }: { src: string; alt: string; className: string }) {
+export function GalleryParallax({ src, alt, className, preserveFrame = false, sizes = "(max-width: 1023px) 100vw, 60vw" }: { src: string; alt: string; className: string; preserveFrame?: boolean; sizes?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = usePrefersReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["-4%", "4%"]);
+  const y = useTransform(scrollYProgress, [0, 1], reduce || preserveFrame ? ["0%", "0%"] : ["-4%", "4%"]);
   return (
     <div ref={ref} className="absolute inset-0 overflow-hidden">
-      <motion.div style={{ y }} className="absolute -inset-y-[8%] inset-x-0 will-change-transform">
-        <Image src={src} alt={alt} fill sizes="(max-width: 1023px) 100vw, 60vw" className={className} />
+      <motion.div style={{ y }} className={preserveFrame ? "absolute inset-0" : "absolute -inset-y-[8%] inset-x-0 will-change-transform"}>
+        <Image src={src} alt={alt} fill sizes={sizes} className={className} />
       </motion.div>
     </div>
   );

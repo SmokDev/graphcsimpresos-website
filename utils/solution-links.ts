@@ -4,6 +4,7 @@ const SOLUTION_ROUTES: Record<string, string> = {
   packaging: "empaques-y-etiquetas",
   uniformes: "uniformes-y-distintivos",
   promocionales: "promocionales-personalizados",
+  rotulos: "rotulos-y-gran-formato",
 };
 
 export function solutionHref(catalogSlug: string) {

@@ -60,6 +60,14 @@ const SOLUTIONS = [
 		image: "/images/soluciones/promocionales-diario.webp",
 		alt: "Kit ilustrativo de artículos promocionales personalizados",
 	},
+	{
+		n: "06",
+		href: solutionHref("rotulos"),
+		title: "Rótulos y gran formato",
+		copy: "Lonas, banners, viniles y rotulación de autos. También letras 3D y letreros luminosos para que tu negocio se vea.",
+		image: "/images/soluciones/cover-rotulos-v2.webp",
+		alt: "Vehículo, banner y fachada con letrero de la marca ficticia RUMBO",
+	},
 ];
 
 const CLIENTES = [

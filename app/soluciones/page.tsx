@@ -14,7 +14,7 @@ import { cn } from "@/utils/cn";
 export const metadata: Metadata = {
 	title: "Soluciones de impresión para empresas",
 	description:
-		"Papelería corporativa, publicidad impresa y materiales para punto de venta con envíos a todo México. Empaques, uniformes y promocionales personalizados según tu proyecto.",
+		"Papelería corporativa, publicidad impresa y materiales para punto de venta con envíos a todo México. Empaques, uniformes, promocionales y rótulos según tu proyecto.",
 	keywords: [
 		"identidad corporativa",
 		"publicidad impresa",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 		siteName: "Graphics Impresos",
 		title: "Soluciones de impresión para empresas · Graphics Impresos",
 		description:
-			"Papelería, publicidad y materiales para punto de venta. Empaques, uniformes y promocionales personalizados según tu proyecto.",
+			"Papelería, publicidad y materiales para punto de venta. Empaques, uniformes, promocionales y rótulos según tu proyecto.",
 		images: [
 			{
 				url: "/packaging%20premium.webp",
@@ -56,9 +56,11 @@ const ART: { image: string; variant: Variant; align: "left" | "right"; mobile: "
 	{ image: "/packaging%20premium.webp", variant: "bleed", align: "left", mobile: "dark" },
 	{ image: "/playera%20nova%20craft.webp", variant: "bleed", align: "left", mobile: "dark", position: "object-top" },
 	{ image: "/images/soluciones/promocionales-diario.webp", variant: "bleed", align: "left", mobile: "dark" },
+	{ image: "/images/soluciones/cover-rotulos-v2.webp", variant: "bleed", align: "left", mobile: "dark" },
 ];
 
 const DESCRIPTIONS: Record<string, string> = {
+	rotulos: "Dale presencia a tu marca en la calle, en tus eventos y en tu negocio. Lonas, banners, viniles, rotulación de autos e impresión de gran formato, además de letras 3D y letreros luminosos.",
 	promocionales: "Personalizamos termos, plumas, agendas, calendarios, audífonos y accesorios de bar para campañas, regalos, eventos y uso diario. Explora opciones para tu equipo o tus clientes y cotiza según el modelo, la cantidad y la aplicación de tu marca.",
 	"identidad-corporativa":
 		"Los materiales corporativos forman parte de la experiencia que construyes con tus clientes. Creamos y producimos piezas que ayudan a mantener una imagen profesional y coherente.",
@@ -263,7 +265,7 @@ export default function SolucionesPage() {
 			<HeroSection
 				useAltBackground
 				kicker="Soluciones · Catálogo"
-				sub="Papelería corporativa y publicidad impresa para empresas, campañas y puntos de venta, con envíos a toda la República Mexicana. Complementa tu proyecto con empaques, etiquetas, promocionales y uniformes."
+				sub="Papelería corporativa y publicidad impresa para empresas, campañas y puntos de venta, con envíos a toda la República Mexicana. Complementa tu proyecto con empaques, etiquetas, promocionales, uniformes y rótulos."
 				actions={<CTA href="/cotizaciones">Solicitar cotización</CTA>}
 				metaLinks={SOLUTIONS.map((s) => ({ label: s.title, href: `#${s.slug}` }))}
 			>

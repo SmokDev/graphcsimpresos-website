@@ -1,7 +1,17 @@
-type Visual = { src: string; alt: string; caption: string; position?: string };
-type SolutionVisuals = { cover: Visual; feature?: Visual; line: string; gallery: [Visual, Visual] };
+type Visual = { src: string; alt: string; caption: string; position?: string; preserveFrame?: boolean };
+type SolutionVisuals = { cover: Visual; feature?: Visual; line: string; gallery: Visual[] };
 
 export const SOLUTION_VISUALS: Record<string, SolutionVisuals> = {
+  "rotulos-y-gran-formato": {
+    cover: { src: "/images/soluciones/cover-rotulos-v4.webp", alt: "Fachada azul con letras luminosas NOVA, ventanal rotulado y banner con gráficos mint", caption: "Rotulación, banners y presencia de marca" },
+    line: "Haz que tu negocio se vea.",
+    feature: { src: "/images/soluciones/cover-rotulos-v2.webp", alt: "Vehículo y fachada rotulados de la marca ficticia RUMBO al anochecer", caption: "RUMBO · Marca ficticia", position: "object-right-top" },
+    gallery: [
+      { src: "/images/soluciones/rotulos-alto-cuadrada.webp", alt: "Vehículo y ventana rotulados con la identidad de la marca ficticia ALTO", caption: "Tu marca en movimiento y en los cristales de tu negocio.", position: "object-contain", preserveFrame: true },
+      { src: "/images/soluciones/rotulos-faro-cuadrada.webp", alt: "Banners, lona y acceso de vidrio con rotulación de la marca ficticia FARO", caption: "Banners y viniles para comunicar en cada espacio.", position: "object-contain", preserveFrame: true },
+      { src: "/images/soluciones/rotulos-lumia-cuadrada.webp", alt: "Café LUMIA con letrero de letras luminosas y detalle de rotulación en vidrio", caption: "Letreros luminosos y letras 3D para darle presencia a tu negocio.", position: "object-contain", preserveFrame: true }
+    ]
+  },
   "promocionales-personalizados": {
     cover: { src: "/images/soluciones/cover-promocionales.webp", alt: "Composición ilustrativa en azul y mint de termo, botella, pluma, agenda, calendario, audífonos y accesorios de bar", caption: "Regalos, eventos y uso diario" },
     line: "Más usos. Más momentos para tu marca.",

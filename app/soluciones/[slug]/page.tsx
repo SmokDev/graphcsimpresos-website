@@ -83,13 +83,13 @@ export default async function SolutionLanding({ params }: Props) {
       <Section id="productos" aria-labelledby="productos-titulo" className="scroll-mt-24">
         <Container>
           <Eyebrow>Elige según lo que necesitas</Eyebrow>
-          <Heading level={2} id="productos-titulo" className="max-w-3xl">{page.name} para tu proyecto.</Heading>
-          <div className="mt-12 grid gap-6 lg:grid-cols-[1.35fr_1fr] lg:items-start lg:gap-10">
+          <Heading level={2} id="productos-titulo" className="max-w-3xl">{page.productsTitle ?? `${page.name} para tu proyecto.`}</Heading>
+          <div className={visual.gallery.length === 3 ? "mt-12 grid gap-6 lg:grid-cols-3" : "mt-12 grid gap-6 lg:grid-cols-[1.35fr_1fr] lg:items-start lg:gap-10"}>
             {visual.gallery.map((photo, i) => (
-              <ScrollContent key={photo.src} distance={i === 1 ? 48 : 28} className={i === 1 ? "lg:pt-24" : undefined}>
+              <ScrollContent key={photo.src} distance={i === 1 ? 48 : 28} className={visual.gallery.length === 2 && i === 1 ? "lg:pt-24" : undefined}>
                 <figure>
-                  <div className={`relative overflow-hidden rounded-2xl bg-midnight-deep ${i === 0 ? "aspect-[4/3]" : "aspect-square"}`}>
-                    <GalleryParallax src={photo.src} alt={photo.alt} className={photo.position ?? "object-cover"} />
+                  <div className={`relative overflow-hidden rounded-2xl bg-midnight-deep ${i === 0 && !photo.preserveFrame ? "aspect-[4/3]" : "aspect-square"}`}>
+                    <GalleryParallax src={photo.src} alt={photo.alt} className={photo.position ?? "object-cover"} preserveFrame={photo.preserveFrame} sizes={visual.gallery.length === 3 ? "(max-width: 1023px) 100vw, 33vw" : undefined} />
                   </div>
                   <figcaption className="mt-4 flex gap-4 text-sm leading-relaxed text-lightgrey/70"><span className="text-mint">0{i + 1}</span>{photo.caption}</figcaption>
                 </figure>
@@ -133,7 +133,7 @@ export default async function SolutionLanding({ params }: Props) {
         </Section>
       )}
 
-      <SolutionScene src={visual.feature?.src ?? page.image} alt={visual.feature?.alt ?? page.alt} className="relative isolate flex min-h-[55svh] items-end overflow-hidden bg-midnight-deep py-16 sm:min-h-[70svh] sm:py-24" labelledBy="marca-materializada">
+      <SolutionScene src={visual.feature?.src ?? page.image} alt={visual.feature?.alt ?? page.alt} imagePosition={visual.feature?.position} className="relative isolate flex min-h-[55svh] items-end overflow-hidden bg-midnight-deep py-16 sm:min-h-[70svh] sm:py-24" labelledBy="marca-materializada">
         <Container>
           {visual.feature && <p className="mb-4 text-xs uppercase tracking-[0.2em] text-lightgrey/70">{visual.feature.caption} · Imagen ilustrativa</p>}
           <Eyebrow>Diseñamos tu idea, imprimimos tu éxito.</Eyebrow>
@@ -188,7 +188,7 @@ export default async function SolutionLanding({ params }: Props) {
       <Section aria-labelledby="relacionadas">
         <Container>
           <h2 id="relacionadas" className="text-2xl font-bold">Más formas de materializar tu marca</h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {SOLUTION_PAGES.filter((p) => p.slug !== slug).map((p) => (
               <Link key={p.slug} href={`/soluciones/${p.slug}`} className="group flex items-center justify-between gap-5 rounded-2xl border border-lightgrey/15 p-6 hover:border-mint">
                 <span className="font-bold">{p.name}</span><ArrowUpRight className="h-5 w-5 shrink-0 text-mint" aria-hidden />
@@ -197,6 +197,23 @@ export default async function SolutionLanding({ params }: Props) {
           </div>
         </Container>
       </Section>
+      {page.installationScope && (
+        <section aria-labelledby="alcance-instalacion" className="border-b border-lightgrey/15 bg-midnight-deep py-14 sm:py-20">
+          <Container>
+            <Eyebrow>Alcance del servicio</Eyebrow>
+            <h2 id="alcance-instalacion" className="max-w-3xl text-2xl font-bold uppercase tracking-tight sm:text-3xl">Entrega e instalación: detalles de tu proyecto.</h2>
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              {page.installationScope.map((item) => (
+                <article key={item.title} className="rounded-2xl border border-mint/25 p-6 sm:p-8">
+                  <h3 className="text-lg font-bold text-mint">{item.title}</h3>
+                  <p className="mt-4 leading-relaxed text-lightgrey/85">{item.copy}</p>
+                </article>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
+
     </main>
   );
 }

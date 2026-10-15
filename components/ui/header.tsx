@@ -177,7 +177,7 @@ export default function Header() {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: reduce ? 0 : 0.3 }}
-						className="fixed inset-0 z-[60] flex flex-col bg-midnight-deep/90 backdrop-blur-2xl lg:hidden"
+						className="fixed inset-0 z-[60] flex flex-col overflow-y-auto overscroll-contain bg-midnight-deep/90 backdrop-blur-2xl lg:hidden"
 						role="dialog"
 						aria-modal="true"
 						aria-label="Menú de navegación"

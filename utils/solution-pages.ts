@@ -3,12 +3,78 @@ import { SITE } from "@/utils/site";
 export type SolutionPage = {
   slug: string; catalogSlug: string; name: string; title: string; description: string;
   intro: string; image: string; alt: string; eyebrow: string;
-  catalogUrl?: string;
+  catalogUrl?: string; productsTitle?: string;
+  installationScope?: { title: string; copy: string }[];
   products: { name: string; copy: string }[];
   advice: string; checklist: string[]; faq: { q: string; a: string }[];
 };
 
 export const SOLUTION_PAGES: SolutionPage[] = [
+  {
+    "slug": "rotulos-y-gran-formato",
+    "catalogSlug": "rotulos",
+    "name": "Rótulos y gran formato",
+    "title": "Banners, viniles, letreros y rótulos para tu negocio",
+    "productsTitle": "Impresión en gran formato para tu negocio",
+    "description": "Lonas, banners, viniles, rotulación de autos, impresión de gran formato, letras 3D y letreros luminosos para dar presencia a tu negocio.",
+    "intro": "Haz visible tu marca en cada recorrido y en cada espacio. Creamos lonas, banners y viniles, rotulamos autos y ofrecemos impresión de gran formato, letras 3D y letreros luminosos para tu negocio.",
+    "image": "/images/soluciones/rotulacion-vehicular.webp",
+    "alt": "Rotulación de una camioneta con la identidad de la marca ficticia ALTO",
+    "eyebrow": "Tu marca, en movimiento y a gran escala",
+    "installationScope": [
+      {
+        "title": "Lonas, banners, viniles y gran formato",
+        "copy": "Los impresos se entregan sin colocación ni montaje. La instalación de estas piezas corre por cuenta del cliente."
+      },
+      {
+        "title": "Autos, letras 3D y letreros luminosos",
+        "copy": "Rotulamos autos e instalamos letras 3D y letreros luminosos. Revisamos ubicación, condiciones del proyecto y fecha para definir alcance, cobertura y costo en la cotización."
+      }
+    ],
+    "products": [
+      {
+        "name": "Rotulación de autos",
+        "copy": "Convierte tu vehículo en una aplicación de marca. Comparte el modelo, fotografías de la unidad y tu diseño para revisar áreas de aplicación, medidas y opciones de vinil."
+      },
+      {
+        "name": "Lonas y banners",
+        "copy": "Comunica promociones, aperturas y eventos con piezas de lectura clara. Revisamos formato, medidas, material y terminados según el espacio y el uso de tu proyecto."
+      },
+      {
+        "name": "Viniles impresos",
+        "copy": "Lleva tus gráficos a superficies y aplicaciones de marca. Cuéntanos dónde se usará la pieza para revisar tipo de vinil, dimensiones y diseño."
+      },
+      {
+        "name": "Letreros luminosos y letras 3D",
+        "copy": "Dale volumen y presencia al nombre o logotipo de tu negocio. Revisamos diseños con y sin iluminación, dimensiones, materiales y acabados para definir una propuesta acorde con tu espacio."
+      }
+    ],
+    "advice": "Para un auto, una fachada o un evento, cada superficie pide una solución distinta. Comparte fotografías del lugar o vehículo, medidas aproximadas y el uso que tendrá la pieza. Te ayudamos a revisar formato, material y adaptación del diseño antes de confirmar.",
+    "checklist": [
+      "Tipo de pieza, cantidad y medidas",
+      "Logotipo, diseño o referencias visuales",
+      "Fotografías del espacio o modelo y fotos del vehículo",
+      "Uso interior o exterior, ciudad y fecha deseada"
+    ],
+    "faq": [
+      {
+        "q": "¿Pueden rotular un auto con mi marca?",
+        "a": "Sí. Comparte el modelo y fotografías del vehículo, tu logotipo y una referencia del diseño que buscas. Revisamos las áreas de aplicación y el alcance de la rotulación para cotizar."
+      },
+      {
+        "q": "¿Cómo elijo entre una lona y un banner?",
+        "a": "Partimos del espacio y del uso: promoción de negocio, evento, presentación o campaña. Comparte medidas y una referencia para revisar el formato, el material y los terminados disponibles."
+      },
+      {
+        "q": "¿Qué archivo necesito para gran formato o rotulación?",
+        "a": "Envíanos el archivo que tengas y las medidas finales, o fotografías del vehículo si se trata de rotulación. Revisamos si requiere ajustes; el diseño o adaptación se cotizan según el alcance."
+      },
+      {
+        "q": "¿Puedo conservar la misma identidad en distintos soportes?",
+        "a": "Sí. Podemos revisar aplicaciones para tu vehículo, banners, viniles y letreros a partir de tu identidad. Cada soporte tiene dimensiones y posibilidades de reproducción propias."
+      }
+    ]
+  },
   {
     slug: "promocionales-personalizados", catalogSlug: "promocionales", name: "Promocionales personalizados",
     title: "Artículos promocionales personalizados para tu marca",

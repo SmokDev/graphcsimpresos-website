@@ -77,6 +77,15 @@ export const SOLUTIONS = [
 		items: ["Termos y botellas", "Plumas", "Agendas y calendarios", "Audífonos y tecnología", "Destapadores y shakers", "Kits de regalo"],
 		image: "/images/soluciones/promocionales-diario.webp",
 	},
+	{
+		n: "06",
+		slug: "rotulos",
+		title: "Rótulos y gran formato",
+		headline: "Tu marca, a otra escala.",
+		description: "Lonas, banners, viniles, rotulación de autos, letras 3D y letreros luminosos para dar presencia a tu marca.",
+		items: ["Rotulación de autos", "Banners y lonas", "Viniles impresos", "Impresión de gran formato", "Letreros luminosos y letras 3D"],
+		image: "/images/soluciones/rotulos-faro-cuadrada.webp",
+	},
 ] as const;
 
 export const QUOTE_TYPES = [
@@ -85,5 +94,6 @@ export const QUOTE_TYPES = [
 	"Empaques y etiquetas",
 	"Uniformes y distintivos",
 	"Promocionales personalizados",
+	"Rótulos y gran formato",
 	"Otro",
 ] as const;
