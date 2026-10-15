@@ -4,6 +4,8 @@
 
 <IfModule mod_rewrite.c>
 	RewriteEngine On
+	# Evita que un fallback heredado convierta solicitudes de assets en HTML.
+	RewriteRule ^_next/ - [L]
 
 	# URLs limpias: /nosotros -> /nosotros.html (solo si existe el archivo).
 	# No toca directorios reales ni archivos existentes (assets, _next, imágenes).
@@ -14,6 +16,13 @@
 
 # Página 404 generada por Next.js en la exportación estática.
 ErrorDocument 404 /404.html
+
+# El HTML y los payloads de navegación deben corresponder al build actual.
+<IfModule mod_headers.c>
+	<FilesMatch "\.(html|txt)$">
+		Header set Cache-Control "no-cache, max-age=0, must-revalidate"
+	</FilesMatch>
+</IfModule>
 
 # Caché agresivo para assets versionados de Next.js (nombres con hash).
 <IfModule mod_expires.c>
