@@ -1,184 +1,82 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import {
-	motion,
-	useInView,
-	useMotionValue,
-	useMotionValueEvent,
-	useScroll,
-	useSpring,
-} from "motion/react";
-import type { MotionValue } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { Container, Eyebrow } from "@/components/ui/sections";
 import { CTA } from "@/components/ui/button";
-import { EASE, ImageReveal, Lines, Reveal } from "@/components/motion/reveal";
+import { EASE, Lines, Reveal } from "@/components/motion/reveal";
+import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { SOLUTIONS } from "@/utils/site";
 import { solutionHref } from "@/utils/solution-links";
 
-type Solution = (typeof SOLUTIONS)[number];
+const SUMMARIES: Record<string, string> = {
+  "identidad-corporativa": "Tarjetas, folders y papelería con una identidad coherente.",
+  "publicidad-promocion": "Campañas, eventos y punto de venta que hacen visible tu mensaje.",
+  packaging: "Cajas, etiquetas y stickers que visten tu producto.",
+  uniformes: "Prendas y distintivos que dan identidad a tu equipo.",
+  promocionales: "Artículos personalizados que acompañan el día a día.",
+  rotulos: "Lonas, banners, viniles, autos y letreros con tu marca.",
+};
 
-/**
- * Imagen del stack sticky — fundido + asentamiento de escala
- * animados por Motion al activarse.
- */
-function StackImage({ src, isActive }: { src: string; isActive: boolean }) {
-	return (
-		<motion.div
-			className="absolute inset-0 will-change-transform"
-			initial={false}
-			animate={{ opacity: isActive ? 1 : 0, scale: isActive ? 1 : 1.1 }}
-			transition={{ duration: 0.85, ease: EASE }}
-			aria-hidden
-		>
-			{/* eslint-disable-next-line @next/next/no-img-element */}
-			<img
-				src={src}
-				alt=""
-				loading="eager"
-				decoding="async"
-				className="h-full w-full object-cover"
-			/>
-		</motion.div>
-	);
+function SolutionPanel({ solution, index }: { solution: (typeof SOLUTIONS)[number]; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = usePrefersReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const imageY = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["-3%", "3%"]);
+
+  return (
+    <motion.div ref={ref} initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12 }} transition={{ duration: 0.85, delay: reduce ? 0 : (index % 3) * 0.08, ease: EASE }}>
+      <Link href={solutionHref(solution.slug)} className="group relative isolate flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-xl bg-midnight focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-mint">
+        <motion.div style={{ y: imageY }} className="pointer-events-none absolute -inset-y-[6%] inset-x-0 -z-20">
+          <Image src={solution.image} alt={`${solution.title} — Graphics Impresos`} fill sizes="(min-width: 1280px) 400px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-[1200ms] ease-out motion-safe:group-hover:scale-105" />
+        </motion.div>
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-midnight-deep via-midnight-deep/55 to-midnight-deep/10" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-midnight/10 transition-opacity duration-700 group-hover:opacity-0" />
+        <div className="flex items-start justify-between p-6 lg:p-7">
+          <span aria-hidden className="select-none font-display text-6xl font-bold leading-none text-outline text-lightgrey/60">{solution.n}</span>
+          <span aria-hidden className="flex h-10 w-10 items-center justify-center rounded-full border border-lightgrey/40 bg-midnight/15 text-lightgrey backdrop-blur-sm transition-colors duration-500 group-hover:border-mint group-hover:bg-mint group-hover:text-midnight"><ArrowUpRight className="h-5 w-5 transition-transform duration-500 motion-safe:group-hover:-rotate-12" /></span>
+        </div>
+        <div className="p-6 lg:p-7">
+          <div aria-hidden className="mb-5 h-px w-10 bg-mint transition-[width] duration-700 motion-safe:group-hover:w-20" />
+          <h3 className="max-w-sm font-display text-2xl font-bold uppercase leading-[1.05] tracking-tight text-lightgrey xl:text-[1.75rem]">{solution.title}</h3>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-lightgrey/85">{SUMMARIES[solution.slug]}</p>
+          <span className="mt-6 block text-[10px] font-medium uppercase tracking-[0.22em] text-mint">Explorar solución</span>
+        </div>
+      </Link>
+    </motion.div>
+  );
 }
 
-/**
- * Bloque de solución — cuando entra al centro del viewport,
- * activa su imagen en el visual sticky.
- */
-function SolutionBlock({
-	s,
-	index,
-	active,
-}: {
-	s: Solution;
-	index: number;
-	active: MotionValue<number>;
-}) {
-	const ref = useRef<HTMLDivElement>(null);
-	const inView = useInView(ref, { amount: 0.6 });
-
-	useEffect(() => {
-		if (inView) active.set(index);
-	}, [inView, index, active]);
-
-	return (
-		<div
-			ref={ref}
-			className="flex min-h-[52svh] flex-col justify-center gap-6 border-t border-midnight/15 py-10 last:border-b lg:min-h-[86svh]"
-		>
-			{/* Imagen por bloque (solo mobile) */}
-			<ImageReveal
-				src={s.image}
-				alt={`${s.title} — Graphics Impresos`}
-				ratio="aspect-[16/10]"
-				className="rounded-2xl lg:hidden"
-			/>
-			<Reveal>
-				<span className="font-display text-sm tracking-[0.2em] text-mint [filter:saturate(1.4)_brightness(0.72)]">
-					/ {s.n}
-				</span>
-				<p className="mt-3 font-display text-4xl font-bold uppercase leading-[0.95] tracking-tight text-midnight sm:text-6xl">
-					{s.title}
-				</p>
-				<p className="mt-4 max-w-md leading-relaxed text-midnight/70 sm:text-lg">
-					{s.description}
-				</p>
-				<Link
-					href={solutionHref(s.slug)}
-					aria-label={`${s.title} — explorar productos y opciones`}
-					className="group mt-6 inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.2em] text-midnight/85 transition-colors hover:text-mint"
-				>
-					<span className="border-b border-midnight/25 pb-1 transition-colors group-hover:border-mint">
-						Explorar
-					</span>
-					<ArrowUpRight
-						className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-						aria-hidden
-					/>
-				</Link>
-			</Reveal>
-		</div>
-	);
-}
-
-/**
- * Soluciones con imagen editorial: el visual sticky muestra SIEMPRE
- * la foto del bloque que estás leyendo (incluida la última, que se
- * queda fija); en mobile, cada bloque lleva su propia imagen.
- */
 export default function HomeSolutions() {
-	const ref = useRef<HTMLElement>(null);
-	const active = useMotionValue(0);
-	const [current, setCurrent] = useState(0);
-	useMotionValueEvent(active, "change", (v) => {
-		const rounded = Math.round(v);
-		setCurrent((prev) => (prev === rounded ? prev : rounded));
-	});
-	const { scrollYProgress } = useScroll({
-		target: ref,
-		offset: ["start start", "end end"],
-	});
-	const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 28 });
+  const ref = useRef<HTMLElement>(null);
+  const reduce = usePrefersReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
+  const lineScale = useTransform(scrollYProgress, [0, 1], reduce ? [1, 1] : [0.1, 1]);
 
-	return (
-		<section
-			ref={ref}
-			aria-labelledby="soluciones"
-			className="border-y border-midnight/10 bg-lightgrey text-midnight"
-		>
-			<Container className="grid gap-4 lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:px-10">
-				<div className="flex flex-col justify-center px-5 py-14 sm:px-10 lg:sticky lg:top-0 lg:h-svh lg:px-0 lg:py-8">
-					<Eyebrow light>03 — Soluciones</Eyebrow>
-
-					{/* Visual sticky (desktop) */}
-					<div className="relative mt-6 hidden aspect-[16/10] w-[80%] overflow-hidden rounded-3xl ring-1 ring-inset ring-lightgrey/10 lg:block">
-						{SOLUTIONS.map((s, i) => (
-							<StackImage key={s.slug} src={s.image} isActive={current === i} />
-						))}
-						<span className="absolute bottom-4 left-5 z-10 text-[11px] uppercase tracking-[0.28em] text-lightgrey/85">
-							Graphics Impresos — Producción
-						</span>
-						<div className="absolute inset-0 z-10 bg-gradient-to-t from-midnight/55 via-transparent to-transparent" />
-					</div>
-
-					<h2
-						id="soluciones"
-						className="mt-6 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-midnight sm:text-5xl lg:text-6xl"
-					>
-						<Lines lines={["Soluciones gráficas", "para cada necesidad."]} />
-					</h2>
-					<Reveal delay={0.12}>
-						<p className="mt-4 max-w-md text-[15px] leading-relaxed text-midnight/70">
-							Creamos y producimos soluciones gráficas personalizadas para
-							diferentes necesidades de comunicación.
-						</p>
-					</Reveal>
-					<Reveal delay={0.18} className="mt-5">
-						<CTA href="/soluciones" variant="dark">
-							Ver todas las soluciones
-						</CTA>
-					</Reveal>
-					<div
-						className="mt-8 hidden h-px w-full bg-midnight/15 lg:block"
-						aria-hidden
-					>
-						<motion.div
-							className="h-full w-full origin-left bg-mint will-change-transform"
-							style={{ scaleX }}
-						/>
-					</div>
-				</div>
-
-				<div className="px-5 pb-16 sm:px-10 lg:px-0 lg:py-10">
-					{SOLUTIONS.map((s, i) => (
-						<SolutionBlock key={s.slug} s={s} index={i} active={active} />
-					))}
-				</div>
-			</Container>
-		</section>
-	);
+  return (
+    <section ref={ref} aria-labelledby="soluciones" className="relative overflow-hidden border-y border-lightgrey/10 bg-midnight-deep py-16 text-lightgrey sm:py-20 lg:py-24">
+      <Container>
+        <div className="mb-10 grid gap-6 lg:mb-12 lg:grid-cols-[1.6fr_1fr] lg:items-end lg:gap-16">
+          <div>
+            <Eyebrow>03 — Soluciones</Eyebrow>
+            <h2 id="soluciones" className="mt-6 scroll-mt-28 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight sm:text-5xl xl:text-6xl"><Lines lines={["Soluciones gráficas", "para cada necesidad."]} /></h2>
+          </div>
+          <Reveal delay={0.12}>
+            <p className="max-w-sm text-base leading-relaxed text-lightgrey/70">Una identidad. Distintas formas de hacerla tangible. Encuentra la solución para tu marca y descubre sus posibilidades.</p>
+          </Reveal>
+        </div>
+        <div className="mb-8 h-px w-full bg-lightgrey/10" aria-hidden><motion.div style={{ scaleX: lineScale }} className="h-full origin-left bg-mint/70" /></div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+          {SOLUTIONS.map((solution, index) => <SolutionPanel key={solution.slug} solution={solution} index={index} />)}
+        </div>
+        <Reveal className="mt-9 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+          <p className="text-xs uppercase tracking-[0.18em] text-lightgrey/55">Diseño y producción · Envíos a todo México</p>
+          <CTA href="/soluciones" variant="ghost">Ver todas las soluciones</CTA>
+        </Reveal>
+      </Container>
+    </section>
+  );
 }
