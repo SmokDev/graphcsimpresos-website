@@ -85,7 +85,7 @@ export default function HeroScene() {
 					}}
 					className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-20 will-change-transform [backface-visibility:hidden] sm:px-10 sm:pb-16"
 				>
-					<h1 className="max-w-full break-words font-display text-[clamp(2.6rem,12.5vw,4.25rem)] font-medium uppercase leading-[0.95] tracking-tight text-balance sm:text-[10vw] sm:leading-[0.92] lg:text-[8.6rem]">
+					<h1 className="max-w-full break-words font-display text-[clamp(2.6rem,12.5vw,4.25rem)] font-bold uppercase leading-[0.95] tracking-tight text-balance sm:text-[10vw] sm:leading-[0.92] lg:text-[8.6rem]">
 						{["Diseñamos tu idea", "Imprimimos tu éxito."].map((line, i) => (
 							<span key={line} className="block overflow-hidden pb-[0.06em] -mb-[0.06em]">
 								<motion.span

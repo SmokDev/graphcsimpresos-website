@@ -9,7 +9,7 @@ import { Clock, Mail, Phone } from "lucide-react";
 export const metadata: Metadata = {
 	title: "Solicitar cotización de impresión",
 	description:
-		"Solicita tu cotización de impresión en Atizapán de Zaragoza: papelería, publicidad, packaging y uniformes. Respuesta personalizada y sin compromiso.",
+		"Cotiza tus impresos con envío a toda la República Mexicana: papelería, publicidad, materiales para punto de venta, empaques y uniformes. Respuesta personalizada y sin compromiso.",
 	keywords: [
 		"cotización de impresión",
 		"cotizar impresión",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 		siteName: "Graphics Impresos",
 		title: "Solicitar cotización de impresión · Graphics Impresos",
 		description:
-			"Describe tu proyecto y te ayudaremos a encontrar la mejor solución gráfica. Sin compromiso.",
+			"Cuéntanos qué necesitas imprimir, la cantidad aproximada y para cuándo. Si aún no sabes qué material o acabado elegir, te orientamos. Sin compromiso.",
 		images: [
 			{
 				url: "/background.webp",
@@ -45,8 +45,8 @@ export default function CotizacionesPage() {
 		<main className="w-full bg-midnight">
 			<HeroSection
 				kicker="Cotizaciones"
-				sub="Describe tu proyecto y te ayudaremos a encontrar la mejor solución gráfica."
-				meta={["Respuesta personalizada", "Sin compromiso"]}
+				sub="Cuéntanos qué necesitas imprimir, la cantidad aproximada y para cuándo. Si aún no sabes qué material o acabado elegir, te orientamos."
+				meta={["Envíos a toda la República", "Cotización personalizada"]}
 			>
 				{["Cuéntanos", "qué necesitas", "imprimir."]}
 			</HeroSection>
@@ -61,8 +61,8 @@ export default function CotizacionesPage() {
 						</Heading>
 						<Reveal delay={0.12}>
 							<p className="mt-5 max-w-md leading-relaxed text-lightgrey/75">
-								Completa lo que puedas — no necesitas tener todo definido.
-								Tu idea es suficiente para empezar la conversación.
+								Completa tus datos de contacto y describe lo que necesitas.
+								Las especificaciones son opcionales: podemos orientarte para definirlas. Para cotizar el envío, incluye tu ciudad y código postal en la descripción del proyecto.
 							</p>
 						</Reveal>
 						<Reveal delay={0.18}>
@@ -110,7 +110,7 @@ export default function CotizacionesPage() {
 											Ubicación
 										</span>
 										<span className="text-sm leading-relaxed text-lightgrey/80">
-											Atizapán de Zaragoza, Estado de México
+											Atizapán de Zaragoza, Estado de México. Envíos a toda la República Mexicana.
 										</span>
 									</span>
 								</li>

@@ -97,7 +97,7 @@ export default function BrandScene({
 						</p>
 					</Drift>
 					<div className="mx-auto w-full max-w-7xl px-5 sm:px-10">
-						<h2 className="max-w-4xl text-balance font-display text-[clamp(1.9rem,8.5vw,2.5rem)] font-medium uppercase leading-[1.02] tracking-tight text-mint sm:text-6xl">
+						<h2 className="max-w-4xl text-balance font-display text-[clamp(1.9rem,8.5vw,2.5rem)] font-bold uppercase leading-[1.02] tracking-tight text-mint sm:text-6xl">
 							<Lines lines={["También se", "imprime."]} />
 						</h2>
 						<Words

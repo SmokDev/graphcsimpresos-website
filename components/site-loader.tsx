@@ -106,7 +106,7 @@ export default function SiteLoader() {
 							Graphics Impresos
 						</p>
 						<p className="font-display text-sm tracking-wide text-lightgrey/60">
-							CDMX — México
+							Atizapán — Estado de México
 						</p>
 					</div>
 

@@ -16,12 +16,12 @@ export const SOLUTIONS = [
 	{
 		n: "01",
 		slug: "identidad-corporativa",
-		title: "Identidad corporativa",
+		title: "Papelería corporativa",
 		headline: "Haz que tu marca esté presente en cada detalle.",
 		description:
-			"Tarjetas, folders, hojas membretadas, sobres y materiales empresariales.",
+			"Tarjetas de presentación, folders, hojas membretadas y sobres para presentar tu empresa con una imagen coherente.",
 		items: [
-			"Tarjetas",
+			"Tarjetas de presentación",
 			"Folders",
 			"Hojas membretadas",
 			"Sobres",
@@ -34,15 +34,18 @@ export const SOLUTIONS = [
 		n: "02",
 		slug: "publicidad-promocion",
 		title: "Publicidad y promoción",
-		headline: "Haz que tu mensaje llegue más lejos.",
+		headline: "Da presencia a tu campaña y a tu punto de venta.",
 		description:
-			"Flyers, posters, brochures, catálogos, boletos y artículos promocionales.",
+			"Volantes, flyers, pósters, folletos, catálogos y boletos para campañas y eventos. Danglers y cenefas para promoción en punto de venta.",
 		items: [
-			"Flyers",
-			"Posters",
-			"Brochures",
+			"Volantes y flyers",
+			"Carteles y pósters",
+			"Folletos",
 			"Catálogos",
 			"Boletos",
+			"Revistas",
+			"Danglers (colgantes publicitarios)",
+			"Cenefas para anaqueles",
 			"Artículos promocionales",
 		],
 		image: "/boleto.jpg",
@@ -50,9 +53,9 @@ export const SOLUTIONS = [
 	{
 		n: "03",
 		slug: "packaging",
-		title: "Packaging",
+		title: "Empaques y etiquetas",
 		headline: "Tu producto también comunica.",
-		description: "Cajas, etiquetas, stickers y empaques.",
+		description: "Cajas, etiquetas y stickers personalizados para presentar tus productos y comunicar tu marca.",
 		items: ["Cajas", "Etiquetas", "Stickers", "Empaques personalizados"],
 		image: "/packaging%20colorido.webp",
 	},
@@ -68,9 +71,9 @@ export const SOLUTIONS = [
 ] as const;
 
 export const QUOTE_TYPES = [
-	"Identidad corporativa",
+	"Papelería corporativa",
 	"Publicidad y promoción",
-	"Packaging",
+	"Empaques y etiquetas",
 	"Uniformes y distintivos",
 	"Otro",
 ] as const;

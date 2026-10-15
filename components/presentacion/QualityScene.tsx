@@ -95,7 +95,7 @@ export default function QualityScene() {
 					style={{ opacity: finOp, scale: finScale }}
 					className="absolute inset-0 flex items-center justify-center will-change-transform"
 				>
-					<h2 className="px-6 text-center font-display text-[11vw] font-medium uppercase leading-[0.95] tracking-tight sm:text-7xl">
+					<h2 className="px-6 text-center font-display text-[11vw] font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl">
 						La calidad
 						<br />
 						<span className="text-mint">también comunica.</span>

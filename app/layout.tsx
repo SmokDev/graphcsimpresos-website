@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Oswald } from "next/font/google";
+import { Poppins } from "next/font/google";
 
 import "./globals.css";
 import Header from "@/components/ui/header";
@@ -9,28 +9,21 @@ import SiteLoader from "@/components/site-loader";
 import SmoothScroll from "@/components/providers/smooth-scroll";
 import { SITE } from "@/utils/site";
 
-const oswald = Oswald({
+const poppins = Poppins({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "700"],
-	variable: "--font-oswald",
-	display: "swap",
-});
-
-const inter = Inter({
-	subsets: ["latin"],
-	weight: ["300", "400", "500"],
-	variable: "--font-inter",
+	variable: "--font-poppins",
 	display: "swap",
 });
 
 export const metadata: Metadata = {
 	metadataBase: new URL(SITE.baseUrl),
 	title: {
-		default: "Graphics Impresos — Imprenta en Atizapán de Zaragoza",
+		default: "Graphics Impresos — Impresión y envíos a todo México",
 		template: "%s · Graphics Impresos",
 	},
 	description:
-		"Imprenta en Atizapán de Zaragoza con más de 25 años de experiencia. Diseñamos tu idea, imprimimos tu éxito: asesoría, diseño y producción.",
+		"Imprenta con más de 25 años de experiencia y envíos a toda la República Mexicana. Diseñamos tu idea, imprimimos tu éxito: asesoría, diseño y producción.",
 	keywords: [
 		"imprenta Atizapán de Zaragoza",
 		"imprenta Estado de México",
@@ -49,7 +42,7 @@ export const metadata: Metadata = {
 		locale: "es_MX",
 		url: "/",
 		siteName: SITE.name,
-		title: "Graphics Impresos — Imprenta en Atizapán de Zaragoza",
+		title: "Graphics Impresos — Impresión y envíos a todo México",
 		description:
 			"Imprenta con más de 25 años de experiencia. Asesoría, diseño y producción de soluciones impresas para empresas y negocios.",
 		images: [
@@ -61,7 +54,7 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Graphics Impresos — Imprenta en Atizapán de Zaragoza",
+		title: "Graphics Impresos — Impresión y envíos a todo México",
 		description:
 			"Imprenta con más de 25 años de experiencia. Asesoría, diseño y producción de soluciones impresas.",
 		images: ["/graphics%20impresos%20offset%20impreta.webp"],
@@ -90,7 +83,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="es" className={`${oswald.variable} ${inter.variable}`}>
+		<html lang="es" className={poppins.variable}>
 			<body className="bg-midnight font-body text-lightgrey antialiased">
 				<a
 					href="#contenido"

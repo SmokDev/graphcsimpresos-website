@@ -100,6 +100,8 @@ export default function Footer() {
 									Atizapán de Zaragoza,
 									<br />
 									Estado de México
+									<br />
+									<span className="text-mint">Envíos a toda la República Mexicana</span>
 								</li>
 							</ul>
 						</div>

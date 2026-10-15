@@ -12,7 +12,7 @@ import { Drift, ScrollRise } from "@/components/motion/scroll";
 export default function SiteCTA({
 	kicker = "Siguiente paso",
 	title = ["¿Tienes una idea?", "Hagámosla realidad."],
-	copy = "Cuéntanos qué necesitas y te ayudaremos a encontrar la mejor manera de convertirlo en una solución gráfica.",
+	copy = "Cuéntanos qué necesitas imprimir, la cantidad aproximada y para cuándo. Te orientamos sobre materiales, formatos y acabados para preparar tu cotización.",
 	cta = "Solicitar cotización",
 	backdrop,
 }: {
@@ -39,7 +39,7 @@ export default function SiteCTA({
 			</Drift>
 			<Container className="relative">
 				<Eyebrow light>{kicker}</Eyebrow>
-				<h2 className="font-display text-[12.5vw] font-medium uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl">
+				<h2 className="font-display text-[12.5vw] font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl">
 					<Lines lines={title} delay={0.1} />
 				</h2>
 				<ScrollRise className="mt-8">

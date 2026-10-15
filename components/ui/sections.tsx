@@ -126,7 +126,7 @@ export function HeroSection(
 						{kicker}
 					</p>
 				)}
-				<h1 className="max-w-5xl font-display text-[13vw] font-medium uppercase leading-[0.95] tracking-tight text-lightgrey sm:text-7xl lg:text-8xl">
+				<h1 className="max-w-5xl font-display text-[13vw] font-bold uppercase leading-[0.95] tracking-tight text-lightgrey sm:text-7xl lg:text-8xl">
 					<Lines lines={Array.isArray(children) ? children : [children]} />
 				</h1>
 				{sub && (

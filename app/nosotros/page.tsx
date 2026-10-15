@@ -63,7 +63,7 @@ export default function NosotrosPage() {
 			<HeroSection
 				kicker="Nosotros · Quiénes somos"
 				sub="Más de 25 años acompañando a empresas y negocios a materializar sus ideas."
-				meta={["CDMX · México", "Asesoría · Diseño · Producción"]}
+				meta={["Atizapán de Zaragoza · Estado de México", "Envíos a toda la República"]}
 			>
 				{["Experiencia que", "se convierte", "en soluciones."]}
 			</HeroSection>
@@ -149,9 +149,8 @@ export default function NosotrosPage() {
 									años de experiencia
 								</Heading>
 								<p className="mt-3 max-w-xl leading-relaxed text-lightgrey/70">
-									La experiencia como un activo que genera confianza: miles
-									de proyectos nos respaldan y cada uno empezó con una
-									conversación.
+									Experiencia para orientarte en la elección de materiales,
+									formatos y acabados según las necesidades de tu proyecto.
 								</p>
 							</div>
 						</Reveal>

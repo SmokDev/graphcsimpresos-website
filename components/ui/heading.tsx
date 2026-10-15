@@ -7,7 +7,7 @@ interface HeadingProps {
 	element?: React.ElementType;
 }
 
-/** Display heading — Oswald, uppercase, fluid sizes via clamp. */
+/** Display heading — Poppins bold, uppercase, fluid sizes via clamp. */
 export default function Heading({
 	children,
 	element,
@@ -31,7 +31,7 @@ export default function Heading({
 	const Tag: React.ElementType = element ?? (`h${level}` as React.ElementType);
 	return (
 		<Tag
-			className={cn("font-display font-medium uppercase tracking-tight", sizes, className)}
+			className={cn("font-display font-bold uppercase tracking-tight", sizes, className)}
 			{...rest}
 		>
 			{children}

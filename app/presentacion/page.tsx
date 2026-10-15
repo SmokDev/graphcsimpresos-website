@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const SOLUTIONS = [
 	{
 		n: "01",
-		title: "Identidad corporativa",
+		title: "Papelería corporativa",
 		copy: "Tarjetas, papelería, carpetas, sobres y formatos que mantienen tu imagen profesional y coherente.",
 		image: "/papeleria%20corporatiav%202.webp",
 		alt: "Papelería corporativa — Graphics Impresos",
@@ -29,13 +29,13 @@ const SOLUTIONS = [
 	{
 		n: "02",
 		title: "Publicidad y promoción",
-		copy: "Flyers, posters, brochures y catálogos para que tu mensaje llegue más lejos.",
+		copy: "Volantes, flyers, pósters, folletos y catálogos para campañas. Danglers y cenefas para promoción en punto de venta.",
 		image: "/Flyers%20festival.webp",
 		alt: "Publicidad impresa — Graphics Impresos",
 	},
 	{
 		n: "03",
-		title: "Packaging",
+		title: "Empaques y etiquetas",
 		copy: "Cajas, etiquetas y empaques que hacen tangible la experiencia de tu marca.",
 		image: "/packaging%20premium.webp",
 		alt: "Packaging premium — Graphics Impresos",

@@ -98,7 +98,7 @@ export default function QuoteForm() {
 			// La primera vez, FormSubmit pide activar el correo desde la bandeja
 			// de contacto@graphicsimpresos.com.
 			const prueba =
-				values.prueba === "si" ? "Sí" : values.prueba === "no" ? "No" : "—";
+				values.prueba === "si" ? "Sí" : values.prueba === "no" ? "No" : values.prueba === "asesoria" ? "Necesito asesoría" : "—";
 			const res = await fetch(
 				`https://formsubmit.co/ajax/${SITE.formSubmitKey}`,
 				{
@@ -175,7 +175,7 @@ export default function QuoteForm() {
 					role="status"
 				>
 					<CheckCircle2 className="h-10 w-10 text-midnight" aria-hidden />
-					<h2 className="font-display text-3xl font-medium uppercase sm:text-4xl">
+					<h2 className="font-display text-3xl font-bold uppercase sm:text-4xl">
 						Solicitud enviada. Gracias.
 					</h2>
 					<p className="max-w-lg leading-relaxed text-midnight/75">
@@ -273,7 +273,7 @@ export default function QuoteForm() {
 									</p>
 								)}
 							</div>
-							<Input label="Cuéntanos sobre tu proyecto" id="quote-proyecto" name="proyecto" isTextarea value={values.proyecto} onChange={set("proyecto")} required error={errors.proyecto} hint="Objetivo, piezas que imaginas, fechas clave… mientras más contexto, mejor propuesta." placeholder=" " />
+							<Input label="Cuéntanos sobre tu proyecto" id="quote-proyecto" name="proyecto" isTextarea value={values.proyecto} onChange={set("proyecto")} required error={errors.proyecto} hint="Indica qué piezas necesitas, para qué las usarás y la fecha deseada. Para envío, agrega ciudad y código postal. Si son para punto de venta, cuéntanos dónde se colocarán." placeholder=" " />
 						</fieldset>
 
 						{/* 03 Especificaciones */}
@@ -299,6 +299,7 @@ export default function QuoteForm() {
 									{[
 										{ value: "si", label: "Sí" },
 										{ value: "no", label: "No" },
+										{ value: "asesoria", label: "No lo sé, necesito asesoría" },
 									].map((opt) => {
 										const selected = values.prueba === opt.value;
 										return (
@@ -325,8 +326,8 @@ export default function QuoteForm() {
 									})}
 								</div>
 								<p className="mt-2 text-sm text-midnight/60">
-									Recomendada para validar colores, materiales y acabados
-									antes de la producción final.
+									Las opciones de prueba y lo que permiten validar dependen
+									de cada proyecto. Te orientamos antes de confirmar la producción.
 								</p>
 							</div>
 							<p className="mt-2 text-sm text-midnight/60">

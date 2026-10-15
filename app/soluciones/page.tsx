@@ -13,7 +13,7 @@ import { cn } from "@/utils/cn";
 export const metadata: Metadata = {
 	title: "Soluciones de impresión para empresas",
 	description:
-		"Identidad corporativa, publicidad, packaging y uniformes en Atizapán de Zaragoza. Diseño, prototipado y producción con más de 25 años de experiencia.",
+		"Papelería corporativa, publicidad impresa y materiales para punto de venta con envíos a todo México. Empaques, etiquetas y uniformes según tu proyecto.",
 	keywords: [
 		"identidad corporativa",
 		"publicidad impresa",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 		siteName: "Graphics Impresos",
 		title: "Soluciones de impresión para empresas · Graphics Impresos",
 		description:
-			"Papelería, publicidad, packaging y uniformes: soluciones gráficas adaptadas a cada proyecto.",
+			"Papelería, publicidad y materiales para punto de venta. Empaques, etiquetas y uniformes según tu proyecto.",
 		images: [
 			{
 				url: "/packaging%20premium.webp",
@@ -60,7 +60,7 @@ const DESCRIPTIONS: Record<string, string> = {
 	"identidad-corporativa":
 		"Los materiales corporativos forman parte de la experiencia que construyes con tus clientes. Creamos y producimos piezas que ayudan a mantener una imagen profesional y coherente.",
 	"publicidad-promocion":
-		"Materiales impresos para comunicar promociones, presentar productos, generar presencia y apoyar campañas publicitarias.",
+		"Impresos para campañas, eventos y promoción en punto de venta: volantes, flyers, pósters, folletos, catálogos, boletos y revistas. Integramos danglers o colgantes publicitarios y cenefas para anaqueles según el espacio, las medidas y el uso de cada pieza.",
 	packaging:
 		"El empaque es uno de los puntos de contacto más importantes entre una marca y sus clientes. Desarrollamos y producimos soluciones de packaging que ayudan a presentar tus productos de manera profesional y coherente con tu identidad.",
 	uniformes:
@@ -259,7 +259,7 @@ export default function SolucionesPage() {
 			<HeroSection
 				useAltBackground
 				kicker="Soluciones · Catálogo"
-				sub="Desde materiales corporativos hasta packaging y publicidad, desarrollamos y producimos soluciones gráficas adaptadas a cada proyecto."
+				sub="Papelería corporativa y publicidad impresa para empresas, campañas y puntos de venta, con envíos a toda la República Mexicana. Complementa tu proyecto con empaques, etiquetas, promocionales y uniformes."
 				actions={<CTA href="/cotizaciones">Solicitar cotización</CTA>}
 				metaLinks={SOLUTIONS.map((s) => ({ label: s.title, href: `#${s.slug}` }))}
 			>
@@ -282,7 +282,7 @@ export default function SolucionesPage() {
 			<Section aria-labelledby="asesoria" className="bg-midnight-deep/60">
 				<Container>
 					<div className="max-w-3xl">
-						<Eyebrow>Asesoría incluida</Eyebrow>
+						<Eyebrow>Orientación para tu proyecto</Eyebrow>
 						<Heading level={2} id="asesoria">
 							<Lines lines={["No tienes que saber", "exactamente qué imprimir."]} />
 						</Heading>

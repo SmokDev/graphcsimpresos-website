@@ -5,8 +5,8 @@ import { Lines, Reveal } from "@/components/motion/reveal";
 export const WORK_STEPS = [
 	{ n: "01", title: "Entendemos", copy: "Conocemos tu necesidad y objetivo." },
 	{ n: "02", title: "Asesoramos", copy: "Te ayudamos a definir la solución adecuada." },
-	{ n: "03", title: "Diseñamos", copy: "Desarrollamos o adaptamos la propuesta." },
-	{ n: "04", title: "Prototipamos", copy: "Creamos pruebas de impresión para validar la propuesta." },
+	{ n: "03", title: "Diseñamos", copy: "Definimos el alcance del diseño o la adaptación de archivos cuando lo necesitas." },
+	{ n: "04", title: "Revisamos", copy: "Acordamos especificaciones y, según el proyecto, opciones de prueba y aprobación." },
 	{ n: "05", title: "Producimos", copy: "Convertimos la idea en una pieza física." },
 ];
 
@@ -38,7 +38,7 @@ export default function HowWeWork({
 							<span className="font-display text-sm tracking-[0.2em] text-mint">
 								{s.n}
 							</span>
-							<h3 className="font-display text-2xl font-medium uppercase">
+							<h3 className="font-display text-2xl font-bold uppercase">
 								{s.title}
 							</h3>
 							<p className="text-[15px] leading-relaxed text-lightgrey/65">

@@ -147,7 +147,7 @@ export default function HomeSolutions() {
 
 					<h2
 						id="soluciones"
-						className="mt-6 font-display text-4xl font-medium uppercase leading-[1.02] tracking-tight text-midnight sm:text-5xl lg:text-6xl"
+						className="mt-6 font-display text-4xl font-bold uppercase leading-[1.02] tracking-tight text-midnight sm:text-5xl lg:text-6xl"
 					>
 						<Lines lines={["Soluciones gráficas", "para cada necesidad."]} />
 					</h2>

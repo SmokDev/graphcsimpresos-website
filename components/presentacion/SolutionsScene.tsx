@@ -67,7 +67,7 @@ function Panel({
 					{s.n}
 				</span>
 				<div className="min-w-0">
-					<h2 className="max-w-4xl font-display text-[10vw] font-medium uppercase leading-[0.93] tracking-tight sm:text-6xl lg:text-7xl">
+					<h2 className="max-w-4xl font-display text-[10vw] font-bold uppercase leading-[0.93] tracking-tight sm:text-6xl lg:text-7xl">
 						{twoLines(s.title)[0]}
 						{twoLines(s.title)[1] ? (
 							<>

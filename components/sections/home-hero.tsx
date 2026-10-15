@@ -7,7 +7,7 @@ import { Container } from "@/components/ui/sections";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { EASE } from "@/components/motion/reveal";
 
-const H1_LINES = ["Convertimos", "tus ideas", "en soluciones", "impresas."];
+const H1_LINES = ["Tu marca.", "Tus ideas.", "Impresas", "para destacar."];
 
 /**
  * Hero editorial del Home — portada cinematográfica.
@@ -97,7 +97,7 @@ export default function HomeHero() {
 						Diseñamos tu idea — imprimimos tu éxito
 					</motion.p>
 
-					<h1 className="mt-5 font-display text-[15vw] font-medium uppercase leading-[0.92] tracking-tight sm:text-[11vw] lg:text-[8.2rem]">
+					<h1 className="mt-5 font-display text-[10.5vw] font-bold uppercase leading-[0.92] tracking-tight sm:text-[8vw] lg:text-[6rem]">
 						{H1_LINES.map((line, i) => (
 							<span key={line} className="block overflow-hidden pb-[0.06em] -mb-[0.06em]">
 								<motion.span
@@ -119,15 +119,15 @@ export default function HomeHero() {
 							transition={{ duration: 0.9 * d || 0.01, ease: EASE, delay: 1 * d }}
 						>
 							<p className="max-w-md text-base leading-relaxed text-lightgrey/85 sm:text-lg">
-								Más de 25 años ayudando a empresas y negocios a
-								materializar su marca y comunicación.
+								Papelería corporativa y publicidad impresa para presentar tu empresa,
+								preparar tus campañas y dar presencia a tu punto de venta. Enviamos a toda la República Mexicana.
 							</p>
 							<div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
 								<CTA href="/cotizaciones" className="justify-center sm:justify-start">
-									Cuéntanos tu proyecto
+									Solicitar cotización
 								</CTA>
 								<CTA href="/soluciones" variant="ghost" className="justify-center sm:justify-start">
-									Ver soluciones
+									Ver productos y servicios
 								</CTA>
 							</div>
 							<p className="mt-6 flex items-baseline gap-5 sm:hidden">
